@@ -35,16 +35,14 @@ set statusline=%<%f\ %m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']['.&ft.']['
 " コマンドライン補完を強化
 set wildmenu
 " カラー設定
-if &term =~ 'xterm' || &term =~ 'xterm-256color'
-  if has('terminfo')
-    set t_Co=16
-    set t_Sf=<ESC>[3%p1%dm
-    set t_Sb=<ESC>[4%p1%dm
+if &term =~ 'xterm'
+  if &term = 'xterm-256color'
+    set t_Co=256
   else
     set t_Co=16
-    set t_Sf=<ESC>[3%dm
-    set t_Sb=<ESC>[4%dm
   endif
+  set t_Sf=<ESC>[3%dm
+  set t_Sb=<ESC>[4%dm
 endif
 " カラースキーム
 colorscheme hnsta

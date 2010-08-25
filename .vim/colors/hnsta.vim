@@ -16,37 +16,41 @@ endif
 let g:colors_name = 'hnsta'
 
 " Base
-hi SpecialKey   term=standout   cterm=underline ctermfg=cyan      ctermbg=none
-hi NonText      term=standout   cterm=none      ctermfg=darkred   ctermbg=none 
-hi LineNr       term=standout   cterm=none      ctermfg=black     ctermbg=darkgray
-hi Search       term=standout   cterm=none      ctermfg=black     ctermbg=yellow
-hi Visual       term=reverse    cterm=none      ctermfg=black     ctermbg=gray
-hi VisualNOS    term=reverse    cterm=none      ctermfg=black     ctermbg=gray
-hi WildMenu     term=reverse    cterm=none      ctermfg=black     ctermbg=darkyellow
-hi Folded       term=standout   cterm=none      ctermfg=darkred   ctermbg=darkgray
-hi FoldedColumn term=standout   cterm=none      ctermfg=darkred   ctermbg=darkgray
-hi DiffAdd      term=standout   cterm=none      ctermfg=green     ctermbg=darkgray
-hi DiffChange   term=standout   cterm=bold      ctermfg=yellow    ctermbg=darkgray
-hi DiffDelete   term=standout   cterm=none      ctermfg=red       ctermbg=darkgray
-hi DiffText     term=standout   cterm=none      ctermfg=black     ctermbg=red
+hi SpecialKey   term=standout   cterm=underline ctermfg=6       ctermbg=none
+hi NonText      term=standout   cterm=none      ctermfg=8       ctermbg=none 
+hi LineNr       term=standout   cterm=none      ctermfg=15      ctermbg=none
+hi Search       term=standout   cterm=none      ctermfg=0       ctermbg=11
+hi Visual       term=reverse    cterm=none      ctermfg=0       ctermbg=7
+hi VisualNOS    term=reverse    cterm=none      ctermfg=0       ctermbg=7
+hi WildMenu     term=reverse    cterm=none      ctermfg=15      ctermbg=5
+hi Folded       term=standout   cterm=none      ctermfg=125     ctermbg=235
+hi FoldedColumn term=standout   cterm=none      ctermfg=125     ctermbg=235
+hi DiffAdd      term=standout   cterm=none      ctermfg=40      ctermbg=none
+hi DiffChange   term=standout   cterm=bold      ctermfg=202     ctermbg=none
+hi DiffDelete   term=standout   cterm=none      ctermfg=1       ctermbg=none
+hi DiffText     term=standout   cterm=none      ctermfg=0       ctermbg=1
 
-hi Comment      term=standout   cterm=none      ctermfg=darkred   ctermbg=darkgray
-hi Constant     term=standout   cterm=none      ctermfg=darkgreen ctermbg=none
-hi Special      term=bold       cterm=none      ctermfg=cyan      ctermbg=none
-hi Identifier   term=underline  cterm=none      ctermfg=darkcyan  ctermbg=none
-hi Statement    term=bold       cterm=none      ctermfg=blue      ctermbg=none
-hi PreProc      term=underline  cterm=none      ctermfg=yellow    ctermbg=none
-hi Type         term=underline  cterm=none      ctermfg=green     ctermbg=none
-hi Todo         term=standout   cterm=none      ctermfg=gray      ctermbg=darkmagenta
+hi Comment      term=standout   cterm=none      ctermfg=23      ctermbg=none
+hi Constant     term=standout   cterm=none      ctermfg=30      ctermbg=none
+hi Special      term=bold       cterm=none      ctermfg=126     ctermbg=none
+hi Identifier   term=underline  cterm=none      ctermfg=7       ctermbg=none
+hi Statement    term=bold       cterm=none      ctermfg=25      ctermbg=none
+hi PreProc      term=underline  cterm=none      ctermfg=90      ctermbg=none
+hi Type         term=underline  cterm=none      ctermfg=28      ctermbg=none
+hi Todo         term=standout   cterm=none      ctermfg=7       ctermbg=5
 
 " Diff
-hi diffAdded    term=standout   cterm=none      ctermfg=green     ctermbg=darkgray
-hi diffChanged  term=standout   cterm=bold      ctermfg=yellow    ctermbg=darkgray
-hi diffRemoved  term=standout   cterm=none      ctermfg=red       ctermbg=darkgray
-hi diffNewFile  term=standout   cterm=none      ctermfg=green     ctermbg=darkgray
-hi diffOldFile  term=standout   cterm=none      ctermfg=red       ctermbg=darkgray
+hi diffAdded    term=standout   cterm=none      ctermfg=40        ctermbg=none
+hi diffChanged  term=standout   cterm=bold      ctermfg=202       ctermbg=none
+hi diffRemoved  term=standout   cterm=none      ctermfg=1         ctermbg=none
+hi diffNewFile  term=standout   cterm=none      ctermfg=40        ctermbg=none
+hi diffOldFile  term=standout   cterm=none      ctermfg=1         ctermbg=none
 
 " PHP
-hi phpParent    term=standout   cterm=none      ctermfg=gray      ctermbg=none
-hi phpOperator  term=standout   cterm=none      ctermfg=gray      ctermbg=none
-hi phpRelation  term=standout   cterm=none      ctermfg=gray      ctermbg=none
+hi phpParent    term=standout   cterm=none      ctermfg=178       ctermbg=none
+hi phpOperator  term=standout   cterm=none      ctermfg=7         ctermbg=none
+hi phpRelation  term=standout   cterm=none      ctermfg=7         ctermbg=none
+hi phpIdentifier    term=standout   cterm=none  ctermfg=7         ctermbg=none
+hi phpVarSelector   term=standout   cterm=none  ctermfg=30        ctermbg=none
+hi phpMemberSelector  term=standout cterm=none  ctermfg=30        ctermbg=none
+hi phpStatement term=standout   cterm=none      ctermfg=1         ctermbg=none
