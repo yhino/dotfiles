@@ -71,8 +71,6 @@ set wrapscan
 set noincsearch
 " 検索結果文字列をハイライト
 set hlsearch
-" 検索結果のハイライト取り消し
-noremap <ESC><ESC> :nohlsearch<CR><ESC>
 
 "" キーバインド
 " 表示行単位の移動
@@ -81,6 +79,8 @@ nnoremap k gk
 " 行単位の移動
 nnoremap gj j
 nnoremap gk k
+" 検索結果のハイライト取り消し
+noremap <ESC><ESC> :nohlsearch<CR><ESC>
 
 "" Plugins
 " FileType
