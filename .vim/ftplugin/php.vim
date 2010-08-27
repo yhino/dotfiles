@@ -17,6 +17,8 @@ let php_parent_error_close = 1
 let php_parent_error_open = 1
 
 "" 編集
+" シンタックス設定
+setlocal syntax=php
 " たたみ方
 setlocal foldmethod=syntax
 " エラーの箇所に飛ぶ
