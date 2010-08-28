@@ -36,7 +36,7 @@ set statusline=%<%f\ %m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']['.&ft.']['
 set wildmenu
 " カラー設定
 if &term =~ 'xterm'
-  if &term = 'xterm-256color'
+  if &term == 'xterm-256color'
     set t_Co=256
   else
     set t_Co=16
