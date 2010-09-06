@@ -91,16 +91,16 @@ source $VIMRUNTIME/macros/matchit.vim
 "" AutoComplete
 " Ctrl-NのかわりにTABを使用する
 function! InsertTabWrapper()
-    let col = col('.') - 1
-    if !col || getline('.')[col - 1] !~ '\k'
-        return "\<TAB>"
+  let col = col('.') - 1
+  if !col || getline('.')[col - 1] !~ '\k'
+    return "\<TAB>"
+  else
+    if pumvisible()
+      return "\<C-N>"
     else
-        if pumvisible()
-            return "\<C-N>"
-        else
-            return "\<C-N>\<C-P>"
-        end
-    endif
+      return "\<C-N>\<C-P>"
+    end
+  endif
 endfunction
 inoremap <tab> <c-r>=InsertTabWrapper()<cr>
 inoremap <s-tab> <c-p>
