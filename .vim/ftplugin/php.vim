@@ -18,7 +18,7 @@ let php_parent_error_open = 1
 
 "" 編集
 " シンタックス設定
-"setlocal syntax=php
+setlocal syntax=php
 " たたみ方
 setlocal foldmethod=manual
 " PHP fast folds 有効化
