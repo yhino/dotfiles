@@ -9,9 +9,6 @@ endif
 
 augroup filetypedetect
 
-" HTML
-au! BufNewFile,BufRead *.html   setf php
-
 " Template
 au! BufNewFile,BufRead *.tpl    setf php
 
