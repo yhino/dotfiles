@@ -6,6 +6,7 @@
 set rtp+=~/.vim/vundle/
 call vundle#rc()
 " Load bundle
+Bundle 'unite.vim'
 
 " 文字コード
 set termencoding=utf-8
