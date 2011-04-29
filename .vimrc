@@ -2,6 +2,10 @@
 " VIM : base
 " $Id$
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"" Load Vundle
+set rtp+=~/.vim/vundle/
+call vundle#rc()
+" Load bundle
 
 " 文字コード
 set termencoding=utf-8
