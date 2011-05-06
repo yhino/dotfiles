@@ -2,12 +2,24 @@
 " VIM : base
 " $Id$
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"" Load Vundle
+"" Vundle
+" Load Vundle
 set rtp+=~/.vim/vundle/
 call vundle#rc()
-" Load bundle
+" Bundles
 Bundle 'unite.vim'
+Bundle 'neocomplcache'
+Bundle 'ZenCoding.vim'
 
+"" Plugins
+" FileType
+filetype plugin indent on
+" matchit.vim
+source $VIMRUNTIME/macros/matchit.vim
+" neocomplcache
+let g:neocomplcache_enable_at_startup = 1
+
+"" Commons
 " 文字コード
 set termencoding=utf-8
 set encoding=utf-8
@@ -86,37 +98,3 @@ nnoremap gj j
 nnoremap gk k
 " 検索結果のハイライト取り消し
 noremap <ESC><ESC> :nohlsearch<CR><ESC>
-
-"" Plugins
-" FileType
-filetype plugin indent on
-" matchit.vim
-source $VIMRUNTIME/macros/matchit.vim
-
-"" AutoComplete
-" Ctrl-NのかわりにTABを使用する
-function! InsertTabWrapper()
-  let col = col('.') - 1
-  if !col || getline('.')[col - 1] !~ '\k'
-    return "\<TAB>"
-  else
-    if pumvisible()
-      return "\<C-N>"
-    else
-      return "\<C-N>\<C-P>"
-    end
-  endif
-endfunction
-inoremap <tab> <c-r>=InsertTabWrapper()<cr>
-inoremap <s-tab> <c-p>
-
-set iminsert=0 imsearch=0
-set complete+=k
-
-set completeopt=menuone,preview
-function! CompleteWithoutInsert()
-    return "\<C-n>\<C-r>=pumvisible() ? \"\\<C-P>\\<C-N>\\<C-P\" : \"\"\<CR>"
-endfunction
-inoremap <expr> <C-n> pumvisible() ? "\<C-n>" : CompleteWithoutInsert()
-inoremap <expr> <cr> pumvisible() ? "\<c-y>" : "\<c-g>u\<cr>"
-inoremap <expr> <Esc> pumvisible() ? "\<c-e>" : "\<Esc>"
