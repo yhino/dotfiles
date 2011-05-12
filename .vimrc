@@ -30,17 +30,23 @@ let g:neocomplcache_dictionary_filetype_lists = {}
 " 入力モードで開始する
 let g:unite_enable_start_insert=1
 " インサート／ノーマルどちらからでも呼び出せるようにキーマップ
-nnoremap <silent> <C-u><C-f> :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
-inoremap <silent> <C-u><C-f> <ESC>:<C-u>UniteWithBufferDir -buffer-name=files file<CR>
+nnoremap <silent> <C-u><C-f> :<C-u>Unite -buffer-name=files file<CR>
+inoremap <silent> <C-u><C-f> <ESC>:<C-u>Unite -buffer-name=files file<CR>
 nnoremap <silent> <C-u><C-u> :<C-u>Unite buffer file_mru<CR>
 inoremap <silent> <C-u><C-u> <ESC>:<C-u>Unite buffer file_mru<CR>
 nnoremap <silent> <C-u><C-r> :<C-u>Unite -buffer-name=register register<CR>
 inoremap <silent> <C-u><C-r> <ESC>:<C-u>Unite -buffer-name=register register<CR>
-nnoremap <silent> <C-u><C-a> :<C-u>UniteWithBufferDir -buffer-name=files buffer file_mru bookmark file<CR>
-nnoremap <silent> <C-u><C-a> <ESC>:<C-u>UniteWithBufferDir -buffer-name=files buffer file_mru bookmark file<CR>
+nnoremap <silent> <C-u><C-a> :<C-u>Unite -buffer-name=files buffer file_mru bookmark file<CR>
+nnoremap <silent> <C-u><C-a> <ESC>:<C-u>Unite -buffer-name=files buffer file_mru bookmark file<CR>
 " unite.vim上でのキーマッピング
 autocmd FileType unite call s:unite_my_settings()
 function! s:unite_my_settings()
+  " 横分割で開く
+  nmap <silent> <buffer> <expr> <C-j> unite#do_action('split')
+  imap <silent> <buffer> <expr> <C-j> unite#do_action('split')
+  " 縦分割で開く
+  nmap <silent> <buffer> <expr> <C-l> unite#do_action('vsplit')
+  imap <silent> <buffer> <expr> <C-l> unite#do_action('vsplit')
   " 単語単位からパス単位で削除するように変更
   imap <buffer> <C-w> <Plug>(unite_delete_backward_path)
   " ESCキーを2回押すと終了する
