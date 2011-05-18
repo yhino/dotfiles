@@ -3,6 +3,8 @@
 " $Id$
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "" {{{ Vundle
+" FileType OFF
+filetype off
 " Load Vundle
 set rtp+=~/.vim/vundle/
 call vundle#rc()
@@ -10,12 +12,11 @@ call vundle#rc()
 Bundle 'unite.vim'
 Bundle 'neocomplcache'
 Bundle 'ZenCoding.vim'
+" FileType ON
+filetype plugin indent on
 "" }}}
 
 "" {{{ Plugin
-" FileType
-filetype plugin indent on
-
 " matchit.vim
 source $VIMRUNTIME/macros/matchit.vim
 
@@ -25,6 +26,10 @@ let g:neocomplcache_enable_smart_case = 1
 let g:neocomplcache_enable_underbar_completion = 1
 let g:neocomplcache_min_syntax_length = 3
 let g:neocomplcache_dictionary_filetype_lists = {}
+if !exists('g:neocomplcache_keyword_patterns')
+  let g:neocomplcache_keyword_patterns = {}
+endif
+let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
 
 " unite.vim
 " 入力モードで開始する
