@@ -12,6 +12,7 @@ call vundle#rc()
 Bundle 'unite.vim'
 Bundle 'neocomplcache'
 Bundle 'ZenCoding.vim'
+Bundle 'Jinja'
 " FileType ON
 filetype plugin indent on
 "" }}}
@@ -112,8 +113,8 @@ syntax on
 " オートインデント有効
 set autoindent
 " タブ
-set tabstop=2
-set shiftwidth=2
+set tabstop=4
+set shiftwidth=4
 set softtabstop=0
 set expandtab
 " たたみ方
