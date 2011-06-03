@@ -26,3 +26,8 @@ nnoremap ,r :!php %<CR>
 " AutoComplete
 setlocal dictionary+=~/.vim/dict/php.dict
 setlocal complete+=k
+
+" PDV
+inoremap <C-p> <ESC>:call PhpDocSingle()<CR>i
+nnoremap <C-p> :call PhpDocSingle()<CR>
+vnoremap <C-p> :call PhpDocRange()<CR>

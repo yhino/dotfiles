@@ -12,7 +12,7 @@ call vundle#rc()
 Bundle 'unite.vim'
 Bundle 'neocomplcache'
 Bundle 'ZenCoding.vim'
-Bundle 'Jinja'
+Bundle 'PDV--phpDocumentor-for-Vim'
 " FileType ON
 filetype plugin indent on
 "" }}}
