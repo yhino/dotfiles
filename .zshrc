@@ -6,6 +6,7 @@ local GREEN=$'%{\e[1;32m%}'
 local DEFAULT=$'%{\e[1;37m%}'
 
 PROMPT='${GREEN}%m${DEFAULT}:%/%# '
+PROMPT2='> '
 SPROMPT='%R -> %r ? '
 # }}}
 
@@ -14,7 +15,6 @@ SPROMPT='%R -> %r ? '
 autoload history-search-end
 zle -N history-beginning-search-backward-end history-search-end
 zle -N history-beginning-search-forward-end history-search-end
-
 HISTFILE="${HOME}/.zhistory"
 HISTSIZE=10000
 SAVEHIST=10000
@@ -25,13 +25,22 @@ SAVEHIST=10000
 alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
-alias ls='ls -Fh'
-alias ll='ls -alFh'
-alias la='ls -aFh'
-alias sl='ls'
 alias df='df -h'
-alias ..='cd ..'
 alias diff='diff -u'
+case "${OSTYPE}" in
+    linux*)
+    alias ls='ls -Fh --color'
+    alias ll='ls -alFh'
+    alias la='ls -aFh'
+    alias sl='ls'
+    ;;
+    *)
+    alias ls='ls -FhG'
+    alias ll='ls -alFh'
+    alias la='ls -aFh'
+    alias sl='ls'
+    ;;
+esac
 # }}}
 
 

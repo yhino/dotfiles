@@ -1,0 +1,11 @@
+[user]
+	name = yhino
+	email = gyhino@gmail.com
+[core]
+	excludesfile = /Users/yhino/.gitignore
+	editor = /usr/bin/vim
+[alias]
+	co = checkout
+	br = branch
+	ci = commit
+	st = status

@@ -1,2 +1,8 @@
+*.swp
+.DS_Store
+
+cache/*
+logs/*
+
 .vim/bundle/**/*
 .vim/.VimballRecord
