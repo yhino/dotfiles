@@ -2,8 +2,8 @@
 	name = yhino
 	email = gyhino@gmail.com
 [core]
-	excludesfile = /Users/yhino/.gitignore
-	editor = /usr/bin/vim
+	excludesfile = ${HOME}/.gitignore
+	editor = `which vim`
 [alias]
 	co = checkout
 	br = branch
