@@ -38,7 +38,7 @@ let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
 let g:unite_enable_start_insert=1
 " インサート／ノーマルどちらからでも呼び出せるようにキーマップ
 nnoremap <silent> <C-u><C-u> :<C-u>UniteWithBufferDir -buffer-name=files buffer file_mru file<CR>
-nnoremap <silent> <C-u><C-u> <ESC>:<C-u>UniteWithBufferDir -buffer-name=files buffer file_mru file<CR>
+inoremap <silent> <C-u><C-u> <ESC>:<C-u>UniteWithBufferDir -buffer-name=files buffer file_mru file<CR>
 " unite.vim上でのキーマッピング
 autocmd FileType unite call s:unite_my_settings()
 function! s:unite_my_settings()
