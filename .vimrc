@@ -14,7 +14,6 @@ Bundle 'neocomplcache'
 Bundle 'ZenCoding.vim'
 Bundle 'PDV--phpDocumentor-for-Vim'
 Bundle 'Align'
-Bundle 'nginx.vim'
 " FileType ON
 filetype plugin indent on
 "" }}}
