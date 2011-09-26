@@ -8,8 +8,3 @@ case "${OSTYPE}" in
     export LSCOLORS=gxfxcxdxbxegedabagacad
     ;;
 esac
-
-if [ -f ${HOME}/.nvm/nvm.sh ]; then
-    . ${HOME}/.nvm/nvm.sh
-    nvm use stable > /dev/null
-fi
