@@ -94,4 +94,7 @@ setopt share_history
 setopt hist_no_store
 # 余分な空白は詰めて記録
 setopt hist_reduce_blanks
+
+#
+setopt globsubst
 # }}}

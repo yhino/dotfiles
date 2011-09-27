@@ -10,7 +10,6 @@ case "${OSTYPE}" in
 esac
 
 if [ -f ${HOME}/.nvm/nvm.sh ]; then
-    setopt no_nomatch
     . ${HOME}/.nvm/nvm.sh
     nvm use default > /dev/null
 fi
