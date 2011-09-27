@@ -1,8 +1,8 @@
 # {{{ Prompt
-DEFAULT='\[\e[00m\]'
 GREEN='\[\e[1;32m\]'
+DEFAULT='\[\e[1;37m\]'
 
-PS1="[${GREEN}\h${DEFAULT}:\w]\\$"
+PS1="${GREEN}\h${DEFAULT}:\W\\$ "
 PS2=">"
 # }}}
 
