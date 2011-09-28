@@ -2,7 +2,7 @@
 GREEN='\[\e[1;32m\]'
 DEFAULT='\[\e[1;37m\]'
 
-PS1="${GREEN}\h${DEFAULT}:\W\\$ "
+PS1="${GREEN}\h${DEFAULT}:\w\\$ "
 PS2=">"
 # }}}
 
@@ -49,12 +49,16 @@ export FIGNORE='.svn'
 export LESSCHARSET=utf-8
 ## EOF(Ctrl-D)でログアウトしない(10回まで許容)
 export IGNOREEOF=10
-
 # History
 export HISTFILE="${HOME}/.bhistory"
 export HISTSIZE=10000
 export HISTFILESIZE=10000
 export HISTCONTROL=ignoreboth
+# nvm
+if [ -f ${HOME}/.nvm/nvm.sh ]; then
+    . ${HOME}/.nvm/nvm.sh
+    nvm use default > /dev/null
+fi
 # }}}
 
 # {{{ Localize
