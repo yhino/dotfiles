@@ -39,11 +39,15 @@ else
 fi
 case "${OSTYPE}" in
     linux*)
+    if [ -f ${HOME}/.dir_colors ]; then
+        eval `dircolors -b ${HOME}/.dir_colors`
+    fi
     ;;
     *)
     export LSCOLORS=gxfxcxdxbxegedabagacad
     ;;
 esac
+## ls補完除外キーワード
 export FIGNORE='.svn'
 ## less文字コード設定
 export LESSCHARSET=utf-8

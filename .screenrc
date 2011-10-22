@@ -1,0 +1,33 @@
+# 起動設定
+startup_message off
+#deflogin on
+autodetach on
+shell -$SHELL
+defkanji utf-8
+defbce on
+term xterm
+
+# キーバインド
+# http://blog.blueblack.net/item_183
+escape ^z^z
+bindkey "^[OA"  focus up
+bindkey "^[OB"  focus down
+bindkey "^[OC"  next
+bindkey "^[OD"  prev
+bind    s       split
+bind    l       windowlist -b
+bind    0       only
+
+termcapinfo xterm "ks=\E[?1l\E:ku=\E[A:kd=\E[B:kl=\E[D:kr=\E[C:kh=\E[5~:kH=\E[F:is=\E[r\E[m\E[2J\E[H\E[?7h\E[?1;4;6l"
+
+# スクロールバック
+defscrollback 10000
+
+# ステータスライン
+caption always "%?%F%{=b mw}%?[%n] %t%?"
+hardstatus on
+hardstatus alwayslastline "[%{g}%H %Y/%m/%d %c:%s%{-}] (%-w%{=b mw}%n %t%{-}%+w)"
+
+# ベル
+vbell off
+vbell_msg ""
