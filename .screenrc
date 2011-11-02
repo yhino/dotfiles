@@ -1,33 +1,62 @@
-# 起動設定
+# ------------------------------------------------------------------------------
+# .screenrc
+#
+# @ref http://mitukiii.jp/2010/12/31/gnu-screen-install-to-mac/
+# @ref http://blog.blueblack.net/item_183
+# @ref http://yukirin.dontexist.org/archives/34
+# ------------------------------------------------------------------------------
+
+### {{{ BASIC
+# 起動時のメッセージなし
 startup_message off
-#deflogin on
+# 自動detach
 autodetach on
+# SHELL
 shell -$SHELL
+# TERM
+term xterm-256color
+# 文字コード
 defkanji utf-8
-defbce on
-term xterm
-
-# キーバインド
-# http://blog.blueblack.net/item_183
-escape ^z^z
-bindkey "^[OA"  focus up
-bindkey "^[OB"  focus down
-bindkey "^[OC"  next
-bindkey "^[OD"  prev
-bind    s       split
-bind    l       windowlist -b
-bind    0       only
-
-termcapinfo xterm "ks=\E[?1l\E:ku=\E[A:kd=\E[B:kl=\E[D:kr=\E[C:kh=\E[5~:kH=\E[F:is=\E[r\E[m\E[2J\E[H\E[?7h\E[?1;4;6l"
-
+# ビジュアルベルなし
+vbell off
+# ベルメッセージなし
+vbell_msg ""
 # スクロールバック
 defscrollback 10000
+### }}}
 
+### {{{ DISPLAY
 # ステータスライン
-caption always "%?%F%{=b mw}%?[%n] %t%?"
 hardstatus on
-hardstatus alwayslastline "[%{g}%H %Y/%m/%d %c:%s%{-}] (%-w%{=b mw}%n %t%{-}%+w)"
+hardstatus alwayslastline "[%{g}%H %Y/%m/%d %c:%s%{-}] | %-w%{=b Kw}%n %t%{-}%+w | %=(%l)"
+caption always "%?%F%{=b Kw}%?[%n] %t"
+# ウィンドウリスト
+windowlist title '%{u .g}Num Flags Title=[0-9] select the number [movement] j,C-n:Down k,C-p:Up (C-)f:PageDown (C-)b:PageUp'
+windowlist string '%{.g}%3n %f%09=%{dg} %t %='
+### }}}
 
-# ベル
-vbell off
-vbell_msg ""
+### {{{ termcapinfo
+# Ctrl-矢印キーを使うための設定
+termcapinfo xterm* "ks=\E[?1l\E:ku=\E[A:kd=\E[B:kl=\E[D:kr=\E[C:kh=\E[5~:kH=\E[F"
+# 256色化
+termcapinfo xterm* "Co#256:pa#256:AB=\E[48;5;%dm:is=\E[r\E[m\E[2J\E[H\E[?7h\E[?1;4;6l"
+# スクロール設定 (Mac用)
+termcapinfo xterm* ti@:te@
+### }}}
+
+### {{{ KEY_BIND
+# エスケープキー設定
+escape ^]^]
+# Ctrl-矢印キーでウィンドウ切り替え
+bindkey "^[OA"  focus prev
+bindkey "^[OB"  focus next
+bindkey "^[OC"  next
+bindkey "^[OD"  prev
+# ウィンドウ分割
+bind    s       split
+#bind    v       split -v
+bind    0       only
+# ウィンドウリスト表示
+bind    l       windowlist -b
+bind    ^l      windowlist -b -m
+### }}}
