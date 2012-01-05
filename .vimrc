@@ -2,19 +2,22 @@
 " VIM : base
 " $Id$
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"" {{{ Vundle
-" FileType OFF
+"" {{{ neobundle
+set nocompatible
 filetype off
 " Load Vundle
-set rtp+=~/.vim/vundle/
-call vundle#rc()
+if has('vim_starting')
+    set runtimepath+=~/.vim/neobundle.vim.git
+    call neobundle#rc(expand('~/.vim/bundle'))
+endif
 " Bundles
-Bundle 'unite.vim'
-Bundle 'neocomplcache'
-Bundle 'ZenCoding.vim'
-Bundle 'PDV--phpDocumentor-for-Vim'
-Bundle 'Align'
-" FileType ON
+NeoBundle 'git://github.com/Shougo/neocomplcache.git'
+NeoBundle 'git://github.com/Shougo/neobundle.vim.git'
+NeoBundle 'git://github.com/Shougo/unite.vim.git'
+NeoBundle 'ZenCoding.vim'
+NeoBundle 'PDV--phpDocumentor-for-Vim'
+NeoBundle 'Align'
+
 filetype plugin indent on
 "" }}}
 

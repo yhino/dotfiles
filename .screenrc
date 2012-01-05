@@ -14,7 +14,7 @@ autodetach on
 # SHELL
 shell -$SHELL
 # TERM
-term xterm-256color
+term $TERM
 # 文字コード
 defkanji utf-8
 # ビジュアルベルなし
