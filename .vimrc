@@ -11,12 +11,12 @@ if has('vim_starting')
     call neobundle#rc(expand('~/.vim/bundle'))
 endif
 " Bundles
-NeoBundle 'git://github.com/Shougo/neocomplcache.git'
-NeoBundle 'git://github.com/Shougo/neobundle.vim.git'
-NeoBundle 'git://github.com/Shougo/unite.vim.git'
-NeoBundle 'ZenCoding.vim'
+NeoBundle 'Shougo/neocomplcache.git'
+NeoBundle 'Shougo/neobundle.vim.git'
+NeoBundle 'Shougo/unite.vim.git'
+NeoBundle 'h1mesuke/vim-alignta'
+NeoBundle 'mattn/zencoding-vim'
 NeoBundle 'PDV--phpDocumentor-for-Vim'
-NeoBundle 'Align'
 
 filetype plugin indent on
 "" }}}
@@ -57,6 +57,9 @@ function! s:unite_my_settings()
   nmap <silent><buffer> <ESC><ESC> q
   imap <silent><buffer> <ESC><ESC> <ESC>q
 endfunction
+
+" zencoding
+let s:user_zen_settings = { 'indentation': "    " }
 
 "" }}}
 
@@ -106,6 +109,9 @@ endif
 colorscheme hnsta
 " ハイライト
 syntax on
+" 不可視文字表示
+set list
+set listchars=tab:\ \
 
 "" 編集
 " オートインデント有効
@@ -117,6 +123,10 @@ set softtabstop=0
 set expandtab
 " たたみ方
 set foldmethod=marker
+" Backspace
+set backspace=indent,eol,start
+" カーソルの回り込み設定
+set whichwrap=[,],<,>
 
 "" 検索
 " 検索文字列が小文字の場合は大文字小文字区別なく検索
@@ -137,6 +147,9 @@ nnoremap k gk
 " 行単位の移動
 nnoremap gj j
 nnoremap gk k
+" カーソルを画面中央に置いてスクロール
+nnoremap <Space> jzz
+nnoremap <S-Space> kzz
 " 検索結果のハイライト取り消し
 noremap <ESC><ESC> :nohlsearch<CR><ESC>
 "" }}}
