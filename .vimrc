@@ -5,18 +5,20 @@
 "" {{{ neobundle
 set nocompatible
 filetype off
-" Load Vundle
+" Load NeoBundle
 if has('vim_starting')
     set runtimepath+=~/.vim/neobundle.vim.git
     call neobundle#rc(expand('~/.vim/bundle'))
 endif
 " Bundles
-NeoBundle 'Shougo/neocomplcache.git'
-NeoBundle 'Shougo/neobundle.vim.git'
-NeoBundle 'Shougo/unite.vim.git'
+NeoBundle 'Shougo/neocomplcache'
+NeoBundle 'Shougo/neobundle.vim'
+NeoBundle 'Shougo/unite.vim'
 NeoBundle 'h1mesuke/vim-alignta'
 NeoBundle 'mattn/zencoding-vim'
 NeoBundle 'PDV--phpDocumentor-for-Vim'
+NeoBundle 'pangloss/vim-javascript'
+NeoBundle 'JavaScript-syntax'
 
 filetype plugin indent on
 "" }}}
