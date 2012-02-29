@@ -19,6 +19,7 @@ NeoBundle 'mattn/zencoding-vim'
 NeoBundle 'PDV--phpDocumentor-for-Vim'
 NeoBundle 'pangloss/vim-javascript'
 NeoBundle 'JavaScript-syntax'
+NeoBundle 'beyondwords/vim-twig'
 
 filetype plugin indent on
 "" }}}
