@@ -63,6 +63,8 @@ if [ -f ${HOME}/.nvm/nvm.sh ]; then
     . ${HOME}/.nvm/nvm.sh
     nvm use default > /dev/null
 fi
+# grep
+export GREP_OPTIONS='--color=auto'
 # }}}
 
 # {{{ Localize
