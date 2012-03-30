@@ -7,19 +7,23 @@ set nocompatible
 filetype off
 " Load NeoBundle
 if has('vim_starting')
-    set runtimepath+=~/.vim/neobundle.vim.git
+    set runtimepath+=~/.vim/bundle/neobundle.vim
     call neobundle#rc(expand('~/.vim/bundle'))
 endif
 " Bundles
+NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/neocomplcache'
 NeoBundle 'Shougo/neobundle.vim'
-NeoBundle 'Shougo/unite.vim'
 NeoBundle 'h1mesuke/vim-alignta'
 NeoBundle 'mattn/zencoding-vim'
+NeoBundle 'sudo.vim'
 NeoBundle 'PDV--phpDocumentor-for-Vim'
 NeoBundle 'pangloss/vim-javascript'
 NeoBundle 'JavaScript-syntax'
-NeoBundle 'beyondwords/vim-twig'
+" Test Bundles
+NeoBundle 'Lokaltog/vim-powerline'
+NeoBundle 'scrooloose/syntastic'
+NeoBundle 'tpope/vim-surround'
 
 filetype plugin indent on
 "" }}}
