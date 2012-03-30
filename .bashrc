@@ -63,6 +63,10 @@ if [ -f ${HOME}/.nvm/nvm.sh ]; then
     . ${HOME}/.nvm/nvm.sh
     nvm use default > /dev/null
 fi
+# pythonbrew
+if [ -f ${HOME}/.pythonbrew/etc/bashrc ]; then
+    . ${HOME}/.pythonbrew/etc/bashrc
+fi
 # grep
 export GREP_OPTIONS='--color=auto'
 # }}}
