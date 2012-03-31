@@ -10,6 +10,8 @@ for dotfile in .?*; do
             continue;;
         .git)
             continue;;
+        .gitmodules)
+            continue;;
         *)
             ln -Fis ${PWD}/${dotfile} ${HOME}
             ;;
