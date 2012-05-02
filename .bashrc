@@ -31,7 +31,7 @@ esac
 
 # {{{ Env
 # Basic
-export PATH=${PATH}
+export PATH=/usr/local/sbin:${PATH}
 if [ -x `which vim` ]; then
     export EDITOR=vim
 else
@@ -66,6 +66,11 @@ fi
 # pythonbrew
 if [ -f ${HOME}/.pythonbrew/etc/bashrc ]; then
     . ${HOME}/.pythonbrew/etc/bashrc
+fi
+# phpenv
+if [ -f ${HOME}/.phpenv/bin/phpenv ]; then
+    export PATH=${PATH}:${HOME}/.phpenv/bin
+    eval "$(phpenv init -)"
 fi
 # grep
 export GREP_OPTIONS='--color=auto'
