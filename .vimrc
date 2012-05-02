@@ -10,20 +10,23 @@ if has('vim_starting')
     set runtimepath+=~/.vim/bundle/neobundle.vim
     call neobundle#rc(expand('~/.vim/bundle'))
 endif
-" Bundles
-NeoBundle 'Shougo/unite.vim'
-NeoBundle 'Shougo/neocomplcache'
+" NeoBundle
 NeoBundle 'Shougo/neobundle.vim'
+" Bundles
+NeoBundle 'Shougo/neocomplcache'
+NeoBundle 'Shougo/unite.vim'
 NeoBundle 'h1mesuke/vim-alignta'
 NeoBundle 'mattn/zencoding-vim'
 NeoBundle 'sudo.vim'
 NeoBundle 'PDV--phpDocumentor-for-Vim'
-NeoBundle 'pangloss/vim-javascript'
-NeoBundle 'JavaScript-syntax'
-" Test Bundles
+" Tests
 NeoBundle 'Lokaltog/vim-powerline'
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'tpope/vim-surround'
+NeoBundle 'h1mesuke/unite-outline'
+" Syntax, Indent
+NeoBundle 'pangloss/vim-javascript'
+NeoBundle 'JavaScript-syntax'
 
 filetype plugin indent on
 "" }}}
@@ -37,7 +40,8 @@ let g:neocomplcache_enable_at_startup = 1
 let g:neocomplcache_enable_smart_case = 1
 let g:neocomplcache_enable_underbar_completion = 1
 let g:neocomplcache_min_syntax_length = 3
-let g:neocomplcache_dictionary_filetype_lists = {}
+let g:neocomplcache_dictionary_filetype_lists = {
+            \ }
 if !exists('g:neocomplcache_keyword_patterns')
   let g:neocomplcache_keyword_patterns = {}
 endif
@@ -64,6 +68,10 @@ function! s:unite_my_settings()
   nmap <silent><buffer> <ESC><ESC> q
   imap <silent><buffer> <ESC><ESC> <ESC>q
 endfunction
+
+" unite-outline
+nnoremap <silent> <C-u><C-o> :<C-u>Unite outline<CR>
+inoremap <silent> <C-u><C-o> <ESC>:<C-u>Unite outline<CR>
 
 " zencoding
 let s:user_zen_settings = { 'indentation': "    " }
