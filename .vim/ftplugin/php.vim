@@ -23,11 +23,11 @@ setlocal syntax=php
 nnoremap ,l :!php -l %<CR>
 nnoremap ,r :!php %<CR>
 
-" AutoComplete
-setlocal dictionary+=~/.vim/dict/php.dict
-setlocal complete+=k
-
-" PDV
+" phpDocumentor-for-Vim
+let g:pdv_cfg_Version   = "$Id$"
+let g:pdv_cfg_Author    = "Yoshiyuki Hino <gyhino@gmail.com>"
+let g:pdv_cfg_Copyright = "(c)2012 hnsta."
+let g:pdv_cfg_License   = "MIT"
 inoremap <C-p> <ESC>:call PhpDocSingle()<CR>i
 nnoremap <C-p> :call PhpDocSingle()<CR>
 vnoremap <C-p> :call PhpDocRange()<CR>
