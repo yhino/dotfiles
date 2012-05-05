@@ -76,6 +76,12 @@ inoremap <silent> <C-u><C-o> <ESC>:<C-u>Unite outline<CR>
 " zencoding
 let s:user_zen_settings = { 'indentation': "    " }
 
+" syntastic
+" ファイルを開いたときにsyntaxチェック
+let g:syntastic_check_on_open = 1
+" javascriptのsyntaxチェックツールをjshintに固定
+let g:syntastic_javascript_checker = "jshint"
+
 "" }}}
 
 "" {{{ Commons
