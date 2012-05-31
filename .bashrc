@@ -1,6 +1,6 @@
 # {{{ Prompt
 GREEN='\[\e[0;32m\]'
-DEFAULT='\[\e[0;37m\]'
+DEFAULT='\[\e[0m\]'
 
 PS1="${GREEN}\h${DEFAULT}:\w\\$ "
 PS2=">"
