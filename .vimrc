@@ -27,6 +27,8 @@ NeoBundle 'h1mesuke/unite-outline'
 " Syntax, Indent
 NeoBundle 'pangloss/vim-javascript'
 NeoBundle 'JavaScript-syntax'
+" Color Scheme
+NeoBundle 'altercation/vim-colors-solarized'
 
 filetype plugin indent on
 "" }}}
@@ -127,7 +129,9 @@ if &term =~ 'xterm'
   set t_Sb=<ESC>[4%dm
 endif
 " カラースキーム
-colorscheme hnsta
+"colorscheme hnsta
+set background=light
+colorscheme solarized
 " ハイライト
 syntax on
 " 不可視文字表示

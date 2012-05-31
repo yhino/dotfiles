@@ -24,6 +24,7 @@ nnoremap ,l :!php -l %<CR>
 nnoremap ,r :!php %<CR>
 
 " phpDocumentor-for-Vim
+let g:pdv_cfg_Package   = ""
 let g:pdv_cfg_Version   = "$Id$"
 let g:pdv_cfg_Author    = "Yoshiyuki Hino <gyhino@gmail.com>"
 let g:pdv_cfg_Copyright = "(c)2012 hnsta."
