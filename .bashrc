@@ -68,10 +68,10 @@ if [ -f ${HOME}/.pythonbrew/etc/bashrc ]; then
     . ${HOME}/.pythonbrew/etc/bashrc
 fi
 # phpenv
-if [ -f ${HOME}/.phpenv/bin/phpenv ]; then
-    export PATH=${PATH}:${HOME}/.phpenv/bin
-    eval "$(phpenv init -)"
-fi
+#if [ -f ${HOME}/.phpenv/bin/phpenv ]; then
+#    export PATH=${PATH}:${HOME}/.phpenv/bin
+#    eval "$(phpenv init -)"
+#fi
 # grep
 export GREP_OPTIONS='--color=auto'
 # }}}
