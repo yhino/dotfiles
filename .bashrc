@@ -62,6 +62,7 @@ export HISTCONTROL=ignoreboth
 if [ -f ${HOME}/.nvm/nvm.sh ]; then
     . ${HOME}/.nvm/nvm.sh
     nvm use default > /dev/null
+    export NODE_PATH=~/node_modules:~/.nvm/$(nvm_version)/lib/node_modules:${NODE_PATH}
 fi
 # pythonbrew
 if [ -f ${HOME}/.pythonbrew/etc/bashrc ]; then
@@ -74,6 +75,10 @@ fi
 #fi
 # grep
 export GREP_OPTIONS='--color=auto'
+# mysql
+if [ -d /usr/local/mysql/bin ]; then
+    export PATH=/usr/local/mysql/bin:${PATH}
+fi
 # }}}
 
 # {{{ Localize
