@@ -1,5 +1,5 @@
 [user]
-	name = yhino
+	name = "Yoshiyuki HINO"
 	email = gyhino@gmail.com
 [core]
 	excludesfile = ${HOME}/.gitignore
