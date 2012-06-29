@@ -4,10 +4,13 @@
 [core]
 	excludesfile = ${HOME}/.gitignore
 	editor = `which vim`
+[color]
+	diff = auto
+	status = auto
+	branch = auto
+	ui = auto
 [alias]
 	co = checkout
 	br = branch
 	ci = commit
 	st = status
-[color]
-	ui = auto
