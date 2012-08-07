@@ -31,7 +31,7 @@ esac
 
 # {{{ Env
 # Basic
-export PATH=/usr/local/sbin:${PATH}
+export PATH=/usr/local/bin:/usr/local/sbin:${PATH}
 if [ -x `which vim` ]; then
     export EDITOR=vim
 else
