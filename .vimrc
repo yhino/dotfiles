@@ -129,9 +129,9 @@ if &term =~ 'xterm'
   set t_Sb=<ESC>[4%dm
 endif
 " カラースキーム
-"colorscheme hnsta
-set background=light
-colorscheme solarized
+colorscheme hnsta
+"set background=light
+"colorscheme solarized
 " ハイライト
 syntax on
 " 不可視文字表示
