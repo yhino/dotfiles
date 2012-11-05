@@ -27,6 +27,7 @@ case "${OSTYPE}" in
     alias sl='ls'
     ;;
 esac
+alias tmux='tmux -u'
 # }}}
 
 # {{{ Env
