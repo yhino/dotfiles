@@ -24,7 +24,7 @@ hi Search       term=standout   cterm=none        ctermfg=0     ctermbg=11
 hi Visual       term=reverse    cterm=none        ctermfg=0     ctermbg=7
 hi VisualNOS    term=reverse    cterm=none        ctermfg=0     ctermbg=7
 hi WildMenu     term=reverse    cterm=none        ctermfg=15    ctermbg=5
-hi Folded       term=standout   cterm=none        ctermfg=125   ctermbg=235
+hi Folded       term=standout   cterm=bold        ctermfg=31    ctermbg=235
 hi FoldedColumn term=standout   cterm=none        ctermfg=125   ctermbg=235
 hi DiffAdd      term=standout   cterm=none        ctermfg=40    ctermbg=238
 hi DiffChange   term=standout   cterm=bold        ctermfg=202   ctermbg=238
@@ -39,6 +39,9 @@ hi Statement    term=bold       cterm=bold        ctermfg=25    ctermbg=none
 hi PreProc      term=underline  cterm=none        ctermfg=88    ctermbg=none
 hi Type         term=underline  cterm=none        ctermfg=94    ctermbg=none
 hi Todo         term=standout   cterm=none        ctermfg=7     ctermbg=88
+
+hi Pmenu        term=standout   cterm=none        ctermfg=7     ctermbg=23
+hi PmenuSel     term=standout   cterm=none        ctermfg=23    ctermbg=7
 
 " Diff
 hi diffAdded    term=standout   cterm=none        ctermfg=40    ctermbg=238
@@ -55,8 +58,8 @@ hi phpIdentifier      term=standout cterm=none    ctermfg=24    ctermbg=none
 hi phpVarSelector     term=standout cterm=none    ctermfg=100   ctermbg=none
 hi phpMemberSelector  term=standout cterm=none    ctermfg=100   ctermbg=none
 hi phpStatement       term=standout cterm=none    ctermfg=88    ctermbg=none
-hi phpFold            term=standout cterm=bold    ctermfg=31    ctermbg=235
 
+hi link phpFold           Folded
 hi link phpFoldFunction   phpFold
 hi link phpFoldClass      phpFold
 hi link phpFoldInterface  phpFold
