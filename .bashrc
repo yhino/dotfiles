@@ -83,7 +83,7 @@ fi
 # }}}
 
 # {{{ Localize
-if [ -f ${HOME}/.bachrc_local ]; then
-    . ${HOME}/.bachrc_local
+if [ -f ${HOME}/.bashrc_local ]; then
+    . ${HOME}/.bashrc_local
 fi
 # }}}
