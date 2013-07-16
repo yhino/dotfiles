@@ -2,8 +2,8 @@
 autoload colors
 colors
 
-local GREEN=$'%{\e[1;32m%}'
-local DEFAULT=$'%{\e[1;37m%}'
+local GREEN=$'%{\e[0;32m%}'
+local DEFAULT=$'%{\e[0;37m%}'
 
 PROMPT='${GREEN}%m${DEFAULT}:%/%# '
 PROMPT2='> '

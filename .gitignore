@@ -6,3 +6,5 @@ logs/*
 
 .vim/bundle/**/*
 .vim/.VimballRecord
+
+.idea/*
