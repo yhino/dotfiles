@@ -15,3 +15,7 @@
 	ci = commit
 	st = status
 	hi = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+[credential]
+	helper = osxkeychain
+[push]
+	default = simple
