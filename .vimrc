@@ -16,17 +16,19 @@ NeoBundle 'Shougo/neobundle.vim'
 NeoBundle 'Shougo/neocomplcache'
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'h1mesuke/vim-alignta'
-NeoBundle 'mattn/zencoding-vim'
+NeoBundle 'mattn/emmet-vim'
 NeoBundle 'sudo.vim'
 NeoBundle 'PDV--phpDocumentor-for-Vim'
-" Tests
-NeoBundle 'Lokaltog/vim-powerline'
+NeoBundle 'itchyny/lightline.vim'
+NeoBundle 'tpope/vim-fugitive'
+" Trial
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'h1mesuke/unite-outline'
 " Syntax, Indent
 NeoBundle 'pangloss/vim-javascript'
 NeoBundle 'JavaScript-syntax'
+NeoBundle 'kchmck/vim-coffee-script'
 " Color Scheme
 NeoBundle 'altercation/vim-colors-solarized'
 
@@ -83,6 +85,22 @@ let s:user_zen_settings = { 'indentation': "    " }
 let g:syntastic_check_on_open = 1
 " javascriptのsyntaxチェックツールをjshintに固定
 let g:syntastic_javascript_checker = "jshint"
+
+" lightline
+let g:lightline = {
+            \   'active': {
+            \       'left': [ [ 'mode', 'paste' ], [ 'fugitive'], ['readonly', 'filename', 'modified' ] ]
+            \   },
+            \   'inactive': {
+            \       'left': [ [ 'readonly', 'fugitive', 'filename', 'modified' ] ]
+            \   },
+            \   'component': {
+            \       'fugitive': '%{exists("*fugitive#head")?fugitive#head():""}'
+            \   },
+            \   'component_visible_condition': {
+            \       'fugitive': '(exists("*figitive#head") && ""!=fugitive#head())'
+            \   }
+            \ }
 
 "" }}}
 
