@@ -1,18 +1,29 @@
 # {{{ Prompt
-autoload colors
-colors
+autoload -Uz vcs_info
+zstyle ':vcs_info:*' enable git
+zstyle ':vcs_info:*' formats ' on %b'
+zstyle ':vcs_info:*' actionformats 'on %b:%a'
+precmd() {
+    psvar=()
+    LANG=en_US.UTF-8 vcs_info
+}
 
-local GREEN=$'%{\e[0;32m%}'
-local DEFAULT=$'%{\e[0;37m%}'
+# プロンプトエスケープシーケンス有効化
+setopt prompt_subst
 
-PROMPT='${GREEN}%m${DEFAULT}:%/%# '
+# コマンド実行後は右プロンプトを消す
+setopt transient_rprompt
+
+autoload -Uz colors; colors
+
+PROMPT='${fg[green]}%m${reset_color} %/${fg[yellow]}${vcs_info_msg_0_}${reset_color}'$'\n''%# '
 PROMPT2='> '
 SPROMPT='%R -> %r ? '
 # }}}
 
 
 # {{{ History
-autoload history-search-end
+autoload -Uz history-search-end
 zle -N history-beginning-search-backward-end history-search-end
 zle -N history-beginning-search-forward-end history-search-end
 HISTFILE="${HOME}/.zhistory"
@@ -52,7 +63,7 @@ bindkey "^N" history-beginning-search-forward-end
 
 
 # {{{ Completion
-autoload -U compinit
+autoload -Uz compinit
 compinit -u
 
 # color
@@ -61,9 +72,6 @@ zstyle ':completion:*' list-colors ''
 
 
 # {{{ setopt
-# プロンプトエスケープシーケンス有効化
-setopt prompt_subst
-
 # ディレクトリ名で移動
 setopt auto_cd
 
