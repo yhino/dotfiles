@@ -1,5 +1,5 @@
 [user]
-	name = "Yoshiyuki HINO"
+    #name = "Yoshiyuki HINO"
 	email = gyhino@gmail.com
 [core]
 	excludesfile = ${HOME}/.gitignore
@@ -14,7 +14,8 @@
 	br = branch
 	ci = commit
 	st = status
-	hi = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+	lg = log --graph --pretty=format:\"%C(red)%h%C(reset) -%C(yellow)%d%C(reset) %s %C(green)(%cr / %ad)%C(reset) %C(cyan)<%an>%C(reset)\" --abbrev-commit --date=short
+	lag = log --graph --all --pretty=format:\"%C(red)%h%C(reset) -%C(yellow)%d%C(reset) %s %C(green)(%cr / %ad)%C(reset) %C(cyan)<%an>%C(reset)\" --abbrev-commit --date=short
 [credential]
 	helper = osxkeychain
 [push]
