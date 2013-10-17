@@ -1,5 +1,5 @@
 [user]
-    #name = "Yoshiyuki HINO"
+	name = "Yoshiyuki HINO"
 	email = gyhino@gmail.com
 [core]
 	excludesfile = ${HOME}/.gitignore
@@ -19,4 +19,4 @@
 [credential]
 	helper = osxkeychain
 [push]
-	default = simple
+	default = current
