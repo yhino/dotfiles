@@ -3,37 +3,44 @@
 " $Id$
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "" {{{ neobundle
-set nocompatible
-filetype off
 " Load NeoBundle
 if has('vim_starting')
+    set nocompatible
     set runtimepath+=~/.vim/bundle/neobundle.vim
-    call neobundle#rc(expand('~/.vim/bundle'))
 endif
+
+call neobundle#rc(expand('~/.vim/bundle'))
+
 " NeoBundle
-NeoBundle 'Shougo/neobundle.vim'
-" Editor
+NeoBundleFetch 'Shougo/neobundle.vim'
+NeoBundle 'Shougo/vimproc'
+
+" github repos
+"" Editor
 NeoBundle 'Shougo/neocomplcache'
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'h1mesuke/unite-outline'
 NeoBundle 'h1mesuke/vim-alignta'
 NeoBundle 'mattn/emmet-vim'
 NeoBundle 'tpope/vim-surround'
-NeoBundle 'PDV--phpDocumentor-for-Vim'
-NeoBundle 'sudo.vim'
-" Syntax, Indent
+"" Syntax, Indent
 NeoBundle 'pangloss/vim-javascript'
 NeoBundle 'JavaScript-syntax'
 NeoBundle 'kchmck/vim-coffee-script'
 NeoBundle 'Glench/Vim-Jinja2-Syntax'
 NeoBundle 'groenewege/vim-less'
 NeoBundle 'plasticboy/vim-markdown'
-" Utility
+"" Utility
 NeoBundle 'itchyny/lightline.vim'
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'tpope/vim-fugitive'
-" Color Scheme
+"" Color Scheme
 NeoBundle 'altercation/vim-colors-solarized'
+
+" vim-scripts repos
+NeoBundle 'L9'
+NeoBundle 'sudo.vim'
+NeoBundle 'PDV--phpDocumentor-for-Vim'
 
 filetype plugin indent on
 "" }}}
