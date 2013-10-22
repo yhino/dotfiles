@@ -12,23 +12,26 @@ if has('vim_starting')
 endif
 " NeoBundle
 NeoBundle 'Shougo/neobundle.vim'
-" Bundles
+" Editor
 NeoBundle 'Shougo/neocomplcache'
 NeoBundle 'Shougo/unite.vim'
+NeoBundle 'h1mesuke/unite-outline'
 NeoBundle 'h1mesuke/vim-alignta'
 NeoBundle 'mattn/emmet-vim'
-NeoBundle 'sudo.vim'
-NeoBundle 'PDV--phpDocumentor-for-Vim'
-NeoBundle 'itchyny/lightline.vim'
-NeoBundle 'tpope/vim-fugitive'
-" Trial
-NeoBundle 'scrooloose/syntastic'
 NeoBundle 'tpope/vim-surround'
-NeoBundle 'h1mesuke/unite-outline'
+NeoBundle 'PDV--phpDocumentor-for-Vim'
+NeoBundle 'sudo.vim'
 " Syntax, Indent
 NeoBundle 'pangloss/vim-javascript'
 NeoBundle 'JavaScript-syntax'
 NeoBundle 'kchmck/vim-coffee-script'
+NeoBundle 'Glench/Vim-Jinja2-Syntax'
+NeoBundle 'groenewege/vim-less'
+NeoBundle 'plasticboy/vim-markdown'
+" Utility
+NeoBundle 'itchyny/lightline.vim'
+NeoBundle 'scrooloose/syntastic'
+NeoBundle 'tpope/vim-fugitive'
 " Color Scheme
 NeoBundle 'altercation/vim-colors-solarized'
 
