@@ -33,4 +33,7 @@ if [ -f ${HOME}/.nvm/nvm.sh ]; then
 fi
 
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+if [[ -s "$HOME/.rvm/scripts/rvm" ]]; then
+    . ${HOME}/.rvm/scripts/rvm
+fi
 # }}}
