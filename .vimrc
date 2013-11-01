@@ -99,7 +99,7 @@ let g:syntastic_javascript_checker = "jshint"
 " lightline
 let g:lightline = {
             \   'active': {
-            \       'left': [ [ 'mode', 'paste' ], [ 'fugitive'], ['readonly', 'filename', 'modified' ] ]
+            \       'left': [ [ 'mode', 'paste' ], ['readonly', 'filename', 'modified' ], [ 'fugitive' ] ]
             \   },
             \   'inactive': {
             \       'left': [ [ 'readonly', 'fugitive', 'filename', 'modified' ] ]
