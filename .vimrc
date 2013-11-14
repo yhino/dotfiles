@@ -102,7 +102,7 @@ let g:lightline = {
             \       'left': [ [ 'mode', 'paste' ], ['readonly', 'filename', 'modified' ], [ 'fugitive' ] ]
             \   },
             \   'inactive': {
-            \       'left': [ [ 'readonly', 'fugitive', 'filename', 'modified' ] ]
+            \       'left': [ [ 'readonly', 'filename', 'modified' ], [ 'fugitive' ] ]
             \   },
             \   'component': {
             \       'fugitive': '%{exists("*fugitive#head")?fugitive#head():""}'
