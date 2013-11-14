@@ -18,14 +18,24 @@ fpath=(${fpath})
 # {{{ Env
 export LANG=ja_JP.UTF-8
 export LESSCHARSET=UTF-8
-export EDITOR=vim
+if [[ -x `which vim` ]]; then
+    export EDITOR=vim
+fi
 case "${OSTYPE}" in
     linux*)
+        if [[ -f "${HOME}/.dir_colors" ]]; then
+            eval `dircolors -b ${HOME}/.dir_colors`
+        fi
     ;;
     *)
     export LSCOLORS=gxfxcxdxbxegedabagacad
     ;;
 esac
+# ls
+export FIGNORE=${FIGNORE}:.svn:.git
+# grep
+export GREP_OPTIONS='--color=auto'
+export GREP_COLOR='1;41;37'
 
 if [ -f ${HOME}/.nvm/nvm.sh ]; then
     . ${HOME}/.nvm/nvm.sh
