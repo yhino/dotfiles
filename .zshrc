@@ -16,7 +16,7 @@ setopt transient_rprompt
 
 autoload -Uz colors; colors
 
-PROMPT='${fg[green]}%m${reset_color} %/${fg[yellow]}${vcs_info_msg_0_}${reset_color}'$'\n''%# '
+PROMPT='${fg[green]}%M${reset_color} %/${fg[yellow]}${vcs_info_msg_0_}${reset_color}'$'\n''%# '
 PROMPT2='> '
 SPROMPT='%R -> %r ? '
 # }}}
