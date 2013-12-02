@@ -4,6 +4,7 @@
 [core]
 	excludesfile = ${HOME}/.gitignore
 	editor = `which vim`
+	pager = `which less`
 [color]
 	diff = auto
 	status = auto
