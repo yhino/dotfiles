@@ -1,19 +1,17 @@
 #!/bin/sh
 
 # initialize git submodule
-git submodule update --init
+if [[ -x `which git` ]]; then
+    git submodule update --init
+else
+    echo '[warn] can not setup submodules, please install git'
+fi
 
 # link dotfiles
-for dotfile in .?*; do
+for dotfile in _?*; do
     case ${dotfile} in
-        ..)
-            continue;;
-        .git)
-            continue;;
-        .gitmodules)
-            continue;;
         *)
-            ln -Fis ${PWD}/${dotfile} ${HOME}
+            ln -Fis ${PWD}/${dotfile} ${HOME}/${dotfile/_/.}
             ;;
     esac
 done
