@@ -17,7 +17,12 @@ NeoBundle 'Shougo/vimproc'
 
 " github repos
 "" Editor
-NeoBundle 'Shougo/neocomplcache'
+if !( has('lua') && (v:version > 703 || v:version == 703 && has('patch885')) )
+    NeoBundle 'Shougo/neocomplcache'
+else
+    NeoBundle 'Shougo/neocomplete.vim'
+endif
+NeoBundle 'Shougo/neosnippet.vim'
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'h1mesuke/unite-outline'
 NeoBundle 'h1mesuke/vim-alignta'
@@ -165,6 +170,8 @@ syntax on
 " 不可視文字表示
 set list
 set listchars=tab:\ \
+" 行を強調表示
+set cursorline
 
 "" 編集
 " オートインデント有効
