@@ -4,8 +4,4 @@
 cache/*
 logs/*
 
-.vim/bundle/**/*
-.vim/.VimballRecord
-.netrwhist
-
 .idea/*
