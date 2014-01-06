@@ -6,8 +6,9 @@ sudo_path=({/usr/local,/usr,}/sbin(N-/))
 
 # pathを設定
 typeset -U path cdpath fpath manpath
+path=(~/bin(N-/) /usr/local/bin(N-/) ${path})
 if [[ -x `which brew` ]]; then
-    path=($(brew --prefix php54)/bin(N-/) $(brew --prefix mysql)/bin(N-/) ~/bin(N-/) /usr/local/bin(N-/) ${path})
+    path=($(brew --prefix php54)/bin(N-/) $(brew --prefix mysql)/bin(N-/) ${path})
 fi
 
 # fpathを設定
