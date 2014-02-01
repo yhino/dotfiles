@@ -23,6 +23,15 @@ vbell off
 vbell_msg ""
 # スクロールバック
 defscrollback 10000
+# 背景色を消去
+defbce "on"
+### }}}
+
+### {{{ LOGS
+deflog on
+logfile "${HOME}/.screen/logs/screen-%H.%Y%m%d-%0c:%s-%n.%t.log"
+logtstamp on
+logtstamp string "\n-- SCREEN [%Y/%m/%d %02c:%s] %n:%t --\n"
 ### }}}
 
 ### {{{ DISPLAY
@@ -46,15 +55,22 @@ termcapinfo xterm* ti@:te@
 
 ### {{{ KEY_BIND
 # エスケープキー設定
-escape ^]^]
+escape ^Ta
 # Ctrl-矢印キーでウィンドウ切り替え
 bindkey "^[OA"  focus prev
 bindkey "^[OB"  focus next
 bindkey "^[OC"  next
 bindkey "^[OD"  prev
+# for mac+iterm
+bindkey ";5A" focus prev
+bindkey ";5B" focus next
+bindkey ";5C" next
+bindkey ";5D" prev
+# create new window
+bind    ^n      screen
 # ウィンドウ分割
-bind    s       split
-#bind    v       split -v
+bind    ^s      split
+bind    ^v      split -v
 bind    0       only
 # ウィンドウリスト表示
 bind    l       windowlist -b
