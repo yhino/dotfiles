@@ -34,7 +34,7 @@ NeoBundle 'JavaScript-syntax'
 NeoBundle 'kchmck/vim-coffee-script'
 NeoBundle 'Glench/Vim-Jinja2-Syntax'
 NeoBundle 'groenewege/vim-less'
-NeoBundle 'plasticboy/vim-markdown'
+NeoBundle 'rcmdnk/vim-markdown'
 "" Utility
 NeoBundle 'itchyny/lightline.vim'
 NeoBundle 'scrooloose/syntastic'
