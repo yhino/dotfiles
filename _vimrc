@@ -22,7 +22,7 @@ if !( has('lua') && (v:version > 703 || v:version == 703 && has('patch885')) )
 else
     NeoBundle 'Shougo/neocomplete.vim'
 endif
-NeoBundle 'Shougo/neosnippet.vim'
+NeoBundle 'Shougo/neosnippet-snippets'
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'h1mesuke/unite-outline'
 NeoBundle 'h1mesuke/vim-alignta'
