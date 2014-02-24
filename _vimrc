@@ -41,6 +41,7 @@ NeoBundle 'scrooloose/syntastic'
 NeoBundle 'tpope/vim-fugitive'
 "" Color Scheme
 NeoBundle 'altercation/vim-colors-solarized'
+NeoBundle 'w0ng/vim-hybrid'
 
 " vim-scripts repos
 NeoBundle 'L9'
@@ -103,6 +104,9 @@ let g:syntastic_check_on_open = 1
 " javascriptのsyntaxチェックツールをjshintに固定
 let g:syntastic_javascript_checker = "jshint"
 
+" markdown
+let g:vim_markdown_folding_disabled = 1
+
 " lightline
 let g:lightline = {
             \   'active': {
@@ -164,14 +168,18 @@ if &term =~ 'xterm'
   set t_Sb=<ESC>[4%dm
 endif
 " カラースキーム
-colorscheme hnsta
+"colorscheme hnsta
+let g:hybrid_use_iterm_colors = 1
+colorscheme hybrid
 "set background=light
 "colorscheme solarized
 " ハイライト
 syntax on
 " 不可視文字表示
 set list
-set listchars=tab:\ \
+set listchars=tab:\ \ ,trail:-
+highlight JpSpace cterm=underline   ctermfg=7   ctermbg=88
+au BufRead,BufNew * match JpSpace /　/
 " 行を強調表示
 set cursorline
 
