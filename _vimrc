@@ -167,14 +167,14 @@ if &term =~ 'xterm'
   set t_Sf=<ESC>[3%dm
   set t_Sb=<ESC>[4%dm
 endif
+" ハイライト
+syntax on
 " カラースキーム
 "colorscheme hnsta
 let g:hybrid_use_iterm_colors = 1
 colorscheme hybrid
 "set background=light
 "colorscheme solarized
-" ハイライト
-syntax on
 " 不可視文字表示
 set list
 set listchars=tab:\ \ ,trail:-
@@ -185,7 +185,7 @@ set cursorline
 
 "" 編集
 " オートインデント有効
-set autoindent
+set autoindent smartindent
 " タブ
 set tabstop=4
 set shiftwidth=4
