@@ -171,10 +171,11 @@ endif
 syntax on
 " カラースキーム
 "colorscheme hnsta
-let g:hybrid_use_iterm_colors = 1
-colorscheme hybrid
-"set background=light
-"colorscheme solarized
+"let g:hybrid_use_iterm_colors = 1
+"colorscheme hybrid
+set background=dark
+colorscheme solarized
+let g:solarized_termcolors=256
 " 不可視文字表示
 set list
 set listchars=tab:\ \ ,trail:-
