@@ -11,7 +11,6 @@ augroup filetypedetect
 
 " Template
 au! BufNewFile,BufRead *.tpl setf php
-au! BufNewFile,BufRead *.twig setf jinja
 
 " CoffeeScript 
 au! BufRead,BufNewFile,BufReadPre *.coffee  setf coffee
