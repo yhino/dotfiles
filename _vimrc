@@ -2,18 +2,18 @@
 " VIM : base
 " $Id$
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"" {{{ neobundle
+
+"" {{{ Plugins
 " Load NeoBundle
 if has('vim_starting')
     set nocompatible
-    set runtimepath+=~/.vim/bundle/neobundle.vim
+    set runtimepath+=~/.vim/bundle/neobundle.vim/
 endif
 
-call neobundle#rc(expand('~/.vim/bundle'))
+call neobundle#begin(expand('~/.vim/bundle/'))
 
 " NeoBundle
 NeoBundleFetch 'Shougo/neobundle.vim'
-NeoBundle 'Shougo/vimproc'
 
 " github repos
 "" Editor
@@ -22,8 +22,15 @@ if !( has('lua') && (v:version > 703 || v:version == 703 && has('patch885')) )
 else
     NeoBundle 'Shougo/neocomplete.vim'
 endif
+NeoBundle 'Shougo/vimproc.vim', {
+            \ 'build': {
+            \       'mac': 'make -f make_mac.mak',
+            \       'unix': 'make -f make_unix.mak',
+            \       },
+            \ }
 NeoBundle 'Shougo/neosnippet-snippets'
 NeoBundle 'Shougo/unite.vim'
+NeoBundle 'Shougo/neomru.vim'
 NeoBundle 'h1mesuke/unite-outline'
 NeoBundle 'h1mesuke/vim-alignta'
 NeoBundle 'mattn/emmet-vim'
@@ -46,12 +53,20 @@ NeoBundle 'w0ng/vim-hybrid'
 " vim-scripts repos
 NeoBundle 'L9'
 NeoBundle 'sudo.vim'
+
+"" for php
 NeoBundle 'PDV--phpDocumentor-for-Vim'
 
-filetype plugin indent on
-"" }}}
+"" for ruby
+NeoBundle 'tpope/vim-endwise'
 
-"" {{{ Plugin
+call neobundle#end()
+
+filetype plugin indent on
+
+" Installation check
+NeoBundleCheck
+
 " matchit.vim
 source $VIMRUNTIME/macros/matchit.vim
 
@@ -73,8 +88,8 @@ let g:unite_enable_start_insert=1
 " インサート／ノーマルどちらからでも呼び出せるようにキーマップ
 nnoremap <silent> <C-u><C-u> :<C-u>Unite -buffer-name=files buffer file_mru file file/new<CR>
 inoremap <silent> <C-u><C-u> <ESC>:<C-u>Unite -buffer-name=files buffer file_mru file file/new<CR>
-nnoremap <silent> <C-u><C-f> :<C-u>UniteWithBufferDir -buffer-name=files buffer file_mru file file/new<CR>
-inoremap <silent> <C-u><C-f> <ESC>:<C-u>UniteWithBufferDir -buffer-name=files buffer file_mru file file/new<CR>
+nnoremap <silent> <C-u><C-f> :<C-u>UniteWithBufferDir -buffer-name=files file_mru file file/new<CR>
+inoremap <silent> <C-u><C-f> <ESC>:<C-u>UniteWithBufferDir -buffer-name=files file_mru file file/new<CR>
 " unite.vim上でのキーマッピング
 autocmd FileType unite call s:unite_my_settings()
 function! s:unite_my_settings()
@@ -173,14 +188,15 @@ syntax on
 "colorscheme hnsta
 "let g:hybrid_use_iterm_colors = 1
 "colorscheme hybrid
-set background=dark
+"set background=dark
+set background=light
 colorscheme solarized
 let g:solarized_termcolors=256
 " 不可視文字表示
 set list
 set listchars=tab:\ \ ,trail:-
 highlight JpSpace cterm=underline   ctermfg=7   ctermbg=88
-au BufRead,BufNew * match JpSpace /　/
+au VimEnter,WinEnter,BufRead,BufNew * match JpSpace /　/
 " 行を強調表示
 set cursorline
 
@@ -224,4 +240,3 @@ nnoremap <S-Space> kzz
 " 検索結果のハイライト取り消し
 noremap <ESC><ESC> :nohlsearch<CR><ESC>
 "" }}}
-
