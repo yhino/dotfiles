@@ -18,7 +18,7 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 " github repos
 "" Editor
 if !( has('lua') && (v:version > 703 || v:version == 703 && has('patch885')) )
-    NeoBundle 'Shougo/neocomplcache'
+    NeoBundle 'Shougo/neocomplcache.vim'
 else
     NeoBundle 'Shougo/neocomplete.vim'
 endif
@@ -28,6 +28,7 @@ NeoBundle 'Shougo/vimproc.vim', {
             \       'unix': 'make -f make_unix.mak',
             \       },
             \ }
+NeoBundle 'Shougo/neosnippet.vim'
 NeoBundle 'Shougo/neosnippet-snippets'
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/neomru.vim'
@@ -70,17 +71,31 @@ NeoBundleCheck
 " matchit.vim
 source $VIMRUNTIME/macros/matchit.vim
 
-" neocomplcache
-let g:neocomplcache_enable_at_startup = 1
-let g:neocomplcache_enable_smart_case = 1
-let g:neocomplcache_enable_underbar_completion = 1
-let g:neocomplcache_min_syntax_length = 3
-let g:neocomplcache_dictionary_filetype_lists = {
-            \ }
-if !exists('g:neocomplcache_keyword_patterns')
-  let g:neocomplcache_keyword_patterns = {}
+if neobundle#is_installed('neocomplete')
+    " neocomplete
+    let g:neocomplete#enable_at_startup = 1
+    let g:neocomplete#enable_smart_case = 1
+    let g:neocomplete#enable_underbar_completion = 1
+    let g:neocomplete#sources#syntax#min_keyword_length = 3
+    let g:neocomplete#dictionary_filetype_lists = {
+                \ }
+    if !exists('g:neocomplete#keyword_patterns')
+        let g:neocomplete#keyword_patterns = {}
+    endif
+    let g:neocomplete#keyword_patterns['default'] = '\h\w*'
+elseif neobundle#is_installed('neocomplcache')
+    " neocomplcache
+    let g:neocomplcache_enable_at_startup = 1
+    let g:neocomplcache_enable_smart_case = 1
+    let g:neocomplcache_enable_underbar_completion = 1
+    let g:neocomplcache_min_syntax_length = 3
+    let g:neocomplcache_dictionary_filetype_lists = {
+                \ }
+    if !exists('g:neocomplcache_keyword_patterns')
+        let g:neocomplcache_keyword_patterns = {}
+    endif
+    let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
 endif
-let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
 
 " unite.vim
 " 入力モードで開始する
