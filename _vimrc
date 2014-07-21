@@ -102,8 +102,8 @@ let g:unite_enable_start_insert=1
 " インサート／ノーマルどちらからでも呼び出せるようにキーマップ
 nnoremap <silent> <C-u><C-u> :<C-u>Unite -buffer-name=files buffer file_mru file file/new<CR>
 inoremap <silent> <C-u><C-u> <ESC>:<C-u>Unite -buffer-name=files buffer file_mru file file/new<CR>
-nnoremap <silent> <C-u><C-f> :<C-u>UniteWithBufferDir -buffer-name=files file_mru file file/new<CR>
-inoremap <silent> <C-u><C-f> <ESC>:<C-u>UniteWithBufferDir -buffer-name=files file_mru file file/new<CR>
+nnoremap <silent> <C-u><C-f> :<C-u>UniteWithBufferDir -buffer-name=files buffer file_mru file file/new<CR>
+inoremap <silent> <C-u><C-f> <ESC>:<C-u>UniteWithBufferDir -buffer-name=files buffer file_mru file file/new<CR>
 " unite.vim上でのキーマッピング
 autocmd FileType unite call s:unite_my_settings()
 function! s:unite_my_settings()
