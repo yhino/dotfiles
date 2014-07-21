@@ -71,19 +71,18 @@ NeoBundleCheck
 " matchit.vim
 source $VIMRUNTIME/macros/matchit.vim
 
-if neobundle#is_installed('neocomplete')
+if neobundle#is_installed('neocomplete.vim')
     " neocomplete
     let g:neocomplete#enable_at_startup = 1
     let g:neocomplete#enable_smart_case = 1
-    let g:neocomplete#enable_underbar_completion = 1
     let g:neocomplete#sources#syntax#min_keyword_length = 3
-    let g:neocomplete#dictionary_filetype_lists = {
+    let g:neocomplete#sources#dictionary#dictionaries = {
                 \ }
     if !exists('g:neocomplete#keyword_patterns')
         let g:neocomplete#keyword_patterns = {}
     endif
     let g:neocomplete#keyword_patterns['default'] = '\h\w*'
-elseif neobundle#is_installed('neocomplcache')
+elseif neobundle#is_installed('neocomplcache.vim')
     " neocomplcache
     let g:neocomplcache_enable_at_startup = 1
     let g:neocomplcache_enable_smart_case = 1
