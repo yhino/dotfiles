@@ -36,6 +36,7 @@ NeoBundle 'h1mesuke/unite-outline'
 NeoBundle 'h1mesuke/vim-alignta'
 NeoBundle 'mattn/emmet-vim'
 NeoBundle 'tpope/vim-surround'
+NeoBundle 'terryma/vim-multiple-cursors'
 "" Syntax, Indent
 NeoBundle 'pangloss/vim-javascript'
 NeoBundle 'JavaScript-syntax'
