@@ -7,9 +7,9 @@ sudo_path=({/usr/local,/usr,}/sbin(N-/))
 # pathを設定
 typeset -U path cdpath fpath manpath
 path=(~/bin(N-/) /usr/local/bin(N-/) ${path})
-if [[ -x `which brew` ]]; then
-    path=($(brew --prefix php54)/bin(N-/) $(brew --prefix mysql)/bin(N-/) ${path})
-fi
+#if [[ -x `which brew` ]]; then
+#    path=($(brew --prefix php54)/bin(N-/) $(brew --prefix mysql)/bin(N-/) ${path})
+#fi
 
 # fpathを設定
 fpath=(${fpath})
@@ -37,6 +37,8 @@ export FIGNORE=${FIGNORE}:.svn:.git
 # grep
 export GREP_OPTIONS='--color=auto'
 export GREP_COLOR='1;41;37'
+# less
+export LESS=-qR
 
 if [ -f ${HOME}/.nvm/nvm.sh ]; then
     . ${HOME}/.nvm/nvm.sh
