@@ -37,18 +37,13 @@ NeoBundle 'h1mesuke/vim-alignta'
 NeoBundle 'mattn/emmet-vim'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'terryma/vim-multiple-cursors'
-"" Syntax, Indent
-NeoBundle 'pangloss/vim-javascript'
-NeoBundle 'JavaScript-syntax'
-NeoBundle 'kchmck/vim-coffee-script'
-NeoBundle 'groenewege/vim-less'
-NeoBundle 'rcmdnk/vim-markdown'
-NeoBundle 'evidens/vim-twig'
-"" Utility
-NeoBundle 'itchyny/lightline.vim'
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'tpope/vim-fugitive'
-"" Color Scheme
+
+"" Interface
+NeoBundle 'itchyny/lightline.vim'
+
+"" Color
 NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'w0ng/vim-hybrid'
 
@@ -56,11 +51,27 @@ NeoBundle 'w0ng/vim-hybrid'
 NeoBundle 'L9'
 NeoBundle 'sudo.vim'
 
-"" for php
+"" php
+NeoBundle 'StanAngeloff/php.vim'
+NeoBundle '2072/PHP-Indenting-for-VIm'
 NeoBundle 'PDV--phpDocumentor-for-Vim'
+NeoBundle 'evidens/vim-twig'
 
-"" for ruby
+"" ruby
+NeoBundle 'vim-ruby/vim-ruby'
 NeoBundle 'tpope/vim-endwise'
+
+"" javascript
+NeoBundle 'pangloss/vim-javascript'
+NeoBundleLazy 'jelera/vim-javascript-syntax', {'autoload':{'filetypes':['javascript']}}
+NeoBundle 'kchmck/vim-coffee-script'
+NeoBundle 'elzr/vim-json'
+
+"" css
+NeoBundle 'groenewege/vim-less'
+
+"" markdown
+NeoBundle 'rcmdnk/vim-markdown'
 
 call neobundle#end()
 
@@ -132,7 +143,20 @@ let s:user_zen_settings = { 'indentation': "    " }
 " ファイルを開いたときにsyntaxチェック
 let g:syntastic_check_on_open = 1
 " javascriptのsyntaxチェックツールをjshintに固定
-let g:syntastic_javascript_checker = "jshint"
+let g:syntastic_javascript_checkers = ['jshint']
+
+" php
+function! PhpSyntaxOverride()
+    hi! def link phpDocTags  phpDefine
+    hi! def link phpDocParam phpType
+endfunction
+
+augroup phpSyntaxOverride
+    autocmd!
+    autocmd FileType php call PhpSyntaxOverride()
+augroup END
+
+let g:PHP_vintage_case_default_indent = 1
 
 " markdown
 let g:vim_markdown_folding_disabled = 1
