@@ -3,6 +3,10 @@
 " $Id$
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+"" {{{ initialize
+let mapleader = ','
+"" }}}
+
 "" {{{ Plugins
 " Load NeoBundle
 if has('vim_starting')
@@ -32,6 +36,7 @@ NeoBundle 'Shougo/neosnippet.vim'
 NeoBundle 'Shougo/neosnippet-snippets'
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/neomru.vim'
+NeoBundle 'Shougo/vimfiler.vim'
 NeoBundle 'h1mesuke/unite-outline'
 NeoBundle 'h1mesuke/vim-alignta'
 NeoBundle 'mattn/emmet-vim'
@@ -136,6 +141,11 @@ endfunction
 nnoremap <silent> <C-u><C-o> :<C-u>Unite outline<CR>
 inoremap <silent> <C-u><C-o> <ESC>:<C-u>Unite outline<CR>
 
+" VimFiler
+nnoremap <leader>e :<C-u>VimFilerBufferDir -split -simple -winwidth=35 -no-quit<CR>
+" vimデフォルトのエクスプローラをvimfilerで置き換える
+let g:vimfiler_as_default_explorer = 1
+
 " zencoding
 let s:user_zen_settings = { 'indentation': "    " }
 
@@ -157,6 +167,12 @@ augroup phpSyntaxOverride
 augroup END
 
 let g:PHP_vintage_case_default_indent = 1
+
+let g:pdv_template_dir = $HOME ."/.vim/bundle/pdv/templates_snip"
+nnoremap <buffer> <C-p> :call pdv#DocumentWithSnip()<CR>
+
+" javascript
+let g:vim_json_syntax_conceal = 0
 
 " markdown
 let g:vim_markdown_folding_disabled = 1
