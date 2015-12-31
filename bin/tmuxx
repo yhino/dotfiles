@@ -23,7 +23,8 @@ if is_screen_or_tmux_running; then
         echo "This is on screen."
     fi
 else
-    if shell_has_started_interactively && ! is_ssh_running; then
+    #if shell_has_started_interactively && ! is_ssh_running; then
+    if ! is_ssh_running; then
         if ! is_exists 'tmux'; then
             echo 'Error: tmux command not found' 2>&1
             return 1
