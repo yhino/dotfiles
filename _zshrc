@@ -8,6 +8,12 @@ zsh_zplug() {
 
     zplug "b4b4r07/zplug"
 
+    has_plugin() {
+        (( $+functions[zplug] )) || return 1
+        zplug check "${1:?too few arguments}"
+        return $status
+    }
+
     zplug "b4b4r07/zsh-gomi", as:command, of:bin/gomi
     zplug "b4b4r07/enhancd", of:enhancd.sh
     zplug "junegunn/fzf-bin", as:command, from:gh-r, file:fzf
@@ -29,7 +35,7 @@ zsh_zplug() {
 
 zsh_zplug
 # }}}
-#
+
 # {{{ Prompt
 autoload -Uz is-at-least
 if is-at-least 4.3.10; then
