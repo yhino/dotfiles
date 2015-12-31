@@ -12,10 +12,6 @@ path=(~/bin(N-/) /usr/local/bin(N-/) ${path})
 #fi
 
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
-
-# fpathを設定
-fpath=(${fpath})
-
 # }}}
 
 # {{{ Env
