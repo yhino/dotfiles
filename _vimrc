@@ -243,8 +243,8 @@ syntax on
 "colorscheme hnsta
 "let g:hybrid_use_iterm_colors = 1
 "colorscheme hybrid
-"set background=dark
-set background=light
+set background=dark
+"set background=light
 colorscheme solarized
 let g:solarized_termcolors=256
 " 不可視文字表示
