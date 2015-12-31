@@ -11,6 +11,8 @@ path=(~/bin(N-/) /usr/local/bin(N-/) ${path})
 #    path=($(brew --prefix php54)/bin(N-/) $(brew --prefix mysql)/bin(N-/) ${path})
 #fi
 
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+
 # fpathを設定
 fpath=(${fpath})
 
@@ -44,6 +46,4 @@ if [ -f ${HOME}/.nvm/nvm.sh ]; then
     . ${HOME}/.nvm/nvm.sh
     nvm use default > /dev/null
 fi
-
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 # }}}
