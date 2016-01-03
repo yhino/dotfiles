@@ -1,0 +1,4 @@
+Host *
+    ForwardAgent yes
+    PermitLocalCommand yes
+    LocalCommand tmux rename-window %h
