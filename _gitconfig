@@ -19,5 +19,3 @@
 	lag = log --graph --all --pretty=format:\"%C(red)%h%C(reset) -%C(yellow)%d%C(reset) %s %C(green)(%cr / %ad)%C(reset) %C(cyan)<%an>%C(reset)\" --abbrev-commit --date=short
 [credential]
 	helper = osxkeychain
-[push]
-	default = current
