@@ -1,14 +1,7 @@
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" VIM : base
-" $Id$
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-"" {{{ initialize
-let mapleader = ','
-"" }}}
-
-"" {{{ Plugins
-" Load NeoBundle
+"" Plugins: NeoBundle {{{
+"*******************************************************************************
+"" NeoBundle load
+"*******************************************************************************
 if has('vim_starting')
     set nocompatible
     set runtimepath+=~/.vim/bundle/neobundle.vim/
@@ -19,8 +12,10 @@ call neobundle#begin(expand('~/.vim/bundle/'))
 " NeoBundle
 NeoBundleFetch 'Shougo/neobundle.vim'
 
-" github repos
-"" Editor
+"*******************************************************************************
+"" NeoBundle install packages
+"*******************************************************************************
+"" Basics
 if !( has('lua') && (v:version > 703 || v:version == 703 && has('patch885')) )
     NeoBundle 'Shougo/neocomplcache.vim'
 else
@@ -39,52 +34,218 @@ NeoBundle 'Shougo/neomru.vim'
 NeoBundle 'Shougo/vimfiler.vim'
 NeoBundle 'h1mesuke/unite-outline'
 NeoBundle 'h1mesuke/vim-alignta'
-NeoBundle 'mattn/emmet-vim'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'terryma/vim-multiple-cursors'
 NeoBundle 'scrooloose/syntastic'
+NeoBundle "majutsushi/tagbar"
 NeoBundle 'tpope/vim-fugitive'
-
-"" Interface
 NeoBundle 'itchyny/lightline.vim'
-
-"" Color
-NeoBundle 'altercation/vim-colors-solarized'
-NeoBundle 'w0ng/vim-hybrid'
-
-" vim-scripts repos
+NeoBundle 'soramugi/auto-ctags.vim'
 NeoBundle 'L9'
 NeoBundle 'sudo.vim'
 
-"" php
+"" Color
+NeoBundle 'altercation/vim-colors-solarized'
+
+"" Python
+NeoBundle "davidhalter/jedi-vim"
+NeoBundle "Yggdroot/indentLine"
+
+"" Perl
+NeoBundle 'vim-perl/vim-perl'
+NeoBundle 'c9s/perlomni.vim'
+
+"" PHP
 NeoBundle 'StanAngeloff/php.vim'
 NeoBundle '2072/PHP-Indenting-for-VIm'
 NeoBundle 'PDV--phpDocumentor-for-Vim'
 NeoBundle 'evidens/vim-twig'
 
-"" ruby
+"" Ruby
 NeoBundle 'vim-ruby/vim-ruby'
 NeoBundle 'tpope/vim-endwise'
+NeoBundle "tpope/vim-rails"
+NeoBundle "tpope/vim-rake"
+NeoBundle "tpope/vim-projectionist"
 
-"" javascript
+"" Go Lang
+NeoBundle "fatih/vim-go"
+
+"" Javascript
 NeoBundle 'pangloss/vim-javascript'
 NeoBundleLazy 'jelera/vim-javascript-syntax', {'autoload':{'filetypes':['javascript']}}
 NeoBundle 'kchmck/vim-coffee-script'
 NeoBundle 'elzr/vim-json'
 
-"" css
+"" Less
 NeoBundle 'groenewege/vim-less'
 
-"" markdown
+"" HTML
+NeoBundle 'amirh/HTML-AutoCloseTag'
+NeoBundle 'hail2u/vim-css3-syntax'
+NeoBundle 'gorodinskiy/vim-coloresque'
+NeoBundle 'tpope/vim-haml'
+NeoBundle 'mattn/emmet-vim'
+
+"" Markdown
 NeoBundle 'rcmdnk/vim-markdown'
+
+if filereadable(expand("~/.vimrc.local.bundles"))
+  source ~/.vimrc.local.bundles
+endif
 
 call neobundle#end()
 
 filetype plugin indent on
 
-" Installation check
 NeoBundleCheck
+"" }}}
 
+"" Basic Setup {{{
+"*******************************************************************************
+"" Basic
+"*******************************************************************************
+" Map leader to ,
+let mapleader = ','
+
+" 文字コード
+set termencoding=utf-8
+set encoding=utf-8
+set fileencoding=utf-8
+set fileencodings=utf-8,euc-jp,iso-2022-jp,cp932
+
+" 改行コード
+set fileformats=unix,dos,mac
+
+" □とか○の文字があってもカーソル位置がずれないようにする
+if exists('&ambiwidth')
+  set ambiwidth=double
+endif
+
+" バックアップを作成しない
+set nobackup
+set nowritebackup
+
+" オートインデント有効
+set autoindent smartindent
+
+" タブ
+set tabstop=4
+set shiftwidth=4
+set softtabstop=0
+set expandtab
+
+" たたみ方
+set foldmethod=marker
+
+" Backspace
+set backspace=indent,eol,start
+
+" カーソルの回り込み設定
+set whichwrap=[,],<,>
+
+" 検索文字列が小文字の場合は大文字小文字区別なく検索
+set ignorecase
+
+" 検索文字列に大文字が含まれている場合は大文字小文字区別して検索
+set smartcase
+
+" 検索時に末尾に達したら先頭まで戻る
+set wrapscan
+
+" 検索文字列入力時に順次検索をしない
+set noincsearch
+
+" 検索結果文字列をハイライト
+set hlsearch
+
+"*******************************************************************************
+"" Visual
+"*******************************************************************************
+" 行番号表示
+set number
+
+" 入力中コマンド表示
+set showcmd
+
+" 対応する括弧を表示
+set showmatch
+
+" ステータスラインを常に表示
+set laststatus=2
+
+" ステータスライン表示設定
+set statusline=%<%f\ %m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']['.&ft.']['.&omnifunc.']'}%=%l,%c%V%8P
+
+" コマンドライン補完を強化
+set wildmenu
+
+" カラー設定
+set t_Co=256
+
+" ハイライト
+syntax on
+
+" カラースキーム
+"" for solarized
+set background=dark
+"set background=light
+colorscheme solarized
+call togglebg#map("<F5>")
+
+" 不可視文字表示
+set list
+set listchars=tab:\ \ ,trail:-
+highlight JpSpace cterm=underline   ctermfg=7   ctermbg=88
+au VimEnter,WinEnter,BufRead,BufNew * match JpSpace /　/
+
+" 行を強調表示
+set cursorline
+""}}}
+
+"" Keybinds {{{
+"*******************************************************************************
+"" Keybinds
+"*******************************************************************************
+"" no one is really happy until you have this shortcuts
+cnoreabbrev W! w!
+cnoreabbrev Q! q!
+cnoreabbrev Qall! qall!
+cnoreabbrev Wq wq
+cnoreabbrev Wa wa
+cnoreabbrev wQ wq
+cnoreabbrev WQ wq
+cnoreabbrev W w
+cnoreabbrev Q q
+cnoreabbrev Qall qall
+
+"" Switching windows
+noremap <C-j> <C-w>j
+noremap <C-k> <C-w>k
+noremap <C-l> <C-w>l
+noremap <C-h> <C-w>h
+
+"" open tag
+nnoremap <C-]> :split<CR> :exe("tjump ".expand('<cword>'))<CR>
+nnoremap <C-\> :vsp<CR> :exe("tjump ".expand('<cword>'))<CR>
+
+" 表示行単位の移動
+nnoremap j gj
+nnoremap k gk
+
+" 行単位の移動
+nnoremap gj j
+nnoremap gk k
+
+" カーソルを画面中央に置いてスクロール
+nnoremap <Space> jzz
+nnoremap <S-Space> kzz
+
+" 検索結果のハイライト取り消し
+noremap <ESC><ESC> :nohlsearch<CR><ESC>
+""}}}
+
+"" Plugin Setup {{{
 " matchit.vim
 source $VIMRUNTIME/macros/matchit.vim
 
@@ -150,10 +311,48 @@ let g:vimfiler_as_default_explorer = 1
 let s:user_zen_settings = { 'indentation': "    " }
 
 " syntastic
+let g:syntastic_always_populate_loc_list=1
+let g:syntastic_error_symbol='✗'
+let g:syntastic_warning_symbol='⚠'
+let g:syntastic_style_error_symbol = '✗'
+let g:syntastic_style_warning_symbol = '⚠'
+let g:syntastic_auto_loc_list=1
+let g:syntastic_aggregate_errors = 1
 " ファイルを開いたときにsyntaxチェック
 let g:syntastic_check_on_open = 1
 " javascriptのsyntaxチェックツールをjshintに固定
 let g:syntastic_javascript_checkers = ['jshint']
+
+" auto-ctags
+let g:auto_ctags = 1
+let g:auto_ctags_directory_list = ['.git', '.svn']
+
+" Tagbar
+nmap <silent> <F4> :TagbarToggle<CR>
+let g:tagbar_autofocus = 1
+
+let g:tagbar_type_go = {
+    \ 'ctagstype' : 'go',
+    \ 'kinds'     : [  'p:package', 'i:imports:1', 'c:constants', 'v:variables',
+        \ 't:types',  'n:interfaces', 'w:fields', 'e:embedded', 'm:methods',
+        \ 'r:constructor', 'f:functions' ],
+    \ 'sro' : '.',
+    \ 'kind2scope' : { 't' : 'ctype', 'n' : 'ntype' },
+    \ 'scope2kind' : { 'ctype' : 't', 'ntype' : 'n' },
+    \ 'ctagsbin'  : 'gotags',
+    \ 'ctagsargs' : '-sort -silent'
+    \ }
+
+let g:tagbar_type_ruby = {
+    \ 'kinds' : [
+        \ 'm:modules',
+        \ 'c:classes',
+        \ 'd:describes',
+        \ 'C:contexts',
+        \ 'f:methods',
+        \ 'F:singleton methods'
+    \ ]
+\ }
 
 " php
 function! PhpSyntaxOverride()
@@ -170,6 +369,17 @@ let g:PHP_vintage_case_default_indent = 1
 
 let g:pdv_template_dir = $HOME ."/.vim/bundle/pdv/templates_snip"
 nnoremap <buffer> <C-p> :call pdv#DocumentWithSnip()<CR>
+
+" Ruby
+let g:rubycomplete_buffer_loading = 1
+let g:rubycomplete_classes_in_global = 1
+let g:rubycomplete_rails = 1
+
+augroup vimrc-ruby
+  autocmd!
+  autocmd BufNewFile,BufRead *.rb,*.rbw,*.gemspec setlocal filetype=ruby
+  autocmd FileType ruby set tabstop=2|set shiftwidth=2|set expandtab
+augroup END
 
 " javascript
 let g:vim_json_syntax_conceal = 0
@@ -195,103 +405,6 @@ let g:lightline = {
 
 "" }}}
 
-"" {{{ Commons
-" 文字コード
-set termencoding=utf-8
-set encoding=utf-8
-set fileencoding=utf-8
-set fileencodings=utf-8,euc-jp,iso-2022-jp,cp932
-
-" 改行コード
-set fileformats=unix,dos,mac
-
-" □とか○の文字があってもカーソル位置がずれないようにする
-if exists('&ambiwidth')
-  set ambiwidth=double
+if filereadable(expand('~/.vimrc.local'))
+    source ~/.vimrc.local
 endif
-
-" バックアップを作成しない
-set nobackup
-set nowritebackup
-
-"" 画面表示
-" 行番号表示
-set number
-" 入力中コマンド表示
-set showcmd
-" 対応する括弧を表示
-set showmatch
-" ステータスラインを常に表示
-set laststatus=2
-" ステータスライン表示設定
-set statusline=%<%f\ %m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']['.&ft.']['.&omnifunc.']'}%=%l,%c%V%8P
-" コマンドライン補完を強化
-set wildmenu
-" カラー設定
-if &term =~ 'xterm'
-  if &term == 'xterm-256color'
-    set t_Co=256
-  else
-    set t_Co=16
-  endif
-  set t_Sf=<ESC>[3%dm
-  set t_Sb=<ESC>[4%dm
-endif
-" ハイライト
-syntax on
-" カラースキーム
-"colorscheme hnsta
-"let g:hybrid_use_iterm_colors = 1
-"colorscheme hybrid
-set background=dark
-"set background=light
-colorscheme solarized
-let g:solarized_termcolors=256
-" 不可視文字表示
-set list
-set listchars=tab:\ \ ,trail:-
-highlight JpSpace cterm=underline   ctermfg=7   ctermbg=88
-au VimEnter,WinEnter,BufRead,BufNew * match JpSpace /　/
-" 行を強調表示
-set cursorline
-
-"" 編集
-" オートインデント有効
-set autoindent smartindent
-" タブ
-set tabstop=4
-set shiftwidth=4
-set softtabstop=0
-set expandtab
-" たたみ方
-set foldmethod=marker
-" Backspace
-set backspace=indent,eol,start
-" カーソルの回り込み設定
-set whichwrap=[,],<,>
-
-"" 検索
-" 検索文字列が小文字の場合は大文字小文字区別なく検索
-set ignorecase
-" 検索文字列に大文字が含まれている場合は大文字小文字区別して検索
-set smartcase
-" 検索時に末尾に達したら先頭まで戻る
-set wrapscan
-" 検索文字列入力時に順次検索をしない
-set noincsearch
-" 検索結果文字列をハイライト
-set hlsearch
-
-"" キーバインド
-" 表示行単位の移動
-nnoremap j gj
-nnoremap k gk
-" 行単位の移動
-nnoremap gj j
-nnoremap gk k
-" カーソルを画面中央に置いてスクロール
-nnoremap <Space> jzz
-nnoremap <S-Space> kzz
-" 検索結果のハイライト取り消し
-noremap <ESC><ESC> :nohlsearch<CR><ESC>
-"" }}}
