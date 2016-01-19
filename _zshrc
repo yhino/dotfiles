@@ -31,8 +31,12 @@ setopt prompt_subst
 # コマンド実行後は右プロンプトを消す
 setopt transient_rprompt
 
+vim_=""
+if [ -n "${VIMRUNTIME}" ]; then
+    vim_="${fg[magenta]}(vim) ${reset_color}"
+fi
 
-PROMPT='${fg[green]}%M${reset_color} %/${fg[yellow]}${vcs_info_msg_0_}${reset_color}'$'\n''%# '
+PROMPT='${vim_}${fg[green]}%M${reset_color} %/${fg[yellow]}${vcs_info_msg_0_}${reset_color}'$'\n''%# '
 PROMPT2='> '
 SPROMPT='%R -> %r ? '
 # }}}
