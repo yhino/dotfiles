@@ -43,8 +43,6 @@ SPROMPT='%R -> %r ? '
 
 
 # {{{ History
-zle -N history-beginning-search-backward-end history-search-end
-zle -N history-beginning-search-forward-end history-search-end
 HISTFILE="${HOME}/.zhistory"
 HISTSIZE=10000
 SAVEHIST=10000
@@ -76,8 +74,14 @@ esac
 
 # {{{ Keybind
 bindkey -e
+
+zle -N history-beginning-search-backward-end history-search-end
+zle -N history-beginning-search-forward-end history-search-end
 bindkey "^P" history-beginning-search-backward-end
 bindkey "^N" history-beginning-search-forward-end
+
+zle -N fixssh
+bindkey "^[s" fixssh
 # }}}
 
 
@@ -121,6 +125,19 @@ ssh() {
     local window_name=$(tmux display -p '#{window_name}')
     command ssh $@
     tmux rename-window $window_name
+}
+
+fixssh() {
+    if [[ -n "${TMUX}" ]]; then
+        for key in SSH_AUTH_SOCK; do
+            if ((tmux show-environment |grep "^${key}" > /dev/null)); then
+                value=`tmux show-environment |grep "^${key}" |sed -e "s/^[A-Z_]*=//"`
+                export ${key}="${value}"
+            fi
+        done
+
+        tmux display-message "(fixssh) ssh-env fixed!!"
+    fi
 }
 
 zsh_zplug() {
