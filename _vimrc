@@ -58,7 +58,9 @@ NeoBundle 'c9s/perlomni.vim'
 "" PHP
 NeoBundle 'StanAngeloff/php.vim'
 NeoBundle '2072/PHP-Indenting-for-VIm'
-NeoBundle 'PDV--phpDocumentor-for-Vim'
+NeoBundle 'SirVer/ultisnips'
+NeoBundle 'tobyS/vmustache'
+NeoBundle 'tobyS/pdv'
 NeoBundle 'evidens/vim-twig'
 
 "" Ruby
@@ -81,7 +83,6 @@ NeoBundle 'elzr/vim-json'
 NeoBundle 'groenewege/vim-less'
 
 "" HTML
-NeoBundle 'amirh/HTML-AutoCloseTag'
 NeoBundle 'hail2u/vim-css3-syntax'
 NeoBundle 'gorodinskiy/vim-coloresque'
 NeoBundle 'tpope/vim-haml'
@@ -311,13 +312,15 @@ let g:vimfiler_as_default_explorer = 1
 let s:user_zen_settings = { 'indentation': "    " }
 
 " syntastic
+let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': ['php', 'ruby', 'javascript'] }
 let g:syntastic_always_populate_loc_list=1
 let g:syntastic_error_symbol='✗'
 let g:syntastic_warning_symbol='⚠'
 let g:syntastic_style_error_symbol = '✗'
 let g:syntastic_style_warning_symbol = '⚠'
-let g:syntastic_auto_loc_list=1
+let g:syntastic_auto_loc_list=0
 let g:syntastic_aggregate_errors = 1
+let g:syntastic_check_on_wq = 0
 " ファイルを開いたときにsyntaxチェック
 let g:syntastic_check_on_open = 1
 " javascriptのsyntaxチェックツールをjshintに固定
