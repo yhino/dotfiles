@@ -157,7 +157,10 @@ zsh_zplug() {
 }
 
 zsh_startup() {
-    [[ -n "$VIMRUNTIME" ]] && return
+    if [[ -n "$VIMRUNTIME" ]]; then
+        zsh_zplug
+        return
+    fi
 
     tmuxx
 
