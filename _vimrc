@@ -58,9 +58,7 @@ NeoBundle 'c9s/perlomni.vim'
 "" PHP
 NeoBundle 'StanAngeloff/php.vim'
 NeoBundle '2072/PHP-Indenting-for-VIm'
-NeoBundle 'SirVer/ultisnips'
-NeoBundle 'tobyS/vmustache'
-NeoBundle 'tobyS/pdv'
+NeoBundle 'PDV--phpDocumentor-for-Vim'
 NeoBundle 'evidens/vim-twig'
 
 "" Ruby
@@ -369,9 +367,6 @@ augroup phpSyntaxOverride
 augroup END
 
 let g:PHP_vintage_case_default_indent = 1
-
-let g:pdv_template_dir = $HOME ."/.vim/bundle/pdv/templates_snip"
-nnoremap <buffer> <C-p> :call pdv#DocumentWithSnip()<CR>
 
 " Ruby
 let g:rubycomplete_buffer_loading = 1
