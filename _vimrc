@@ -417,8 +417,9 @@ let g:lightline = {
             \ }
 
 " IndentLine
+let g:indentLine_enabled = 0
 let g:indentLine_faster = 1
-nmap <slient><Leader>i :<C-u>IndentLinesToggle<CR>
+nmap <silent><Leader>i :<C-u>IndentLinesToggle<CR>
 
 "" }}}
 
