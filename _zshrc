@@ -166,6 +166,7 @@ zsh_zplug() {
     zplug "zsh-users/zsh-completions"
     zplug "zsh-users/zsh-history-substring-search", do:"__zsh_version 4.3"
     zplug "zsh-users/zsh-syntax-highlighting", nice:10
+    zplug "stedolan/jq", as:command, from:gh-r, file:jq
 
     if ! zplug check --verbose; then
         printf "Install? [y/N]: "
