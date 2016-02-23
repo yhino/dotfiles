@@ -11,7 +11,7 @@ function is_ssh_running() { [ ! -z "$SSH_CONNECTION" ]; }
 is_ssh_running && exit
 
 if is_screen_or_tmux_running; then
-    ! is_exists 'tmux' && return 1
+    ! is_exists 'tmux' && exit 1
 
     if is_tmux_runnning; then
         echo "${fg_bold[red]} _____ __  __ _   ___  __ ${reset_color}"
@@ -27,7 +27,7 @@ else
     if ! is_ssh_running; then
         if ! is_exists 'tmux'; then
             echo 'Error: tmux command not found' 2>&1
-            return 1
+            exit 1
         fi
 
         if tmux has-session >/dev/null 2>&1 && tmux list-sessions | grep -qE '.*]$'; then
@@ -39,13 +39,13 @@ else
                 tmux attach-session
                 if [ $? -eq 0 ]; then
                     echo "$(tmux -V) attached session"
-                    return 0
+                    exit 0
                 fi
             elif [[ "$REPLY" =~ ^[0-9]+$ ]]; then
                 tmux attach -t "$REPLY"
                 if [ $? -eq 0 ]; then
                     echo "$(tmux -V) attached session"
-                    return 0
+                    exit 0
                 fi
             fi
         fi
