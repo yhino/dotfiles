@@ -43,6 +43,7 @@ NeoBundle 'itchyny/lightline.vim'
 NeoBundle 'soramugi/auto-ctags.vim'
 NeoBundle 'L9'
 NeoBundle 'sudo.vim'
+NeoBundle 'chrisbra/vim-diff-enhanced'
 
 "" Color
 NeoBundle 'altercation/vim-colors-solarized'
@@ -244,7 +245,8 @@ nnoremap <S-Space> kzz
 noremap <ESC><ESC> :nohlsearch<CR><ESC>
 ""}}}
 
-"" Plugin Setup {{{
+"" Extra Setup {{{1
+
 " matchit.vim
 source $VIMRUNTIME/macros/matchit.vim
 
@@ -420,6 +422,33 @@ let g:lightline = {
 let g:indentLine_enabled = 0
 let g:indentLine_faster = 1
 nmap <silent><Leader>i :<C-u>IndentLinesToggle<CR>
+
+" diff {{{2
+function! ConfigDiffMode()
+    if &diff
+        set nospell
+    else
+        set spell
+    endif
+endfunction
+autocmd VimEnter,FilterWritePre * call ConfigDiffMode()
+
+" diffモードで1つしか開いていない時に自動でdiffoffする
+auto WinEnter * if (winnr('$') == 1) && (getbufvar(winbufnr(0), '&diff')) == 1 |diffoff |endif
+
+"開いているファイルの初期状態から現在までの違いをdiffモードで表示
+if !exists(':DiffOrig')
+    command DiffOrig vert new |set bt=nofile |r # |0d_ |diffthis |wincmd p |diffthis
+endif
+" }}}
+
+" vim-diff-enhanced {{{2
+if neobundle#is_installed('vim-diff-enhanced')
+    if &diff
+        let &diffexpr='EnhancedDiff#Diff("git diff", "--diff-algorithm=partience")'
+    endif
+endif
+" }}}
 
 "" }}}
 
