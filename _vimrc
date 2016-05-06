@@ -7,6 +7,10 @@ augroup MyAutoCmd
     autocmd!
 augroup END
 
+" Map leader to ,
+let mapleader = ','
+
+" Load dein
 let s:cache_home = empty($XDG_CACHE_HOME) ? expand('~/.cache') : $XDG_CACHE_HOME
 let s:config_home = empty($XDG_CONFIG_HOME) ? expand('~/.config') : $XDG_CONFIG_HOME
 let s:dein_dir = s:cache_home . '/dein'
@@ -49,9 +53,6 @@ endif
 "*******************************************************************************
 "" Basic
 "*******************************************************************************
-" Map leader to ,
-let mapleader = ','
-
 " 文字コード
 set termencoding=utf-8
 set encoding=utf-8
