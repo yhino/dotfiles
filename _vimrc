@@ -1,104 +1,48 @@
-"" Plugins: NeoBundle {{{
-"*******************************************************************************
-"" NeoBundle load
-"*******************************************************************************
-if has('vim_starting')
+"" dein.vim {{{
+if &compatible
     set nocompatible
-    set runtimepath+=~/.vim/bundle/neobundle.vim/
 endif
 
-call neobundle#begin(expand('~/.vim/bundle/'))
+augroup MyAutoCmd
+    autocmd!
+augroup END
 
-" NeoBundle
-NeoBundleFetch 'Shougo/neobundle.vim'
+let s:cache_home = empty($XDG_CACHE_HOME) ? expand('~/.cache') : $XDG_CACHE_HOME
+let s:config_home = empty($XDG_CONFIG_HOME) ? expand('~/.config') : $XDG_CONFIG_HOME
+let s:dein_dir = s:cache_home . '/dein'
+let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
 
-"*******************************************************************************
-"" NeoBundle install packages
-"*******************************************************************************
-"" Basics
-if !( has('lua') && (v:version > 703 || v:version == 703 && has('patch885')) )
-    NeoBundle 'Shougo/neocomplcache.vim'
-else
-    NeoBundle 'Shougo/neocomplete.vim'
-endif
-NeoBundle 'Shougo/vimproc.vim', {
-            \ 'build': {
-            \       'mac': 'make -f make_mac.mak',
-            \       'unix': 'make -f make_unix.mak',
-            \       },
-            \ }
-NeoBundle 'Shougo/neosnippet.vim'
-NeoBundle 'Shougo/neosnippet-snippets'
-NeoBundle 'Shougo/unite.vim'
-NeoBundle 'Shougo/neomru.vim'
-NeoBundle 'Shougo/vimfiler.vim'
-NeoBundle 'h1mesuke/unite-outline'
-NeoBundle 'h1mesuke/vim-alignta'
-NeoBundle 'tpope/vim-surround'
-NeoBundle 'terryma/vim-multiple-cursors'
-NeoBundle 'scrooloose/syntastic'
-NeoBundle "majutsushi/tagbar"
-NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'itchyny/lightline.vim'
-NeoBundle 'soramugi/auto-ctags.vim'
-NeoBundle 'L9'
-NeoBundle 'sudo.vim'
-NeoBundle 'chrisbra/vim-diff-enhanced'
-
-"" Color
-NeoBundle 'altercation/vim-colors-solarized'
-
-"" Python
-NeoBundle "davidhalter/jedi-vim"
-NeoBundle "Yggdroot/indentLine"
-
-"" Perl
-NeoBundle 'vim-perl/vim-perl'
-NeoBundle 'c9s/perlomni.vim'
-
-"" PHP
-NeoBundle 'StanAngeloff/php.vim'
-NeoBundle '2072/PHP-Indenting-for-VIm'
-NeoBundle 'PDV--phpDocumentor-for-Vim'
-NeoBundle 'evidens/vim-twig'
-
-"" Ruby
-NeoBundle 'vim-ruby/vim-ruby'
-NeoBundle 'tpope/vim-endwise'
-NeoBundle "tpope/vim-rails"
-NeoBundle "tpope/vim-rake"
-NeoBundle "tpope/vim-projectionist"
-
-"" Go Lang
-NeoBundle "fatih/vim-go"
-
-"" Javascript
-NeoBundle 'pangloss/vim-javascript'
-NeoBundleLazy 'jelera/vim-javascript-syntax', {'autoload':{'filetypes':['javascript']}}
-NeoBundle 'kchmck/vim-coffee-script'
-NeoBundle 'elzr/vim-json'
-
-"" Less
-NeoBundle 'groenewege/vim-less'
-
-"" HTML
-NeoBundle 'hail2u/vim-css3-syntax'
-NeoBundle 'gorodinskiy/vim-coloresque'
-NeoBundle 'tpope/vim-haml'
-NeoBundle 'mattn/emmet-vim'
-
-"" Markdown
-NeoBundle 'rcmdnk/vim-markdown'
-
-if filereadable(expand("~/.vimrc.local.bundles"))
-  source ~/.vimrc.local.bundles
+if &runtimepath !~# '/dein.vim'
+    if !isdirectory(s:dein_repo_dir)
+        execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
+    endif
+    execute 'set runtimepath^=' . fnamemodify(s:dein_repo_dir, ':p')
 endif
 
-call neobundle#end()
+" プラグイン設定
+if dein#load_state(s:dein_dir)
+    call dein#begin(s:dein_dir, [expand('<sfile>')]
+                \ + split(glob('~/.vim/rc/*.toml'), '\n'))
 
-filetype plugin indent on
+    call dein#load_toml('~/.vim/rc/dein.toml',      {'lazy': 0})
+    call dein#load_toml('~/.vim/rc/deinlazy.toml', {'lazy': 1})
 
-NeoBundleCheck
+    call dein#end()
+    call dein#save_state()
+endif
+
+" 未インストールのものがあったらインストール
+if !has('vim_starting') && dein#check_install()
+    call dein#install()
+endif
+
+if !has('vim_starting')
+    call dein#call_hook('source')
+    call dein#call_hook('post_source')
+
+    syntax enable
+    filetype plugin indent on
+endif
 "" }}}
 
 "" Basic Setup {{{
@@ -250,78 +194,6 @@ noremap <ESC><ESC> :nohlsearch<CR><ESC>
 " matchit.vim
 source $VIMRUNTIME/macros/matchit.vim
 
-if neobundle#is_installed('neocomplete.vim')
-    " neocomplete
-    let g:neocomplete#enable_at_startup = 1
-    let g:neocomplete#enable_smart_case = 1
-    let g:neocomplete#sources#syntax#min_keyword_length = 3
-    let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
-    let g:neocomplete#sources#dictionary#dictionaries = {
-                \ }
-    if !exists('g:neocomplete#keyword_patterns')
-        let g:neocomplete#keyword_patterns = {}
-    endif
-    let g:neocomplete#keyword_patterns['default'] = '\h\w*'
-
-    " for vim-multiple-cursors
-    function! Multiple_cursors_before()
-        if exists(':NeoCompleteLock') == 2
-            exe 'NeoCompleteLock'
-        endif
-    endfunction
-    function! Multiple_cursors_after()
-        if exists(':NeoCompleteUnLock') == 2
-            exe 'NeoCompleteUnLock'
-        endif
-    endfunction
-
-elseif neobundle#is_installed('neocomplcache.vim')
-    " neocomplcache
-    let g:neocomplcache_enable_at_startup = 1
-    let g:neocomplcache_enable_smart_case = 1
-    let g:neocomplcache_enable_underbar_completion = 1
-    let g:neocomplcache_min_syntax_length = 3
-    let g:neocomplcache_dictionary_filetype_lists = {
-                \ }
-    if !exists('g:neocomplcache_keyword_patterns')
-        let g:neocomplcache_keyword_patterns = {}
-    endif
-    let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
-endif
-
-" unite.vim
-" 入力モードで開始する
-let g:unite_enable_start_insert=1
-" インサート／ノーマルどちらからでも呼び出せるようにキーマップ
-nnoremap <silent> <C-u><C-u> :<C-u>Unite -buffer-name=files buffer file_mru file file/new<CR>
-inoremap <silent> <C-u><C-u> <ESC>:<C-u>Unite -buffer-name=files buffer file_mru file file/new<CR>
-nnoremap <silent> <C-u><C-f> :<C-u>UniteWithBufferDir -buffer-name=files buffer file_mru file file/new<CR>
-inoremap <silent> <C-u><C-f> <ESC>:<C-u>UniteWithBufferDir -buffer-name=files buffer file_mru file file/new<CR>
-" unite.vim上でのキーマッピング
-autocmd FileType unite call s:unite_my_settings()
-function! s:unite_my_settings()
-  " 横分割で開く
-  nmap <silent> <buffer> <expr> <C-j> unite#do_action('split')
-  imap <silent> <buffer> <expr> <C-j> unite#do_action('split')
-  " 縦分割で開く
-  nmap <silent> <buffer> <expr> <C-l> unite#do_action('vsplit')
-  imap <silent> <buffer> <expr> <C-l> unite#do_action('vsplit')
-  " 単語単位からパス単位で削除するように変更
-  imap <buffer> <C-w> <Plug>(unite_delete_backward_path)
-  " ESCキーを2回押すと終了する
-  nmap <silent><buffer> <ESC><ESC> q
-  imap <silent><buffer> <ESC><ESC> <ESC>q
-endfunction
-
-" unite-outline
-nnoremap <silent> <C-u><C-o> :<C-u>Unite outline<CR>
-inoremap <silent> <C-u><C-o> <ESC>:<C-u>Unite outline<CR>
-
-" VimFiler
-nnoremap <leader>e :<C-u>VimFilerBufferDir -split -simple -winwidth=35 -no-quit<CR>
-" vimデフォルトのエクスプローラをvimfilerで置き換える
-let g:vimfiler_as_default_explorer = 1
-
 " zencoding
 let s:user_zen_settings = { 'indentation': "    " }
 
@@ -443,10 +315,8 @@ endif
 " }}}
 
 " vim-diff-enhanced {{{2
-if neobundle#is_installed('vim-diff-enhanced')
-    if &diff
-        let &diffexpr='EnhancedDiff#Diff("git diff", "--diff-algorithm=partience")'
-    endif
+if &diff
+    let &diffexpr='EnhancedDiff#Diff("git diff", "--diff-algorithm=patience")'
 endif
 " }}}
 
