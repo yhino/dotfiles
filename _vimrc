@@ -36,11 +36,11 @@ if dein#load_state(s:dein_dir)
 endif
 
 " 未インストールのものがあったらインストール
-if !has('vim_starting') && dein#check_install()
+if has('vim_starting') && dein#check_install()
     call dein#install()
 endif
 
-if !has('vim_starting')
+if has('vim_starting')
     call dein#call_hook('source')
     call dein#call_hook('post_source')
 
@@ -130,13 +130,6 @@ set t_Co=256
 
 " ハイライト
 syntax on
-
-" カラースキーム
-"" for solarized
-set background=dark
-"set background=light
-colorscheme solarized
-call togglebg#map("<F5>")
 
 " 不可視文字表示
 set list
