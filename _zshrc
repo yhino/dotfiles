@@ -116,9 +116,6 @@ setopt share_history
 setopt hist_no_store
 # 余分な空白は詰めて記録
 setopt hist_reduce_blanks
-
-#
-setopt globsubst
 # }}}
 
 ssh() {
@@ -146,11 +143,9 @@ fixssh() {
 
 zsh_zplug() {
     [[ -d ~/.zplug ]] || {
-        curl -fLo ~/.zplug/zplug --create-dirs git.io/zplug
-        source ~/.zplug/zplug
-        zplug update --self
+        curl -sL get.zplug.sh | zsh
     }
-    source ~/.zplug/zplug
+    source ~/.zplug/init.zsh
 
     has_plugin() {
         (( $+functions[zplug] )) || return 1
@@ -158,15 +153,15 @@ zsh_zplug() {
         return $status
     }
 
-    zplug "b4b4r07/zsh-gomi", as:command, of:bin/gomi
-    zplug "b4b4r07/enhancd", of:enhancd.sh
-    zplug "junegunn/fzf-bin", as:command, from:gh-r, file:fzf
-    zplug "junegunn/fzf", as:command, of:bin/fzf-tmux
+    zplug "b4b4r07/zsh-gomi", as:command, use:bin/gomi
+    zplug "b4b4r07/enhancd", use:enhancd.sh
+    zplug "junegunn/fzf-bin", as:command, from:gh-r, rename-to:fzf
+    zplug "junegunn/fzf", as:command, use:bin/fzf-tmux
     zplug "mollifier/anyframe"
     zplug "zsh-users/zsh-completions"
-    zplug "zsh-users/zsh-history-substring-search", do:"__zsh_version 4.3"
+    zplug "zsh-users/zsh-history-substring-search"
     zplug "zsh-users/zsh-syntax-highlighting", nice:10
-    zplug "stedolan/jq", as:command, from:gh-r, file:jq
+    zplug "stedolan/jq", as:command, from:gh-r, rename-to:jq
 
     if ! zplug check --verbose; then
         printf "Install? [y/N]: "
