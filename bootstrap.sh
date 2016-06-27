@@ -9,7 +9,7 @@ fi
 
 # create dirs
 dirs=("${HOME}/bin" ${XDG_CONFIG_HOME})
-for dir in ${dirs}; do
+for dir in ${dirs[@]}; do
     if [ "x${dir}" = "x" ]; then
         continue
     fi
