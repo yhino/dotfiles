@@ -143,7 +143,7 @@ fixssh() {
 
 zsh_zplug() {
     [[ -d ~/.zplug ]] || {
-        curl -sL get.zplug.sh | zsh
+        curl -sL zplug.sh/installer | zsh
         source ~/.zplug/init.zsh
         zplug update --self
     }
