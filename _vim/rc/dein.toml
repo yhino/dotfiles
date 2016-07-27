@@ -83,6 +83,9 @@ depends = ['Shougo/context_filetype.vim']
 repo = 'Shougo/context_filetype.vim'
 
 [[plugins]]
+repo = 'Shougo/neosnippet-snippets'
+
+[[plugins]]
 repo = 'tpope/vim-fugitive'
 
 [[plugins]]
