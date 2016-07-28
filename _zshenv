@@ -10,8 +10,6 @@ path=(~/bin(N-/) /usr/local/bin(N-/) ${path})
 #if [[ -x `which brew` ]]; then
 #    path=($(brew --prefix php54)/bin(N-/) $(brew --prefix mysql)/bin(N-/) ${path})
 #fi
-
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 # }}}
 
 # {{{ Env
@@ -41,12 +39,25 @@ export GREP_COLOR='1;41;37'
 # less
 export LESS=-qR
 
+# nodejs
 if [ -f ${HOME}/.nvm/nvm.sh ]; then
     . ${HOME}/.nvm/nvm.sh
     nvm use default > /dev/null
 fi
 
-# pyenv
-export PYENV_ROOT=/usr/local/var/pyenv
-if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
+
+# ruby
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+
+# python
+if which pyenv > /dev/null; then
+    export PYENV_ROOT=/usr/local/var/pyenv
+    eval "$(pyenv init -)"
+fi
+
+# GOLANG
+if which go > /dev/null; then
+    GOPATH=$HOME/.go
+    path=(${GOPATH}/bin(N-/) ${path})
+fi
 # }}}
