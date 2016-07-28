@@ -164,6 +164,7 @@ zsh_zplug() {
     zplug "zsh-users/zsh-history-substring-search"
     zplug "zsh-users/zsh-syntax-highlighting", nice:10
     zplug "stedolan/jq", as:command, from:gh-r, rename-to:jq
+    zplug "github/hub", as:command, from:gh-r, rename-to:hub
 
     if ! zplug check --verbose; then
         printf "Install? [y/N]: "
