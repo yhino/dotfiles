@@ -157,12 +157,6 @@ cnoreabbrev W w
 cnoreabbrev Q q
 cnoreabbrev Qall qall
 
-"" Switching windows
-noremap <C-j> <C-w>j
-noremap <C-k> <C-w>k
-noremap <C-l> <C-w>l
-noremap <C-h> <C-w>h
-
 "" open tag
 nnoremap <C-]> :split<CR> :exe("tjump ".expand('<cword>'))<CR>
 nnoremap <C-\> :vsp<CR> :exe("tjump ".expand('<cword>'))<CR>
