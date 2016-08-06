@@ -1,6 +1,7 @@
 [user]
 	name = "Yoshiyuki HINO"
 	email = yhinoz@gmail.com
+	useConfigOnly = true
 [core]
 	excludesfile = ${HOME}/.gitignore
 	editor = `which vim`
