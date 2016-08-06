@@ -1,0 +1,6 @@
+Host *
+    ServerAliveInterval 300
+    ServerAliveCountMax 5
+    ForwardAgent yes
+    PermitLocalCommand yes
+    LocalCommand if [[ -n "${TMUX}" ]]; then tmux rename-window %h; fi

@@ -16,17 +16,14 @@ alias diff='diff -u'
 case "${OSTYPE}" in
     linux*)
     alias ls='ls -Fh --color'
-    alias ll='ls -alFh'
-    alias la='ls -aFh'
-    alias sl='ls'
     ;;
     *)
     alias ls='ls -FhG'
-    alias ll='ls -alFh'
-    alias la='ls -aFh'
-    alias sl='ls'
     ;;
 esac
+alias ll='ls -alFh'
+alias la='ls -aFh'
+alias sl='ls'
 alias tmux='tmux -u'
 # }}}
 
@@ -40,16 +37,16 @@ else
 fi
 case "${OSTYPE}" in
     linux*)
-    if [ -f ${HOME}/.dir_colors ]; then
-        eval `dircolors -b ${HOME}/.dir_colors`
-    fi
-    ;;
+        if [ -f ${HOME}/.dir_colors ]; then
+            eval `dircolors -b ${HOME}/.dir_colors`
+        fi
+        ;;
     *)
-    export LSCOLORS=gxfxcxdxbxegedabagacad
-    ;;
+        export LSCOLORS=gxfxcxdxbxegedabagacad
+        ;;
 esac
 ## ls補完除外キーワード
-export FIGNORE='.svn'
+export FIGNORE=${FIGNORE}:.svn
 ## less文字コード設定
 export LESSCHARSET=utf-8
 ## EOF(Ctrl-D)でログアウトしない(10回まで許容)
@@ -76,6 +73,7 @@ fi
 #fi
 # grep
 export GREP_OPTIONS='--color=auto'
+export GREP_COLOR='1;41;37'
 # mysql
 if [ -d /usr/local/mysql/bin ]; then
     export PATH=/usr/local/mysql/bin:${PATH}

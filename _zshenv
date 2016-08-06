@@ -7,17 +7,16 @@ sudo_path=({/usr/local,/usr,}/sbin(N-/))
 # pathを設定
 typeset -U path cdpath fpath manpath
 path=(~/bin(N-/) /usr/local/bin(N-/) ${path})
-if [[ -x `which brew` ]]; then
-    path=($(brew --prefix php54)/bin(N-/) $(brew --prefix mysql)/bin(N-/) ${path})
-fi
-
-# fpathを設定
-fpath=(${fpath})
-
+#if [[ -x `which brew` ]]; then
+#    path=($(brew --prefix php54)/bin(N-/) $(brew --prefix mysql)/bin(N-/) ${path})
+#fi
 # }}}
 
 # {{{ Env
-export LANG=ja_JP.UTF-8
+export XDG_CACHE_HOME=${HOME}/.cache
+export XDG_CONFIG_HOME=${HOME}/.config
+
+export LANG=en_US.UTF-8
 export LESSCHARSET=UTF-8
 if [[ -x `which vim` ]]; then
     export EDITOR=vim
@@ -37,14 +36,28 @@ export FIGNORE=${FIGNORE}:.svn:.git
 # grep
 export GREP_OPTIONS='--color=auto'
 export GREP_COLOR='1;41;37'
+# less
+export LESS=-qR
 
+# nodejs
 if [ -f ${HOME}/.nvm/nvm.sh ]; then
     . ${HOME}/.nvm/nvm.sh
     nvm use default > /dev/null
 fi
 
+
+# ruby
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
-if [[ -s "$HOME/.rvm/scripts/rvm" ]]; then
-    . ${HOME}/.rvm/scripts/rvm
+
+# python
+if which pyenv > /dev/null; then
+    export PYENV_ROOT=/usr/local/var/pyenv
+    eval "$(pyenv init -)"
+fi
+
+# GOLANG
+if which go > /dev/null; then
+    GOPATH=$HOME/.go
+    path=(${GOPATH}/bin(N-/) ${path})
 fi
 # }}}

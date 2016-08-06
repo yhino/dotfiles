@@ -1,10 +1,12 @@
 [user]
 	name = "Yoshiyuki HINO"
-	email = gyhino@gmail.com
+	email = yhinoz@gmail.com
 [core]
 	excludesfile = ${HOME}/.gitignore
 	editor = `which vim`
 	pager = `which less`
+[pager]
+    grep = false
 [color]
 	diff = auto
 	status = auto
@@ -19,5 +21,3 @@
 	lag = log --graph --all --pretty=format:\"%C(red)%h%C(reset) -%C(yellow)%d%C(reset) %s %C(green)(%cr / %ad)%C(reset) %C(cyan)<%an>%C(reset)\" --abbrev-commit --date=short
 [credential]
 	helper = osxkeychain
-[push]
-	default = current

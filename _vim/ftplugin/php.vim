@@ -26,8 +26,8 @@ nnoremap ,r :!php %<CR>
 " phpDocumentor-for-Vim
 let g:pdv_cfg_Package   = ""
 let g:pdv_cfg_Version   = "$Id$"
-let g:pdv_cfg_Author    = "Yoshiyuki Hino <gyhino@gmail.com>"
-let g:pdv_cfg_Copyright = "(c)2012 hnsta."
+let g:pdv_cfg_Author    = "Yoshiyuki Hino <yhinoz@gmail.com>"
+let g:pdv_cfg_Copyright = "(c)2015 yhinoz."
 let g:pdv_cfg_License   = "MIT"
 inoremap <C-p> <ESC>:call PhpDocSingle()<CR>i
 nnoremap <C-p> :call PhpDocSingle()<CR>
