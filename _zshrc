@@ -143,7 +143,7 @@ fixssh() {
 
 zsh_zplug() {
     [[ -d ~/.zplug ]] || {
-        curl -sL get.zplug.sh | zsh
+        curl -sL zplug.sh/installer | zsh
         source ~/.zplug/init.zsh
         zplug update --self
     }
@@ -155,6 +155,7 @@ zsh_zplug() {
         return $status
     }
 
+    zplug "zplug/zplug"
     zplug "b4b4r07/zsh-gomi", as:command, use:bin/gomi
     zplug "b4b4r07/enhancd", use:init.sh
     zplug "junegunn/fzf-bin", as:command, from:gh-r, rename-to:fzf
@@ -164,6 +165,7 @@ zsh_zplug() {
     zplug "zsh-users/zsh-history-substring-search"
     zplug "zsh-users/zsh-syntax-highlighting", nice:10
     zplug "stedolan/jq", as:command, from:gh-r, rename-to:jq
+    zplug "github/hub", as:command, from:gh-r, rename-to:hub
 
     if ! zplug check --verbose; then
         printf "Install? [y/N]: "

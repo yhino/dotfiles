@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # initialize git submodule
 if [ -x `which git` ]; then
@@ -7,10 +7,19 @@ else
     echo '[warn] can not setup submodules, please install git'
 fi
 
+# create dirs
+dirs=("${HOME}/bin" ${XDG_CONFIG_HOME})
+for dir in ${dirs[@]}; do
+    if [ "x${dir}" = "x" ]; then
+        continue
+    fi
+
+    if [ ! -d ${dir} ]; then
+        mkdir -p ${dir}
+    fi
+done
+
 # link bin
-if [ ! -d ${HOME}/bin ]; then
-    mkdir ${HOME}/bin
-fi
 for binfile in bin/*; do
     case `basename ${binfile}` in
         ..)
@@ -50,3 +59,14 @@ for dotfile in _?*; do
             ;;
     esac
 done
+
+# link XDG_CONFIG_HOME
+if [ "x${XDG_CONFIG_HOME}" != "x" ]; then
+    for dotfile in _?*; do
+        case ${dotfile} in
+            _vim)
+                ln -snf ${PWD}/${dotfile} ${XDG_CONFIG_HOME}/nvim
+                ;;
+        esac
+    done
+fi
