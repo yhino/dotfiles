@@ -193,6 +193,7 @@ zsh_startup() {
 if zsh_startup; then
     # Important
     zstyle ':completion:*:default' menu select=2
+    zstyle ':completion:*:sudo:*' environ PATH="$SUDO_PATH:$PATH"
 
     # Completing Groping
     zstyle ':completion:*:options' description 'yes'
