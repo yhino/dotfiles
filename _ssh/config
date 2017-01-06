@@ -1,3 +1,6 @@
+Host github.com
+    ForwardAgent no
+
 Host *
     ServerAliveInterval 300
     ServerAliveCountMax 5
