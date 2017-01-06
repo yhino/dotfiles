@@ -1,9 +1,10 @@
 Host github.com
+    User git
     ForwardAgent no
 
+Host hnsta.com
+    LocalCommand [[ -n "${TMUX}" ]] && tmux rename-window %n
+
 Host *
-    ServerAliveInterval 300
-    ServerAliveCountMax 5
     ForwardAgent yes
     PermitLocalCommand yes
-    LocalCommand if [[ -n "${TMUX}" ]]; then tmux rename-window %h; fi
