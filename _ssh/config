@@ -4,7 +4,7 @@ Host github.com
 
 Host hnsta.com
     LocalCommand [[ -n "${TMUX}" ]] && tmux rename-window %n
+    PermitLocalCommand yes
 
 Host *
     ForwardAgent yes
-    PermitLocalCommand yes
