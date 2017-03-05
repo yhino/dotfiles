@@ -216,3 +216,9 @@ if zsh_startup; then
     bindkey -M menuselect '^k' vi-up-line-or-history
     bindkey -M menuselect '^l' vi-forward-char
 fi
+
+# profiling {{{
+#if (which zprof > /dev/null 2>&1); then
+#    zprof
+#fi
+# }}}

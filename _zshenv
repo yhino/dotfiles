@@ -1,3 +1,7 @@
+# profiling {{{
+#zmodload zsh/zprof && zprof
+# }}}
+
 # {{{ path
 # sudoのpathを設定
 typeset -xT SUDO_PATH sudo_path
