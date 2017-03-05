@@ -117,8 +117,4 @@ repo = 'soramugi/auto-ctags.vim'
 
 [[plugins]]
 repo = 'altercation/vim-colors-solarized'
-hook_add = '''
-    set background=dark
-    au MyAutoCmd VimEnter * nested colorscheme solarized
-    call togglebg#map("<F5>")
-'''
+script_type = 'colors'

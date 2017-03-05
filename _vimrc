@@ -25,10 +25,9 @@ endif
 
 " プラグイン設定
 if dein#load_state(s:dein_dir)
-    call dein#begin(s:dein_dir, [expand('<sfile>')]
-                \ + split(glob('~/.vim/rc/*.toml'), '\n'))
+    call dein#begin(s:dein_dir)
 
-    call dein#load_toml('~/.vim/rc/dein.toml',      {'lazy': 0})
+    call dein#load_toml('~/.vim/rc/dein.toml')
     call dein#load_toml('~/.vim/rc/deinlazy.toml', {'lazy': 1})
 
     call dein#end()
@@ -41,6 +40,7 @@ if has('vim_starting') && dein#check_install()
 endif
 
 if has('vim_starting')
+    call dein#source()
     call dein#call_hook('source')
     call dein#call_hook('post_source')
 
@@ -306,6 +306,11 @@ endif
 if &diff
     let &diffexpr='EnhancedDiff#Diff("git diff", "--diff-algorithm=patience")'
 endif
+" }}}
+
+" colorscheme-solarized {{{2
+set background=dark
+colorscheme solarized
 " }}}
 
 "" }}}
