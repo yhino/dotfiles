@@ -117,4 +117,3 @@ repo = 'soramugi/auto-ctags.vim'
 
 [[plugins]]
 repo = 'altercation/vim-colors-solarized'
-script_type = 'colors'

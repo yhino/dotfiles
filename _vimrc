@@ -40,12 +40,11 @@ if has('vim_starting') && dein#check_install()
 endif
 
 if has('vim_starting')
-    call dein#source()
     call dein#call_hook('source')
     call dein#call_hook('post_source')
 
-    syntax enable
     filetype plugin indent on
+    syntax enable
 endif
 "" }}}
 
@@ -127,9 +126,6 @@ set wildmenu
 
 " カラー設定
 set t_Co=256
-
-" ハイライト
-syntax on
 
 " 不可視文字表示
 set list
@@ -311,6 +307,7 @@ endif
 " colorscheme-solarized {{{2
 set background=dark
 colorscheme solarized
+call togglebg#map("<F5>")
 " }}}
 
 "" }}}
