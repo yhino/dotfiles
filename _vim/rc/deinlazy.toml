@@ -4,17 +4,17 @@ depends = 'context_filetype.vim'
 if = "has('lua')"
 on_event = 'InsertEnter'
 hook_source = '''
-    let g:neocomplete#enable_at_startup = 1
     source ~/.vim/rc/plugins/neocomplete.rc.vim
 '''
 
 [[plugins]]
 repo = 'Shougo/neosnippet.vim'
 depends = ['neosnippet-snippets', 'context_filetype.vim']
-#on_event = 'InsertCharPre'
 on_event = 'InsertEnter'
 on_ft = 'snippet'
-hook_source = 'source ~/.vim/rc/plugins/neosnippet.rc.vim'
+hook_source = '''
+    source ~/.vim/rc/plugins/neosnippet.rc.vim
+'''
 
 
 [[plugins]]
@@ -35,11 +35,6 @@ hook_add = '''
         \ :<C-u>UniteWithBufferDir -buffer-name=files buffer file_mru file file/new<CR>
     inoremap <silent> <C-u><C-f>
         \ <ESC>:<C-u>UniteWithBufferDir -buffer-name=files buffer file_mru file file/new<CR>
-    " unite-outline用の設定
-    nnoremap <silent> <C-u><C-o>
-        \ :<C-u>Unite outline -no-start-insert -resume<CR>
-    inoremap <silent> <C-u><C-o>
-        \ <ESC>:<C-u>Unite outline -no-start-insert -resume<CR>
 '''
 
 [[plugins]]
@@ -53,6 +48,10 @@ hook_add = 'nnoremap <leader>e :<C-u>VimFilerBufferDir -split -simple -winwidth=
 [[plugins]]
 repo = 'Shougo/unite-outline'
 on_source = 'unite.vim'
-
-[[plugins]]
-repo = 'Shougo/context_filetype.vim'
+hook_add = '''
+    " unite-outline用の設定
+    nnoremap <silent> <C-u><C-o>
+        \ :<C-u>Unite outline -no-start-insert -resume<CR>
+    inoremap <silent> <C-u><C-o>
+        \ <ESC>:<C-u>Unite outline -no-start-insert -resume<CR>
+'''

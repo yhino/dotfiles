@@ -35,11 +35,11 @@ if dein#load_state(s:dein_dir)
 endif
 
 " 未インストールのものがあったらインストール
-if has('vim_starting') && dein#check_install()
-    call dein#install()
-endif
-
 if has('vim_starting')
+    if dein#check_install()
+        call dein#install()
+    endif
+
     call dein#call_hook('source')
     call dein#call_hook('post_source')
 
