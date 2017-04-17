@@ -13,7 +13,11 @@ let mapleader = ','
 " Load dein
 let s:cache_home = empty($XDG_CACHE_HOME) ? expand('~/.cache') : $XDG_CACHE_HOME
 let s:config_home = empty($XDG_CONFIG_HOME) ? expand('~/.config') : $XDG_CONFIG_HOME
-let s:dein_dir = s:cache_home . '/dein'
+if has('nvim')
+    let s:dein_dir = s:cache_home . '/nvim/dein'
+else
+    let s:dein_dir = s:cache_home . '/vim/dein'
+endif
 let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
 
 if &runtimepath !~# '/dein.vim'
@@ -27,7 +31,7 @@ endif
 if dein#load_state(s:dein_dir)
     call dein#begin(s:dein_dir)
 
-    call dein#load_toml('~/.vim/rc/dein.toml')
+    call dein#load_toml('~/.vim/rc/dein.toml', {'lazy': 0})
     call dein#load_toml('~/.vim/rc/deinlazy.toml', {'lazy': 1})
 
     call dein#end()

@@ -117,3 +117,10 @@ repo = 'soramugi/auto-ctags.vim'
 
 [[plugins]]
 repo = 'altercation/vim-colors-solarized'
+
+[[plugins]]
+repo = 'kassio/neoterm'
+if = "has('nvim')"
+hook_add = '''
+    source ~/.vim/rc/plugins/neoterm.rc.vim
+'''
