@@ -144,7 +144,7 @@ fixssh() {
 
 zsh_zplug() {
     [[ -d ~/.zplug ]] || {
-        curl -sL zplug.sh/installer | zsh
+        curl -sL https://github.com/zplug/installer/blob/master/installer.zsh |zsh
     }
     source ~/.zplug/init.zsh
 
