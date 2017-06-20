@@ -42,7 +42,7 @@ repo = '2072/PHP-Indenting-for-VIm'
 on_ft = 'php'
 
 [[plugins]]
-repo = 'PDV--phpDocumentor-for-Vim'
+repo = 'vim-scripts/PDV--phpDocumentor-for-Vim'
 on_ft = 'php'
 
 [[plugins]]
@@ -101,10 +101,10 @@ repo = 'terryma/vim-multiple-cursors'
 repo = 'h1mesuke/vim-alignta'
 
 [[plugins]]
-repo = 'L9'
+repo = 'vim-scripts/L9'
 
 [[plugins]]
-repo = 'sudo.vim'
+repo = 'vim-scripts/sudo.vim'
 
 [[plugins]]
 repo = 'scrooloose/syntastic'
