@@ -3,22 +3,18 @@
 function is_exists() { type "$1" >/dev/null 2>&1; return $?; }
 function is_osx() { [[ $OSTYPE == darwin* ]]; }
 function is_screen_running() { [ ! -z "$STY" ]; }
-function is_tmux_runnning() { [ ! -z "$TMUX" ]; }
-function is_screen_or_tmux_running() { is_screen_running || is_tmux_runnning; }
+function is_tmux_running() { [ ! -z "$TMUX" ]; }
+function is_screen_or_tmux_running() { is_screen_running || is_tmux_running; }
 function is_ssh_running() { [ ! -z "$SSH_CONNECTION" ]; }
 
 is_ssh_running && exit
 ! is_exists 'tmux' && exit 1
 
 if is_screen_or_tmux_running; then
-    if is_tmux_runnning; then
-        echo "${fg_bold[red]} _____ __  __ _   ___  __ ${reset_color}"
-        echo "${fg_bold[red]}|_   _|  \/  | | | \ \/ / ${reset_color}"
-        echo "${fg_bold[red]}  | | | |\/| | | | |\  /  ${reset_color}"
-        echo "${fg_bold[red]}  | | | |  | | |_| |/  \  ${reset_color}"
-        echo "${fg_bold[red]}  |_| |_|  |_|\___//_/\_\ ${reset_color}"
+    if is_tmux_running; then
+        export DISPLAY="$TMUX"
     elif is_screen_running; then
-        echo "This is on screen."
+        export DISPLAY="$STY"
     fi
 else
     if tmux has-session >/dev/null 2>&1 && tmux list-sessions | grep -qE '.*]$'; then

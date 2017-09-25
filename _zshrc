@@ -1,224 +1,29 @@
-# Generals {{{
-# fpath
-fpath=(${fpath})
-fpath=(~/.zsh/Completion(N-/) $fpath)
-fpath=(~/.zsh/functions/*(N-/) $fpath)
-fpath=(~/.zsh/plugins/zsh-completions(N-/) $fpath)
-fpath=(/usr/local/share/zsh/site-functions(N-/) $fpath)
+# vim:ft=zsh
 
-# autoload
-autoload -Uz colors; colors
-autoload -Uz compinit; compinit -u
-autoload -Uz is-at-least
-autoload -Uz history-search-end
-#}}}
-
-# {{{ Prompt
-if is-at-least 4.3.10; then
-    autoload -Uz vcs_info
-    zstyle ':vcs_info:*' enable git
-    zstyle ':vcs_info:*' formats ' on %b'
-    zstyle ':vcs_info:*' actionformats ' on %b:%a'
-    precmd() {
-        psvar=()
-        LANG=en_US.UTF-8 vcs_info
-    }
-fi
-
-# プロンプトエスケープシーケンス有効化
-setopt prompt_subst
-
-# コマンド実行後は右プロンプトを消す
-setopt transient_rprompt
-
-vim_=""
-if [ -n "${VIMRUNTIME}" ]; then
-    vim_="${fg[magenta]}(vim) ${reset_color}"
-fi
-
-PROMPT='${vim_}${fg[green]}%M${reset_color} %/${fg[yellow]}${vcs_info_msg_0_}${reset_color}'$'\n''%# '
-PROMPT2='> '
-SPROMPT='%R -> %r ? '
-# }}}
-
-
-# {{{ History
-HISTFILE="${HOME}/.zhistory"
-HISTSIZE=10000
-SAVEHIST=10000
-# }}}
-
-
-# {{{ Alias
-alias rm='rm -i'
-alias cp='cp -i'
-alias mv='mv -i'
-alias df='df -h'
-alias diff='diff -u'
-case "${OSTYPE}" in
-    linux*)
-    alias ls='ls -Fh --color'
-    alias ll='ls -alFh'
-    alias la='ls -aFh'
-    alias sl='ls'
-    ;;
-    *)
-    alias ls='ls -FhG'
-    alias ll='ls -alFh'
-    alias la='ls -aFh'
-    alias sl='ls'
-    ;;
-esac
-# }}}
-
-
-# {{{ Keybind
+umask 022
+limit coredumpsize 0
 bindkey -e
 
-zle -N history-beginning-search-backward-end history-search-end
-zle -N history-beginning-search-forward-end history-search-end
-bindkey "^P" history-beginning-search-backward-end
-bindkey "^N" history-beginning-search-forward-end
+[[ -n $VIMRUNTIME ]] && {
+    return
+}
 
-zle -N fixssh
-bindkey "^[s" fixssh
-# }}}
+tmuxx
 
+[[ -s ~/.zplug/init.zsh ]] || {
+    curl -sL https://github.com/zplug/installer/blob/master/installer.zsh |zsh
+}
+export ZPLUG_LOADFILE=~/.zsh/zplug.zsh
+source ~/.zplug/init.zsh
 
-# {{{ setopt
-# ディレクトリ名で移動
-setopt auto_cd
-
-## 補完関連
-# 補完候補の日本語を適性表示
-setopt print_eight_bit
-# 移動したディレクトリを補完候補にする
-setopt auto_pushd
-# 補完候補を詰めて表示
-setopt list_packed
-# 間違ったコマンドを正す
-setopt correct
-# = 以降でも補完できるようにする( --prefix=/usr 等の場合)
-setopt magic_equal_subst
-
-# ビープ音を消す
-setopt nolistbeep
-setopt no_beep
-
-## 履歴関連
-# 直前と同じコマンドは履歴に加えない
-setopt hist_ignore_dups
-# 先頭がスペースのコマンドは履歴に加えない
-setopt hist_ignore_space
-# 履歴を共有する
-setopt share_history
-# historyコマンドは履歴に登録しない
-setopt hist_no_store
-# 余分な空白は詰めて記録
-setopt hist_reduce_blanks
-# }}}
-
-ssh() {
-    if [[ -n "${TMUX}" ]]; then
-        local window_name=$(tmux display -p '#{window_name}')
-        local window_id=$(tmux display -p '#{window_id}')
-        command ssh $@
-        tmux rename-window -t $window_id $window_name
-    else
-        command ssh $@
+if ! zplug check --verbose; then
+    printf "Install? [y/N]: "
+    if read -q; then
+        echo; zplug install
     fi
-}
-
-fixssh() {
-    if [[ -n "${TMUX}" ]]; then
-        for key in SSH_AUTH_SOCK; do
-            if ((tmux show-environment |grep "^${key}" > /dev/null)); then
-                value=`tmux show-environment |grep "^${key}" |sed -e "s/^[A-Z_]*=//"`
-                export ${key}="${value}"
-            fi
-        done
-
-        tmux display-message "(fixssh) ssh-env fixed!!"
-    fi
-}
-
-zsh_zplug() {
-    [[ -d ~/.zplug ]] || {
-        curl -sL https://github.com/zplug/installer/blob/master/installer.zsh |zsh
-    }
-    source ~/.zplug/init.zsh
-
-    zplug "zplug/zplug"
-
-    zplug "b4b4r07/zsh-gomi", as:command, use:bin/gomi
-    zplug "b4b4r07/enhancd", use:init.sh
-    zplug "junegunn/fzf-bin", as:command, from:gh-r, rename-to:fzf
-    zplug "junegunn/fzf", as:command, use:bin/fzf-tmux
-    zplug "stedolan/jq", as:command, from:gh-r, rename-to:jq
-    zplug "github/hub", as:command, from:gh-r, rename-to:hub
-
-    zplug "zsh-users/zsh-completions"
-    zplug "zsh-users/zsh-syntax-highlighting", defer:2, if:"is-at-least 4.3.17"
-
-    if ! zplug check --verbose; then
-        printf "Install? [y/N]: "
-        if read -q; then
-            echo; zplug install
-        fi
-    fi
-
-    zplug load
-}
-
-zsh_startup() {
-    [[ -n "$VIMRUNTIME" ]] && {
-        return
-    }
-
-    tmuxx
-
-    zsh_zplug
-
-    echo -e "\n$fg_bold[cyan]This is ZSH $fg_bold[red]${ZSH_VERSION}$fg_bold[cyan] - DISPLAY on $fg_bold[red]$DISPLAY$reset_color\n"
-}
-
-if zsh_startup; then
-    # Important
-    zstyle ':completion:*:default' menu select=2
-    zstyle ':completion:*:sudo:*' environ PATH="$SUDO_PATH:$PATH"
-
-    # Completing Groping
-    zstyle ':completion:*:options' description 'yes'
-    zstyle ':completion:*:descriptions' format '%F{yellow}Completing %B%d%b%f'
-    zstyle ':completion:*' group-name ''
-
-    # Completing misc
-    zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
-    zstyle ':completion:*' verbose yes
-    zstyle ':completion:*' completer _expand _complete _match _prefix _approximate _list _history
-    zstyle ':completion:*:*files' ignored-patterns '*?.o' '*?~' '*\#'
-    zstyle ':completion:*' use-cache true
-    zstyle ':completion:*:*:-subscript-:*' tag-order indexes parameters
-
-    # Directory
-    zstyle ':completion:*:cd:*' ignore-parents parent pwd
-    export LS_COLORS='di=34:ln=35:so=32:pi=33:ex=31:bd=46;34:cd=43;34:su=41;30:sg=46;30:tw=42;30:ow=43;30'
-    zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
-
-    # default: --
-    zstyle ':completion:*' list-separator '-->'
-    zstyle ':completion:*:manuals' separate-sections true
-
-    # Menu select
-    zmodload -i zsh/complist
-    bindkey -M menuselect '^h' vi-backward-char
-    bindkey -M menuselect '^j' vi-down-line-or-history
-    bindkey -M menuselect '^k' vi-up-line-or-history
-    bindkey -M menuselect '^l' vi-forward-char
 fi
+zplug load
 
-# profiling {{{
-#if (which zprof > /dev/null 2>&1); then
-#    zprof
-#fi
-# }}}
+if [[ -f ~/.zshrc.local ]]; then
+    source ~/.zshrc.local
+fi
