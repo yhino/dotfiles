@@ -1,22 +1,43 @@
-#!/bin/bash
+#!/usr/bin/env zsh
 
-function is_exists() { type "$1" >/dev/null 2>&1; return $?; }
-function is_osx() { [[ $OSTYPE == darwin* ]]; }
-function is_screen_running() { [ ! -z "$STY" ]; }
-function is_tmux_running() { [ ! -z "$TMUX" ]; }
-function is_screen_or_tmux_running() { is_screen_running || is_tmux_running; }
-function is_ssh_running() { [ ! -z "$SSH_CONNECTION" ]; }
+has() {
+    type "$1" >/dev/null 2>&1; return $?
+}
 
-is_ssh_running && exit
-! is_exists 'tmux' && exit 1
+is_osx() {
+    [[ $OSTYPE == darwin* ]]
+}
 
-if is_screen_or_tmux_running; then
-    if is_tmux_running; then
-        export DISPLAY="$TMUX"
-    elif is_screen_running; then
-        export DISPLAY="$STY"
-    fi
-else
+is_screen_running() {
+    [[ -n "$STY" ]]
+}
+
+is_tmux_running() {
+    [[ -n "$TMUX" ]]
+}
+
+is_ssh_running() {
+    [[ -n "$SSH_CONNECTION" ]]
+}
+
+tmuxx() {
+    is_ssh_running && {
+        export DISPLAY=$SSH_CONNECTION
+        return 0
+    }
+
+    is_tmux_running && {
+        export DISPLAY=$TMUX
+        return 0
+    }
+
+    is_screen_running && {
+        export DISPLAY=$STY
+        return 0
+    }
+
+    has 'tmux' || return 1
+
     if tmux has-session >/dev/null 2>&1 && tmux list-sessions | grep -qE '.*]$'; then
         # detached session exists
         tmux list-sessions
@@ -26,18 +47,18 @@ else
             tmux attach-session
             if [ $? -eq 0 ]; then
                 echo "$(tmux -V) attached session"
-                exit 0
+                return 0
             fi
         elif [[ "$REPLY" =~ ^[0-9]+$ ]]; then
             tmux attach -t "$REPLY"
             if [ $? -eq 0 ]; then
                 echo "$(tmux -V) attached session"
-                exit 0
+                return 0
             fi
         fi
     fi
 
-    if is_osx && is_exists 'reattach-to-user-namespace'; then
+    if is_osx && has 'reattach-to-user-namespace'; then
         # on OS X force tmux's default command
         # to spawn a shell in the user's namespace
         tmux_config=$(cat $HOME/.tmux.conf <(echo 'set-option -g default-command "reattach-to-user-namespace -l $SHELL"'))
@@ -45,4 +66,7 @@ else
     else
         tmux new-session && echo "tmux created new session"
     fi
-fi
+
+    return 0
+}
+tmuxx

@@ -8,20 +8,22 @@ bindkey -e
     return
 }
 
-tmuxx
+source tmuxx
 
 [[ -s ~/.zplug/init.zsh ]] || {
-    curl -sL https://github.com/zplug/installer/blob/master/installer.zsh |zsh
+    curl -sL https://raw.githubusercontent.com/zplug/installer/master/installer.zsh| zsh
 }
 export ZPLUG_LOADFILE=~/.zsh/zplug.zsh
 source ~/.zplug/init.zsh
 
-if ! zplug check --verbose; then
-    printf "Install? [y/N]: "
-    if read -q; then
-        echo; zplug install
-    fi
-fi
+# disabled for performance
+#if ! zplug check --verbose; then
+#    printf "Install? [y/N]: "
+#    if read -q; then
+#        echo; zplug install
+#    fi
+#fi
+
 zplug load
 
 if [[ -f ~/.zshrc.local ]]; then
