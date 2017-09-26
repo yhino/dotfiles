@@ -13,8 +13,8 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 zstyle ':completion:*' verbose yes
 zstyle ':completion:*' completer _expand _complete _match _prefix _approximate _list _history
 
-# 中間ファイルは補完候補にしない。でも rm では候補にする。
-zstyle ':completion:*:*:(^rm):*:*files' ignored-patterns '*?.o|*?~|*\#'
+# 中間ファイルは補完候補にしない
+zstyle ':completion:*:*files' ignored-patterns '*?.o' '*?-' '*\#'
 
 # cacheを使う
 zstyle ':completion:*' use-cache true
