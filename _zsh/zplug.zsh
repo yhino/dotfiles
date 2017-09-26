@@ -1,3 +1,7 @@
+#zplug "zplug/zplug"
+
+zplug "~/.zsh", from:local, use:"<->_*.zsh"
+
 zplug "b4b4r07/enhancd", use:init.sh
 
 zplug "zsh-users/zsh-completions"
@@ -13,7 +17,3 @@ zplug "stedolan/jq", as:command, from:gh-r, rename-to:jq
 zplug "github/hub", as:command, from:gh-r, rename-to:hub
 
 zplug "b4b4r07/zsh-gomi", as:command, use:bin/gomi
-
-zplug "~/.zsh", from:local, use:"<->_*.zsh"
-
-zplug "zplug/zplug"
