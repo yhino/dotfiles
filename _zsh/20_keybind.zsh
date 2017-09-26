@@ -1,5 +1,12 @@
 bindkey -e
 
+select-history() {
+    BUFFER=$(history -n -r 1 |fzf --no-sort +m --query "$LBUFFER" --prompt="History> ")
+    CURSOR=$#BUFFER
+}
+zle -N select-history
+bindkey '^r' select-history
+
 zle -N history-beginning-search-backward-end history-search-end
 zle -N history-beginning-search-forward-end history-search-end
 bindkey "^P" history-beginning-search-backward-end
