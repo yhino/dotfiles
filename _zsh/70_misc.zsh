@@ -14,7 +14,7 @@ zstyle ':completion:*' verbose yes
 zstyle ':completion:*' completer _expand _complete _match _prefix _approximate _list _history
 
 # 中間ファイルは補完候補にしない
-zstyle ':completion:*:*files' ignored-patterns '*?.o' '*?-' '*\#'
+zstyle ':completion:*:*files' ignored-patterns '*?.o' '*?~' '*\#'
 
 # cacheを使う
 zstyle ':completion:*' use-cache true
