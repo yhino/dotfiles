@@ -18,7 +18,7 @@ alias diff='diff -u'
 
 
 ssh() {
-    if is_tmux_runnning; then
+    if is_tmux_running; then
         local window_name=$(tmux display -p '#{window_name}')
         local window_id=$(tmux display -p '#{window_id}')
         command ssh $@
