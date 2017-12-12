@@ -1,3 +1,5 @@
+alias relogin='exec $SHELL -l'
+
 alias ..='cd ..'
 
 if is_linux; then
