@@ -36,7 +36,6 @@ export LC_CTYPE=${LANGUAGE}
 export LESSCHARSET=UTF-8
 export LESS=-qR
 
-export GREP_OPTIONS='--color=auto'
 export GREP_COLOR='1;41;37'
 
 export LSCOLORS=gxfxcxdxbxegedabagacad
@@ -60,20 +59,3 @@ export SAVEHIST=1000000
 export GOPATH=$HOME/go
 export GOBIN=${GOPATH}/bin
 path=(${GOBIN}(N-/) ${path})
-
-# nodejs
-if [ -f ${HOME}/.nvm/nvm.sh ]; then
-    . ${HOME}/.nvm/nvm.sh
-    nvm use default > /dev/null
-fi
-
-# ruby
-if which rbenv > /dev/null; then
-    eval "$(rbenv init -)"
-fi
-
-# python
-if which pyenv > /dev/null; then
-    export PYENV_ROOT=/usr/local/var/pyenv
-    eval "$(pyenv init -)"
-fi

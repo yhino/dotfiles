@@ -18,6 +18,7 @@ alias mv='mv -i'
 alias df='df -h'
 alias diff='diff -u'
 
+alias grep='grep --color=auto'
 
 ssh() {
     if is_tmux_running; then
