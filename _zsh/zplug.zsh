@@ -14,7 +14,6 @@ zplug "junegunn/fzf", as:command, use:bin/fzf-tmux
 
 zplug "stedolan/jq", as:command, from:gh-r, rename-to:jq
 
-# disabled, missmatch binary download
-# zplug "github/hub", as:command, from:gh-r, rename-to:hub
+zplug "github/hub", as:command, from:gh-r, rename-to:hub
 
 zplug "b4b4r07/zsh-gomi", as:command, use:bin/gomi
