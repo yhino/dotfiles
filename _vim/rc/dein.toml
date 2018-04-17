@@ -124,3 +124,11 @@ if = "has('nvim')"
 hook_add = '''
     source ~/.vim/rc/plugins/neoterm.rc.vim
 '''
+
+[[plugins]]
+repo = 'roxma/nvim-yarp'
+if = "!has('nvim')"
+
+[[plugins]]
+repo = 'roxma/vim-hug-neovim-rpc'
+if = "!has('nvim')"
