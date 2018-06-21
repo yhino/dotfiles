@@ -32,6 +32,10 @@ zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*' list-separator '-->'
 zstyle ':completion:*:manuals' separate-sections true
 
+# for Docker
+zstyle ':completion:*:*:docker:*' option-stacking yes
+zstyle ':completion:*:*:docker-:*' option-stacking yes
+
 # Menu select
 zmodload -i zsh/complist
 bindkey -M menuselect '^h' vi-backward-char

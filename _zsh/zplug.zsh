@@ -4,11 +4,15 @@ zplug "~/.zsh", from:local, use:"<->_*.zsh"
 
 zplug "b4b4r07/enhancd", use:init.sh
 
-zplug "zsh-users/zsh-autosuggestions", hook-load:"ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=10'"
+zplug "zsh-users/zsh-completions", defer:0
 
-zplug "zsh-users/zsh-completions"
+zplug "zsh-users/zsh-autosuggestions", defer:2, hook-load:"ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=10'"
 
-zplug "zsh-users/zsh-syntax-highlighting", defer:2, if:"is-at-least 4.3.11"
+zplug "zsh-users/zsh-syntax-highlighting", defer:3, if:"is-at-least 4.3.11"
+
+zplug "docker/cli", use:"contrib/completion/zsh", defer:1
+
+zplug "docker/compose", use:"contrib/completion/zsh", defer:1
 
 zplug "junegunn/fzf-bin", as:command, from:gh-r, rename-to:fzf
 
