@@ -42,9 +42,9 @@ hook_add = '''
     inoremap <silent> <C-u><C-u>
         \ <ESC>:<C-u>Unite -buffer-name=files buffer file_mru file file/new<CR>
     nnoremap <silent> <C-u><C-f>
-        \ :<C-u>UniteWithBufferDir -buffer-name=files buffer file_mru file file/new<CR>
+        \ :<C-u>UniteWithBufferDir -buffer-name=files buffer file file_mru file/new<CR>
     inoremap <silent> <C-u><C-f>
-        \ <ESC>:<C-u>UniteWithBufferDir -buffer-name=files buffer file_mru file file/new<CR>
+        \ <ESC>:<C-u>UniteWithBufferDir -buffer-name=files buffer file file_mru file/new<CR>
 '''
 
 [[plugins]]
