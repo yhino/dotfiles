@@ -185,21 +185,6 @@ source $VIMRUNTIME/macros/matchit.vim
 " zencoding
 let s:user_zen_settings = { 'indentation': "    " }
 
-" syntastic
-let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': ['php', 'ruby', 'javascript'] }
-let g:syntastic_always_populate_loc_list=1
-let g:syntastic_error_symbol='✗'
-let g:syntastic_warning_symbol='⚠'
-let g:syntastic_style_error_symbol = '✗'
-let g:syntastic_style_warning_symbol = '⚠'
-let g:syntastic_auto_loc_list=0
-let g:syntastic_aggregate_errors = 1
-let g:syntastic_check_on_wq = 0
-" ファイルを開いたときにsyntaxチェック
-let g:syntastic_check_on_open = 1
-" javascriptのsyntaxチェックツールをjshintに固定
-let g:syntastic_javascript_checkers = ['jshint']
-
 " auto-ctags
 let g:auto_ctags = 1
 let g:auto_ctags_directory_list = ['.git', '.svn']

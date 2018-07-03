@@ -107,9 +107,6 @@ repo = 'vim-scripts/L9'
 repo = 'vim-scripts/sudo.vim'
 
 [[plugins]]
-repo = 'scrooloose/syntastic'
-
-[[plugins]]
 repo = 'majutsushi/tagbar'
 
 [[plugins]]
@@ -132,3 +129,9 @@ if = "!has('nvim')"
 [[plugins]]
 repo = 'roxma/vim-hug-neovim-rpc'
 if = "!has('nvim')"
+
+[[plugins]]
+repo = 'w0rp/ale'
+hook_add = '''
+let g:ale_sign_column_always = 1
+'''
