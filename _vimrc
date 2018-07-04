@@ -182,40 +182,6 @@ noremap <ESC><ESC> :nohlsearch<CR><ESC>
 " matchit.vim
 source $VIMRUNTIME/macros/matchit.vim
 
-" zencoding
-let s:user_zen_settings = { 'indentation': "    " }
-
-" auto-ctags
-let g:auto_ctags = 1
-let g:auto_ctags_directory_list = ['.git', '.svn']
-
-" Tagbar
-nmap <silent> <F4> :TagbarToggle<CR>
-let g:tagbar_autofocus = 1
-
-let g:tagbar_type_go = {
-    \ 'ctagstype' : 'go',
-    \ 'kinds'     : [  'p:package', 'i:imports:1', 'c:constants', 'v:variables',
-        \ 't:types',  'n:interfaces', 'w:fields', 'e:embedded', 'm:methods',
-        \ 'r:constructor', 'f:functions' ],
-    \ 'sro' : '.',
-    \ 'kind2scope' : { 't' : 'ctype', 'n' : 'ntype' },
-    \ 'scope2kind' : { 'ctype' : 't', 'ntype' : 'n' },
-    \ 'ctagsbin'  : 'gotags',
-    \ 'ctagsargs' : '-sort -silent'
-    \ }
-
-let g:tagbar_type_ruby = {
-    \ 'kinds' : [
-        \ 'm:modules',
-        \ 'c:classes',
-        \ 'd:describes',
-        \ 'C:contexts',
-        \ 'f:methods',
-        \ 'F:singleton methods'
-    \ ]
-\ }
-
 " php
 function! PhpSyntaxOverride()
     hi! def link phpDocTags  phpDefine
@@ -246,27 +212,6 @@ let g:vim_json_syntax_conceal = 0
 
 " markdown
 let g:vim_markdown_folding_disabled = 1
-
-" lightline
-let g:lightline = {
-            \   'active': {
-            \       'left': [ [ 'mode', 'paste' ], ['readonly', 'filename', 'modified' ], [ 'fugitive' ] ]
-            \   },
-            \   'inactive': {
-            \       'left': [ [ 'readonly', 'filename', 'modified' ], [ 'fugitive' ] ]
-            \   },
-            \   'component': {
-            \       'fugitive': '%{exists("*fugitive#head")?fugitive#head():""}'
-            \   },
-            \   'component_visible_condition': {
-            \       'fugitive': '(exists("*figitive#head") && ""!=fugitive#head())'
-            \   }
-            \ }
-
-" IndentLine
-let g:indentLine_enabled = 0
-let g:indentLine_faster = 1
-nmap <silent><Leader>i :<C-u>IndentLinesToggle<CR>
 
 " diff {{{2
 function! ConfigDiffMode()
