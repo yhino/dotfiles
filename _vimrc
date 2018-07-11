@@ -1,4 +1,14 @@
 "" dein.vim {{{
+
+" Temporary workaround for python 3.7 warnings
+" @see https://github.com/vim/vim/issues/3117
+if has('python3')
+    let s:pyver = execute(":pyx import sys;print(sys.version)")[1:3]
+    if str2float(s:pyver) >= 3.7
+        silent| python3 1
+    endif
+endif
+
 if &compatible
     set nocompatible
 endif
