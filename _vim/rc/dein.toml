@@ -153,10 +153,9 @@ let g:tagbar_type_ruby = {
 '''
 
 [[plugins]]
-repo = 'soramugi/auto-ctags.vim'
+repo = 'ludovicchabant/vim-gutentags'
 hook_add = '''
-let g:auto_ctags = 1
-let g:auto_ctags_directory_list = ['.git', '.svn']
+let g:gutentags_ctags_tagfile = '.git/tags'
 '''
 
 [[plugins]]
