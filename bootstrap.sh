@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # initialize git submodule
-if [ -x `which git` ]; then
+if type git > /dev/null 2>&1; then
     git submodule update --init
 else
     echo '[warn] can not setup submodules, please install git'

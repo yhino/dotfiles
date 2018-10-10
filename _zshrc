@@ -13,6 +13,7 @@ source tmuxx
 [[ -s ~/.zplug/init.zsh ]] || {
     curl -sL https://raw.githubusercontent.com/zplug/installer/master/installer.zsh| zsh
 }
+
 export ZPLUG_LOADFILE=~/.zsh/zplug.zsh
 source ~/.zplug/init.zsh
 
@@ -25,6 +26,9 @@ source ~/.zplug/init.zsh
 #fi
 
 zplug load
+
+# force setup bin-path
+path=($ZPLUG_BIN $path)
 
 if [[ -f ~/.zshrc.local ]]; then
     source ~/.zshrc.local

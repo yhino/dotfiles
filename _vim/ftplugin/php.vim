@@ -6,7 +6,7 @@
 " SQLハイライト
 let php_sql_query = 1
 " HTMLハイライト
-let php_htmlInString = 1
+let php_htmlInStrings = 1
 " ショートタグ無効
 let php_noShortTags = 1
 " 括弧対応エラーハイライト
@@ -21,14 +21,3 @@ setlocal syntax=php
 "" キーバインド
 " php lint
 nnoremap ,l :!php -l %<CR>
-nnoremap ,r :!php %<CR>
-
-" phpDocumentor-for-Vim
-let g:pdv_cfg_Package   = ""
-let g:pdv_cfg_Version   = ""
-let g:pdv_cfg_Author    = "Yoshiyuki HINO <yhinoz@gmail.com>"
-let g:pdv_cfg_Copyright = "(c) yhinoz."
-let g:pdv_cfg_License   = "MIT"
-inoremap <C-p> <ESC>:call PhpDocSingle()<CR>i
-nnoremap <C-p> :call PhpDocSingle()<CR>
-vnoremap <C-p> :call PhpDocRange()<CR>

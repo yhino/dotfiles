@@ -56,6 +56,10 @@ hook_source = 'source ~/.vim/rc/plugins/vimfiler.rc.vim'
 hook_add = 'nnoremap <leader>e :<C-u>VimFilerBufferDir -split -simple -winwidth=35 -no-quit<CR>'
 
 [[plugins]]
+repo = 'shougo/vimshell.vim'
+if = "!has('nvim')"
+
+[[plugins]]
 repo = 'Shougo/unite-outline'
 on_source = 'unite.vim'
 hook_add = '''

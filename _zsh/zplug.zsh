@@ -1,4 +1,4 @@
-#zplug "zplug/zplug"
+zplug "zplug/zplug", hook-build:"zplug --self-manage"
 
 zplug "~/.zsh", from:local, use:"<->_*.zsh"
 
@@ -27,3 +27,10 @@ zplug "motemen/ghq", as:command, from:gh-r, rename-to:ghq
 zplug "tcnksm/ghr", as:command, from:gh-r, rename-to:ghr
 
 zplug "b4b4r07/zsh-gomi", as:command, use:bin/gomi
+
+zplug "plugins/kubectl", from:oh-my-zsh, lazy:true
+kubectl() {
+    unfunction kubectl
+    . "${ZPLUG_REPOS}/robbyrussell/oh-my-zsh/plugins/kubectl/kubectl.plugin.zsh"
+    kubectl "$@"
+}
