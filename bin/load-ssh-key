@@ -1,6 +1,6 @@
 #!/bin/sh
 
-for f in `ls ~/.ssh/id_rsa* |grep -vE '(ppk|pub)$'`
+for f in `ls ~/.ssh/id_rsa* |grep -vE '(ppk|pub|\.disabled)$'`
 do
     ssh-add -K $f
 done
