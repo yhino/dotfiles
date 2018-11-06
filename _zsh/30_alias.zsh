@@ -18,8 +18,6 @@ alias mv='mv -i'
 alias df='df -h'
 alias diff='diff -u'
 
-has 'mycli' && alias mysql='mycli'
-
 ssh() {
     if is_tmux_running; then
         local window_name=$(tmux display -p '#{window_name}')
