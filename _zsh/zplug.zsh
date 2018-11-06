@@ -20,7 +20,7 @@ zplug "junegunn/fzf", as:command, use:bin/fzf-tmux
 
 zplug "stedolan/jq", as:command, from:gh-r, rename-to:jq
 
-zplug "github/hub", as:command, from:gh-r, rename-to:hub, hook-load:"alias git='hub'"
+zplug "github/hub", as:command, from:gh-r, rename-to:hub
 
 zplug "motemen/ghq", as:command, from:gh-r, rename-to:ghq
 
