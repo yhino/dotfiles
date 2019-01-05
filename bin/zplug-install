@@ -1,0 +1,9 @@
+#!/bin/zsh
+
+[[ -s ~/.zplug/init.zsh ]] || {
+    curl -sL https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh |zsh
+}
+
+echo
+echo 'install success!! please restart TERM.'
+echo
