@@ -68,7 +68,13 @@ if [[ -x /usr/libexec/java_home ]]; then
 fi
 
 # anyenv
+if type anyenv &>/dev/null; then
+    # if anyenv is installed by homebrew, make the `$HOME/.anyenv` directory
+    if [[ ! -d $HOME/.anyenv ]]; then
+        mkdir ${HOME}/.anyenv
+    fi
+fi
 if [[ -d $HOME/.anyenv ]]; then
     path=(${HOME}/.anyenv/bin(N-/) ${path})
-    eval "$(anyenv init - zsh)"
+    eval "$(anyenv init -)"
 fi
