@@ -1,4 +1,4 @@
-alias relogin='exec $SHELL -l'
+alias reshell='exec $SHELL -l'
 
 alias ..='cd ..'
 
