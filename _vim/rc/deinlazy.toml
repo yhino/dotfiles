@@ -4,7 +4,29 @@ depends = 'context_filetype.vim'
 if = "has('lua') && !has('python3')"
 on_event = 'InsertEnter'
 hook_source = '''
-    source ~/.vim/rc/plugins/neocomplete.rc.vim
+    " neocomplete
+    let g:neocomplete#enable_at_startup = 1
+    let g:neocomplete#enable_smart_case = 1
+    let g:neocomplete#sources#syntax#min_keyword_length = 3
+    let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
+    let g:neocomplete#sources#dictionary#dictionaries = {
+                \ }
+    if !exists('g:neocomplete#keyword_patterns')
+        let g:neocomplete#keyword_patterns = {}
+    endif
+    let g:neocomplete#keyword_patterns['default'] = '\h\w*'
+
+    " for vim-multiple-cursors
+    function! Multiple_cursors_before()
+        if exists(':NeoCompleteLock') == 2
+            exe 'NeoCompleteLock'
+        endif
+    endfunction
+    function! Multiple_cursors_after()
+        if exists(':NeoCompleteUnLock') == 2
+            exe 'NeoCompleteUnLock'
+        endif
+    endfunction
 '''
 
 [[plugins]]
@@ -14,7 +36,13 @@ depends = ['context_filetype.vim', 'nvim-yarp', 'vim-hug-neovim-rpc']
 if = "has('python3')"
 on_event = 'InsertEnter'
 hook_source = '''
-    source ~/.vim/rc/plugins/deoplete.rc.vim
+    let g:deoplete#enable_at_startup = 1
+    let g:deoplete#enable_smart_case = 1
+
+    inoremap <expr><TAB> pumvisible() ?  "\<C-n>" :
+        \ neosnippet#expandable_or_jumpable() ?
+        \   "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+
 '''
 
 [[plugins]]
@@ -23,7 +51,16 @@ depends = ['neosnippet-snippets', 'context_filetype.vim']
 on_event = 'InsertEnter'
 on_ft = 'snippet'
 hook_source = '''
-    source ~/.vim/rc/plugins/neosnippet.rc.vim
+    imap <C-k> <Plug>(neosnippet_expand_or_jump)
+    smap <C-k> <Plug>(neosnippet_expand_or_jump)
+    xmap <C-k> <Plug>(neosnippet_expand_target)
+
+    smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+       \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+
+    if has('conceal')
+        set conceallevel=2 concealcursor=niv
+    endif
 '''
 
 
@@ -34,7 +71,29 @@ on_if = 1
 [[plugins]]
 repo = 'Shougo/unite.vim'
 depends = 'neomru.vim'
-hook_source = 'source ~/.vim/rc/plugins/unite.rc.vim'
+hook_source = '''
+    " 入力モードで開始する
+    let g:unite_enable_start_insert=1
+
+    " unite.vim上でのキーマッピング
+    autocmd MyAutoCmd FileType unite call s:unite_my_settings()
+    function! s:unite_my_settings()
+      " 横分割で開く
+      nmap <silent> <buffer> <expr> <C-j> unite#do_action('split')
+      imap <silent> <buffer> <expr> <C-j> unite#do_action('split')
+
+      " 縦分割で開く
+      nmap <silent> <buffer> <expr> <C-l> unite#do_action('vsplit')
+      imap <silent> <buffer> <expr> <C-l> unite#do_action('vsplit')
+
+      " 単語単位からパス単位で削除するように変更
+      imap <buffer> <C-w> <Plug>(unite_delete_backward_path)
+
+      " ESCキーを2回押すと終了する
+      nmap <silent><buffer> <ESC><ESC> q
+      imap <silent><buffer> <ESC><ESC> <ESC>q
+    endfunction
+'''
 hook_add = '''
     " インサート／ノーマルどちらからでも呼び出せるようにキーマップ
     nnoremap <silent> <C-u><C-u>
@@ -52,8 +111,13 @@ repo = 'Shougo/vimfiler.vim'
 depends = 'unite.vim'
 on_map = [['n', '<Plug>']]
 on_if = "isdirectory(bufname('%'))"
-hook_source = 'source ~/.vim/rc/plugins/vimfiler.rc.vim'
-hook_add = 'nnoremap <leader>e :<C-u>VimFilerBufferDir -split -simple -winwidth=35 -no-quit<CR>'
+hook_source = '''
+    " vimデフォルトのエクスプローラをvimfilerで置き換える
+    let g:vimfiler_as_default_explorer = 1
+'''
+hook_add = '''
+    nnoremap <leader>e :<C-u>VimFilerBufferDir -split -simple -winwidth=35 -no-quit<CR>
+'''
 
 [[plugins]]
 repo = 'shougo/vimshell.vim'
