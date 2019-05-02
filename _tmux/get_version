@@ -1,0 +1,5 @@
+#!/bin/bash
+
+set -eu
+
+tmux -V |awk 'match($2, /[0-9.]+/){print substr($2, RSTART, RLENGTH)}'
