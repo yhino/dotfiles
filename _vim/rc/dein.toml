@@ -211,3 +211,12 @@ endif
 
 [[plugins]]
 repo = 'aklt/plantuml-syntax'
+
+[[plugins]]
+repo = 'scrooloose/nerdcommenter'
+
+[[plugins]]
+repo = 'jiangmiao/auto-pairs'
+
+[[plugins]]
+repo = 'https://github.com/sheerun/vim-polyglot'
