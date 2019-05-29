@@ -219,4 +219,8 @@ repo = 'scrooloose/nerdcommenter'
 repo = 'jiangmiao/auto-pairs'
 
 [[plugins]]
-repo = 'https://github.com/sheerun/vim-polyglot'
+repo = 'sheerun/vim-polyglot'
+
+[[plugins]]
+repo = 'posva/vim-vue'
+on_ft = 'vue'
