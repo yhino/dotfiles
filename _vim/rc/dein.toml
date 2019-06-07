@@ -6,9 +6,6 @@ repo = 'Shougo/vimproc.vim'
 build = 'make'
 
 [[plugins]]
-repo = 'hail2u/vim-css3-syntax'
-
-[[plugins]]
 repo = 'gorodinskiy/vim-coloresque'
 
 [[plugins]]
@@ -16,30 +13,6 @@ repo = 'mattn/emmet-vim'
 
 [[plugins]]
 repo = 'tpope/vim-endwise'
-
-[[plugins]]
-repo = 'pangloss/vim-javascript'
-on_ft = 'javascript'
-
-[[plugins]]
-repo = 'jelera/vim-javascript-syntax'
-on_ft = 'javascript'
-
-[[plugins]]
-repo = 'kchmck/vim-coffee-script'
-on_ft = 'coffee'
-
-[[plugins]]
-repo = 'elzr/vim-json'
-on_ft = 'json'
-
-[[plugins]]
-repo = 'StanAngeloff/php.vim'
-on_ft = 'php'
-
-[[plugins]]
-repo = '2072/PHP-Indenting-for-VIm'
-on_ft = 'php'
 
 [[plugins]]
 repo = 'vim-scripts/PDV--phpDocumentor-for-Vim'
@@ -58,34 +31,13 @@ vnoremap <C-p> :call PhpDocRange()<CR>
 '''
 
 [[plugins]]
-repo = 'evidens/vim-twig'
-on_ft = 'twig'
-
-[[plugins]]
-repo = 'vim-ruby/vim-ruby'
-on_map = '<Plug>'
-on_ft = 'ruby'
-
-[[plugins]]
-repo = 'fatih/vim-go'
-on_ft = 'go'
-
-[[plugins]]
 repo = 'nsf/gocode'
 rtp = 'vim'
 on_ft = 'go'
 
 [[plugins]]
-repo = 'rcmdnk/vim-markdown'
-on_ft = ['markdown', 'mkd']
-
-[[plugins]]
 repo = 'chrisbra/vim-diff-enhanced'
 on_ft = 'diff'
-
-[[plugins]]
-repo = 'cespare/vim-toml'
-on_ft = 'toml'
 
 [[plugins]]
 repo = 'Shougo/context_filetype.vim'
@@ -105,7 +57,8 @@ repo = 'itchyny/lightline.vim'
 hook_add = '''
 let g:lightline = {
             \   'active': {
-            \       'left': [ [ 'mode', 'paste' ], ['readonly', 'filename', 'modified' ], [ 'fugitive' ] ]
+            \       'left': [ [ 'mode', 'paste' ], ['readonly', 'filename', 'modified' ], [ 'fugitive' ] ],
+            \       'right': [ [ 'lineinfo' ], [ 'percent' ], [ 'ale', 'fileformat', 'fileencoding', 'filetype' ] ]
             \   },
             \   'inactive': {
             \       'left': [ [ 'readonly', 'filename', 'modified' ], [ 'fugitive' ] ]
@@ -115,8 +68,22 @@ let g:lightline = {
             \   },
             \   'component_visible_condition': {
             \       'fugitive': '(exists("*figitive#head") && ""!=fugitive#head())'
+            \   },
+            \   'component_function': {
+            \       'ale': 'LLAle'
             \   }
             \ }
+
+function! LLAle()
+    if dein#tap('ale')
+        let l:count = ale#statusline#Count(bufnr(''))
+        let l:errors = l:count.error + l:count.style_error
+        let l:warnings = l:count.warning + l:count.style_warning
+        return l:count.total == 0 ? '' : 'E:' . l:errors . ' W:' . l:warnings
+    else
+        return ''
+    endif
+endfunction
 '''
 
 [[plugins]]
@@ -202,15 +169,11 @@ let g:ale_sign_column_always = 1
 [[plugins]]
 repo = 'thinca/vim-quickrun'
 hook_add = '''
+let g:quickrun_config = get(g:, 'quickrun_config', {})
 if executable('python3')
-    let g:quickrun_config = {
-                \ 'python': { 'command': 'python3' },
-                \ }
+    let g:quickrun_config.python = { 'command': 'python3' }
 endif
 '''
-
-[[plugins]]
-repo = 'aklt/plantuml-syntax'
 
 [[plugins]]
 repo = 'scrooloose/nerdcommenter'
@@ -220,7 +183,9 @@ repo = 'jiangmiao/auto-pairs'
 
 [[plugins]]
 repo = 'sheerun/vim-polyglot'
-
-[[plugins]]
-repo = 'posva/vim-vue'
-on_ft = 'vue'
+hook_add = '''
+let g:polyglot_disabled = []
+" for jsx
+let g:jsx_ext_required = 1
+let g:jsx_pragma_required = 1
+'''
