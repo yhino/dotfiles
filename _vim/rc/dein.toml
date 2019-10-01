@@ -177,15 +177,6 @@ repo = 'scrooloose/nerdcommenter'
 repo = 'jiangmiao/auto-pairs'
 
 [[plugins]]
-repo = 'sheerun/vim-polyglot'
-hook_add = '''
-let g:polyglot_disabled = ['go']
-" for jsx
-let g:jsx_ext_required = 1
-let g:jsx_pragma_required = 1
-'''
-
-[[plugins]]
 repo = 'fatih/vim-go'
 on_ft = 'go'
 
@@ -193,3 +184,11 @@ on_ft = 'go'
 repo = 'nsf/gocode'
 rtp = 'vim'
 on_ft = 'go'
+
+[[plugins]]
+repo = 'sheerun/vim-polyglot'
+hook_add = '''
+" for jsx
+let g:jsx_ext_required = 1
+let g:jsx_pragma_required = 1
+'''
