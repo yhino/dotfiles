@@ -177,6 +177,15 @@ repo = 'scrooloose/nerdcommenter'
 repo = 'jiangmiao/auto-pairs'
 
 [[plugins]]
+repo = 'davidhalter/jedi-vim'
+hook_add = '''
+let g:jedi#rename_command = '<leader>R'
+autocmd FileType python let b:did_ftplugin = 1
+autocmd FileType python setlocal completeopt-=preview
+'''
+on_ft = 'python'
+
+[[plugins]]
 repo = 'fatih/vim-go'
 on_ft = 'go'
 
