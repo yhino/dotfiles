@@ -195,6 +195,13 @@ rtp = 'vim'
 on_ft = 'go'
 
 [[plugins]]
+repo = 'rust-lang/rust.vim'
+hook_add = '''
+let g:rustfmt_autosave = 1
+'''
+on_ft = 'rust'
+
+[[plugins]]
 repo = 'sheerun/vim-polyglot'
 hook_add = '''
 " for jsx

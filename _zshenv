@@ -63,6 +63,11 @@ export GOPATH=$HOME/go
 export GOBIN=${GOPATH}/bin
 path=(${GOBIN}(N-/) ${path})
 
+# Rust
+if [[ -f $HOME/.cargo/env ]]; then
+    source $HOME/.cargo/env
+fi
+
 # Java
 if [[ -x /usr/libexec/java_home ]]; then
     export JAVA_HOME=$(/usr/libexec/java_home)
