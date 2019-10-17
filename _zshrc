@@ -4,6 +4,14 @@ umask 022
 limit coredumpsize 0
 bindkey -e
 
+autoload -Uz colors && colors
+autoload -Uz is-at-least
+autoload -Uz history-search-end
+
+export HISTFILE="${HOME}/.zsh_history"
+export HISTSIZE=1000000
+export SAVEHIST=1000000
+
 [[ -n $VIMRUNTIME ]] && {
     return
 }

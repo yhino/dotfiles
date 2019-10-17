@@ -20,11 +20,6 @@ fpath=( \
     ${fpath} \
     )
 
-autoload -Uz colors && colors
-autoload -Uz is-at-least
-autoload -Uz history-search-end
-
-
 export XDG_CONFIG_HOME=${HOME}/.config
 export XDG_CACHE_HOME=${HOME}/.cache
 
@@ -53,12 +48,7 @@ export EDITOR=vim
 
 export FIGNORE=${FIGNORE}:.svn:.git
 
-export HISTFILE="${HOME}/.zhistory"
-export HISTSIZE=10000
-export SAVEHIST=1000000
-
 # GOLANG
-export GO111MODULE=on
 export GOPATH=$HOME/go
 export GOBIN=${GOPATH}/bin
 path=(${GOBIN}(N-/) ${path})
