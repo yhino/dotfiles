@@ -1,5 +1,3 @@
-alias reshell='exec $SHELL -l'
-
 alias ..='cd ..'
 
 if is_linux; then
@@ -31,4 +29,10 @@ ssh() {
     else
         command ssh $@
     fi
+}
+
+reshell() {
+    rm -f ~/.zcompdump
+    rm -f ~/.zplug/zcompdump
+    exec $SHELL -l
 }
