@@ -129,7 +129,7 @@ let g:tagbar_type_ruby = {
 [[plugins]]
 repo = 'ludovicchabant/vim-gutentags'
 hook_add = '''
-let g:gutentags_ctags_tagfile = '.git/tags'
+let g:gutentags_ctags_tagfile = '.git/ctags'
 '''
 
 [[plugins]]
