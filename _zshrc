@@ -16,7 +16,10 @@ export SAVEHIST=1000000
     return
 }
 
-source tmuxx
+# do not execute `tmux`, when use terminal jetbrains-ide
+[[ -z $TERMINAL_EMULATOR ]] && {
+    source tmuxx
+}
 
 [[ -s ~/.zplug/init.zsh ]] || {
     curl -sL https://raw.githubusercontent.com/zplug/installer/master/installer.zsh| zsh
