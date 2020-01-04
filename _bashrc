@@ -29,7 +29,7 @@ alias tmux='tmux -u'
 
 # {{{ Env
 # Basic
-export PATH=/usr/local/bin:/usr/local/sbin:${PATH}
+export PATH=${HOME}/bin:/usr/local/bin:/usr/local/sbin:${PATH}
 if [ -x `which vim` ]; then
     export EDITOR=vim
 else
