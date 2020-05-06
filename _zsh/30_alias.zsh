@@ -9,7 +9,6 @@ alias ll='ls -alFh'
 alias la='ls -aFh'
 alias sl='ls'
 
-has 'lsd' && alias ls='lsd'
 has 'htop' && alias top='htop'
 
 alias rm='rm -i'
