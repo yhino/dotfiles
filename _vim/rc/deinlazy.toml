@@ -1,37 +1,6 @@
 [[plugins]]
-repo = 'Shougo/neocomplete.vim'
-depends = 'context_filetype.vim'
-if = "has('lua') && !has('python3')"
-on_event = 'InsertEnter'
-hook_source = '''
-    " neocomplete
-    let g:neocomplete#enable_at_startup = 1
-    let g:neocomplete#enable_smart_case = 1
-    let g:neocomplete#sources#syntax#min_keyword_length = 3
-    let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
-    let g:neocomplete#sources#dictionary#dictionaries = {
-                \ }
-    if !exists('g:neocomplete#keyword_patterns')
-        let g:neocomplete#keyword_patterns = {}
-    endif
-    let g:neocomplete#keyword_patterns['default'] = '\h\w*'
-
-    " for vim-multiple-cursors
-    function! Multiple_cursors_before()
-        if exists(':NeoCompleteLock') == 2
-            exe 'NeoCompleteLock'
-        endif
-    endfunction
-    function! Multiple_cursors_after()
-        if exists(':NeoCompleteUnLock') == 2
-            exe 'NeoCompleteUnLock'
-        endif
-    endfunction
-'''
-
-[[plugins]]
 repo = 'Shougo/deoplete.nvim'
-build = 'pip3 install --upgrade neovim'
+build = 'pip3 install --upgrade pynvim'
 depends = ['context_filetype.vim', 'nvim-yarp', 'vim-hug-neovim-rpc']
 if = "has('python3')"
 on_event = 'InsertEnter'
@@ -48,19 +17,35 @@ hook_source = '''
 '''
 
 [[plugins]]
+repo = 'Shougo/deoppet.nvim'
+build = 'pip3 install --upgrade pynvim'
+if = "has('nvim')"
+on_event = 'InsertEnter'
+hook_source = '''
+    call deoppet#initialize()
+    call deoppet#custom#option('snippets_dirs',
+                \ globpath(&runtimepath, 'neosnippets', 1, 1))
+
+    imap <C-k> <Plug>(deoppet_expand)
+    imap <C-f> <Plug>(deoppet_jump_forward)
+    imap <C-b> <Plug>(deoppet_jump_backward)
+    smap <C-f> <Plug>(deoppet_jump_forward)
+    smap <C-b> <Plug>(deoppet_jump_backward)
+'''
+
+[[plugins]]
 repo = 'Shougo/neosnippet.vim'
 depends = ['neosnippet-snippets', 'context_filetype.vim']
+if = "!has('nvim')"
 on_event = 'InsertEnter'
 on_ft = 'snippet'
 hook_source = '''
     imap <C-k> <Plug>(neosnippet_expand_or_jump)
     smap <C-k> <Plug>(neosnippet_expand_or_jump)
     xmap <C-k> <Plug>(neosnippet_expand_target)
-
     smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
        \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 '''
-
 
 [[plugins]]
 repo = 'Shougo/neomru.vim'

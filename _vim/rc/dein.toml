@@ -1,38 +1,8 @@
 [[plugins]]
 repo = 'Shougo/dein.vim'
-
 [[plugins]]
 repo = 'Shougo/vimproc.vim'
 build = 'make'
-
-[[plugins]]
-repo = 'gorodinskiy/vim-coloresque'
-
-[[plugins]]
-repo = 'mattn/emmet-vim'
-
-[[plugins]]
-repo = 'tpope/vim-endwise'
-
-[[plugins]]
-repo = 'vim-scripts/PDV--phpDocumentor-for-Vim'
-on_ft = 'php'
-hook_source = '''
-let g:pdv_cfg_Package   = ""
-let g:pdv_cfg_Version   = ""
-let g:pdv_cfg_Author    = "Yoshiyuki HINO <yhinoz@gmail.com>"
-let g:pdv_cfg_Copyright = "(c) yhino."
-let g:pdv_cfg_License   = "MIT"
-'''
-hook_add = '''
-inoremap <C-p> <ESC>:call PhpDocSingle()<CR>i
-nnoremap <C-p> :call PhpDocSingle()<CR>
-vnoremap <C-p> :call PhpDocRange()<CR>
-'''
-
-[[plugins]]
-repo = 'chrisbra/vim-diff-enhanced'
-on_ft = 'diff'
 
 [[plugins]]
 repo = 'Shougo/context_filetype.vim'
@@ -42,10 +12,28 @@ repo = 'osyo-manga/vim-precious'
 depends = ['context_filetype.vim']
 
 [[plugins]]
-repo = 'Shougo/neosnippet-snippets'
+repo = 'tpope/vim-fugitive'
 
 [[plugins]]
-repo = 'tpope/vim-fugitive'
+repo = 'tpope/vim-surround'
+
+[[plugins]]
+repo = 'tpope/vim-endwise'
+
+[[plugins]]
+repo = 'jiangmiao/auto-pairs'
+
+[[plugins]]
+repo = 'scrooloose/nerdcommenter'
+
+[[plugins]]
+repo = 'mattn/emmet-vim'
+
+[[plugins]]
+repo = 'gorodinskiy/vim-coloresque'
+
+[[plugins]]
+repo = 'altercation/vim-colors-solarized'
 
 [[plugins]]
 repo = 'itchyny/lightline.vim'
@@ -82,7 +70,10 @@ endfunction
 '''
 
 [[plugins]]
-repo = 'tpope/vim-surround'
+repo = 'w0rp/ale'
+hook_add = '''
+let g:ale_sign_column_always = 1
+'''
 
 [[plugins]]
 repo = 'terryma/vim-multiple-cursors'
@@ -97,68 +88,9 @@ repo = 'vim-scripts/L9'
 repo = 'vim-scripts/sudo.vim'
 
 [[plugins]]
-repo = 'majutsushi/tagbar'
-hook_add = '''
-nmap <silent> <F4> :TagbarToggle<CR>
-let g:tagbar_autofocus = 1
-
-let g:tagbar_type_go = {
-    \ 'ctagstype' : 'go',
-    \ 'kinds'     : [  'p:package', 'i:imports:1', 'c:constants', 'v:variables',
-        \ 't:types',  'n:interfaces', 'w:fields', 'e:embedded', 'm:methods',
-        \ 'r:constructor', 'f:functions' ],
-    \ 'sro' : '.',
-    \ 'kind2scope' : { 't' : 'ctype', 'n' : 'ntype' },
-    \ 'scope2kind' : { 'ctype' : 't', 'ntype' : 'n' },
-    \ 'ctagsbin'  : 'gotags',
-    \ 'ctagsargs' : '-sort -silent'
-    \ }
-
-let g:tagbar_type_ruby = {
-    \ 'kinds' : [
-        \ 'm:modules',
-        \ 'c:classes',
-        \ 'd:describes',
-        \ 'C:contexts',
-        \ 'f:methods',
-        \ 'F:singleton methods'
-    \ ]
-\ }
-'''
-
-[[plugins]]
 repo = 'ludovicchabant/vim-gutentags'
 hook_add = '''
 let g:gutentags_ctags_tagfile = '.git/ctags'
-'''
-
-[[plugins]]
-repo = 'altercation/vim-colors-solarized'
-
-[[plugins]]
-repo = 'kassio/neoterm'
-if = "has('nvim')"
-hook_add = '''
-    tnoremap <silent> <ESC> <C-\><C-n>
-    nnoremap <silent> ,rc :TREPLSendFile<cr>
-    nnoremap <silent> ,rl :TREPLSendLine<cr>
-    vnoremap <silent> ,rl :TREPLSendSelection<cr>
-    nnoremap <silent> vt :Ttoggle<cr>
-    nnoremap <silent> vs :terminal<cr>
-'''
-
-[[plugins]]
-repo = 'roxma/nvim-yarp'
-if = "!has('nvim')"
-
-[[plugins]]
-repo = 'roxma/vim-hug-neovim-rpc'
-if = "!has('nvim')"
-
-[[plugins]]
-repo = 'w0rp/ale'
-hook_add = '''
-let g:ale_sign_column_always = 1
 '''
 
 [[plugins]]
@@ -171,12 +103,6 @@ endif
 '''
 
 [[plugins]]
-repo = 'scrooloose/nerdcommenter'
-
-[[plugins]]
-repo = 'jiangmiao/auto-pairs'
-
-[[plugins]]
 repo = 'davidhalter/jedi-vim'
 hook_add = '''
 let g:jedi#rename_command = '<leader>R'
@@ -186,20 +112,27 @@ autocmd FileType python setlocal completeopt-=preview
 on_ft = 'python'
 
 [[plugins]]
-repo = 'fatih/vim-go'
-on_ft = 'go'
-hook_add = '''
-let g:go_fmt_command = "goimports"
-let g:go_def_mode='gopls'
-let g:go_info_mode='gopls'
-'''
-
-[[plugins]]
 repo = 'rust-lang/rust.vim'
 hook_add = '''
 let g:rustfmt_autosave = 1
 '''
 on_ft = 'rust'
+
+[[plugins]]
+repo = 'vim-scripts/PDV--phpDocumentor-for-Vim'
+on_ft = 'php'
+hook_source = '''
+let g:pdv_cfg_Package   = ""
+let g:pdv_cfg_Version   = ""
+let g:pdv_cfg_Author    = "Yoshiyuki HINO <yhinoz@gmail.com>"
+let g:pdv_cfg_Copyright = "(c) yhino."
+let g:pdv_cfg_License   = "MIT"
+'''
+hook_add = '''
+inoremap <C-p> <ESC>:call PhpDocSingle()<CR>i
+nnoremap <C-p> :call PhpDocSingle()<CR>
+vnoremap <C-p> :call PhpDocRange()<CR>
+'''
 
 [[plugins]]
 repo = 'sheerun/vim-polyglot'
@@ -209,6 +142,15 @@ let g:jsx_ext_required = 1
 let g:jsx_pragma_required = 1
 '''
 
+################################################################################
+# for Go
+################################################################################
+[[plugins]]
+repo = 'mattn/vim-goimports'
+
+################################################################################
+# lsp
+################################################################################
 [[plugins]]
 repo = 'prabirshrestha/async.vim'
 
@@ -216,18 +158,27 @@ repo = 'prabirshrestha/async.vim'
 repo = 'prabirshrestha/vim-lsp'
 hook_add = '''
 let g:lsp_diagnostics_enabled = 0
-if executable('gopls')
-    au User lsp_setup call lsp#register_server({
-                \ 'name': 'gopls',
-                \ 'cmd': {server_info->['gopls', '-mode', 'stdio']},
-                \ 'whitelist': ['go'],
-                \ })
-    autocmd BufWritePre *.go LspDocumentFormatSync
-endif
 '''
+
+[[plugins]]
+repo = 'mattn/vim-lsp-settings'
 
 [[plugins]]
 repo = 'thomasfaingnaert/vim-lsp-snippets'
 
 [[plugins]]
 repo = 'thomasfaingnaert/vim-lsp-neosnippet'
+
+################################################################################
+# dependencies plugin for lazy load plugins
+################################################################################
+[[plugins]]
+repo = 'roxma/nvim-yarp'
+if = "!has('nvim')"
+
+[[plugins]]
+repo = 'roxma/vim-hug-neovim-rpc'
+if = "!has('nvim')"
+
+[[plugins]]
+repo = 'Shougo/neosnippet-snippets'

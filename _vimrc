@@ -233,12 +233,6 @@ if !exists(':DiffOrig')
 endif
 " }}}
 
-" vim-diff-enhanced {{{2
-if &diff
-    let &diffexpr='EnhancedDiff#Diff("git diff", "--diff-algorithm=patience")'
-endif
-" }}}
-
 " colorscheme-solarized {{{2
 set background=dark
 colorscheme solarized
