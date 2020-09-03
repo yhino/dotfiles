@@ -1,5 +1,9 @@
 # vim:ft=zsh
 
+# to avoid overwritten PATH via /usr/libexec/path_helper
+# refs. https://github.com/Homebrew/homebrew-core/pull/32074#issuecomment-421381869
+unsetopt GLOBAL_RCS
+
 typeset -xT SUDO_PATH sudo_path
 typeset -U sudo_path
 sudo_path=({/usr/local,/usr,}/sbin(N-/))
