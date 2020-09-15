@@ -74,8 +74,14 @@ if type anyenv &>/dev/null; then
     if [[ ! -d $HOME/.anyenv ]]; then
         mkdir ${HOME}/.anyenv
     fi
+
+    if [[ -d $HOME/.anyenv ]]; then
+        path=(${HOME}/.anyenv/bin(N-/) ${path})
+        eval "$(anyenv init -)"
+    fi
 fi
-if [[ -d $HOME/.anyenv ]]; then
-    path=(${HOME}/.anyenv/bin(N-/) ${path})
-    eval "$(anyenv init -)"
+
+# Python
+if [[ -d $HOME/.poetry ]]; then
+    path=(${HOME}/.poetry/bin(N-/) ${path})
 fi

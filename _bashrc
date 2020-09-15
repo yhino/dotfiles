@@ -56,27 +56,17 @@ export HISTFILE="${HOME}/.bhistory"
 export HISTSIZE=10000
 export HISTFILESIZE=10000
 export HISTCONTROL=ignoreboth
-# nvm
-if [ -f ${HOME}/.nvm/nvm.sh ]; then
-    . ${HOME}/.nvm/nvm.sh
-    nvm use default > /dev/null
-    export NODE_PATH=~/node_modules:~/.nvm/$(nvm_version)/lib/node_modules:${NODE_PATH}
-fi
-# pythonbrew
-if [ -f ${HOME}/.pythonbrew/etc/bashrc ]; then
-    . ${HOME}/.pythonbrew/etc/bashrc
-fi
-# phpenv
-#if [ -f ${HOME}/.phpenv/bin/phpenv ]; then
-#    export PATH=${PATH}:${HOME}/.phpenv/bin
-#    eval "$(phpenv init -)"
-#fi
 # grep
 export GREP_OPTIONS='--color=auto'
 export GREP_COLOR='1;41;37'
 # mysql
 if [ -d /usr/local/mysql/bin ]; then
     export PATH=/usr/local/mysql/bin:${PATH}
+fi
+
+# poetry
+if [[ -d $HOME/.poetry ]]; then
+    export PATH="$HOME/.poetry/bin:$PATH"
 fi
 # }}}
 
