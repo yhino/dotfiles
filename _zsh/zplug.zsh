@@ -22,8 +22,6 @@ zplug "stedolan/jq", as:command, from:gh-r, rename-to:jq
 
 zplug "github/hub", as:command, from:gh-r, rename-to:hub
 
-zplug "motemen/ghq", as:command, from:gh-r, rename-to:ghq
-
 zplug "tcnksm/ghr", as:command, from:gh-r, rename-to:ghr
 
 zplug "b4b4r07/zsh-gomi", as:command, use:bin/gomi
