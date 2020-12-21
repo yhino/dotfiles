@@ -1,3 +1,5 @@
+# vim:ft=zsh
+
 # ディレクトリ名で移動
 setopt auto_cd
 

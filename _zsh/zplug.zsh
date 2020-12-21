@@ -32,3 +32,7 @@ kubectl() {
     . "${ZPLUG_REPOS}/robbyrussell/oh-my-zsh/plugins/kubectl/kubectl.plugin.zsh"
     kubectl "$@"
 }
+
+zplug "superbrothers/zsh-kubectl-prompt", lazy:true
+
+zplug "ahmetb/kubectx", as:command, use:"{kubectx,kubens}", lazy:true

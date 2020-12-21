@@ -1,3 +1,5 @@
+# vim:ft=zsh
+
 bindkey -e
 
 select-history() {

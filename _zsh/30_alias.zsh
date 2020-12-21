@@ -1,3 +1,5 @@
+# vim:ft=zsh
+
 alias ..='cd ..'
 
 if is_linux; then

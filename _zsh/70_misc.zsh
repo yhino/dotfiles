@@ -1,3 +1,5 @@
+# vim:ft=zsh
+
 # Important
 zstyle ':completion:*:default' menu select=2
 

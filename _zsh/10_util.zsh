@@ -1,3 +1,5 @@
+# vim:ft=zsh
+
 has() {
     type "${1:?too few arguments}" &>/dev/null
 }
@@ -11,7 +13,7 @@ is_tmux_running() {
 }
 
 is_screen_or_tmux_running() {
-    is_screen_running || is_tmux_runnning
+    is_screen_running || is_tmux_running
 }
 
 shell_has_started_interactively() {

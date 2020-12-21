@@ -53,6 +53,24 @@ export EDITOR=vim
 
 export FIGNORE=${FIGNORE}:.svn:.git
 
+# Oracle
+export NLS_LANG=JAPANESE_JAPAN.UTF8
+export NLS_DATE_FORMAT="YYYY-MM-DD HH24:MI:SS"
+export SQLPATH=${HOME}/.oracle
+
+# anyenv
+if type anyenv &>/dev/null; then
+    # if anyenv is installed by homebrew, make the `$HOME/.anyenv` directory
+    if [[ ! -d $HOME/.anyenv ]]; then
+        mkdir ${HOME}/.anyenv
+    fi
+
+    if [[ -d $HOME/.anyenv ]]; then
+        path=(${HOME}/.anyenv/bin(N-/) ${path})
+        eval "$(anyenv init - zsh)"
+    fi
+fi
+
 # GOLANG
 export GOPATH=$HOME/go
 export GOBIN=${GOPATH}/bin
@@ -68,20 +86,10 @@ if [[ -x /usr/libexec/java_home ]]; then
     export JAVA_HOME=$(/usr/libexec/java_home)
 fi
 
-# anyenv
-if type anyenv &>/dev/null; then
-    # if anyenv is installed by homebrew, make the `$HOME/.anyenv` directory
-    if [[ ! -d $HOME/.anyenv ]]; then
-        mkdir ${HOME}/.anyenv
-    fi
-
-    if [[ -d $HOME/.anyenv ]]; then
-        path=(${HOME}/.anyenv/bin(N-/) ${path})
-        eval "$(anyenv init -)"
-    fi
-fi
-
 # Python
 if [[ -d $HOME/.poetry ]]; then
-    path=(${HOME}/.poetry/bin(N-/) ${path})
+    source ${HOME}/.poetry/env
 fi
+
+# Markdown
+export GLAMOUR_STYLE=dark

@@ -1,3 +1,5 @@
+# vim:ft=zsh
+
 if is-at-least 4.3.10; then
     autoload -Uz vcs_info
     zstyle ':vcs_info:*' enable git
@@ -17,6 +19,7 @@ fi
 PROMPT='${vim_}${fg[green]}%M${reset_color} %/${fg[yellow]}${vcs_info_msg_0_}${reset_color}'$'\n''%# '
 PROMPT2='> '
 SPROMPT='%R -> %r ? '
+PRROMPT='%{$fg[yellow]%}${ZSH_KUBECTL_PROMPT}%{$reset_color%}'
 
 # プロンプトエスケープシーケンス有効化
 setopt prompt_subst

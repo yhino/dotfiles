@@ -21,26 +21,24 @@ export SAVEHIST=1000000
     source tmuxx
 }
 
-[[ -s ~/.zplug/init.zsh ]] || {
-    curl -sL https://raw.githubusercontent.com/zplug/installer/master/installer.zsh| zsh
+[[ -s ~/.zplug/init.zsh ]] && {
+    export ZPLUG_LOADFILE=~/.zsh/zplug.zsh
+    source ~/.zplug/init.zsh
+
+    # disabled for performance
+    #if ! zplug check --verbose; then
+    #    printf "Install? [y/N]: "
+    #    if read -q; then
+    #        echo; zplug install
+    #    fi
+    #fi
+
+    zplug load
+
+    # force setup bin-path
+    path=($ZPLUG_BIN $path)
 }
 
-export ZPLUG_LOADFILE=~/.zsh/zplug.zsh
-source ~/.zplug/init.zsh
-
-# disabled for performance
-#if ! zplug check --verbose; then
-#    printf "Install? [y/N]: "
-#    if read -q; then
-#        echo; zplug install
-#    fi
-#fi
-
-zplug load
-
-# force setup bin-path
-path=($ZPLUG_BIN $path)
-
-if [[ -f ~/.zshrc.local ]]; then
+[[ -f ~/.zshrc.local ]] && {
     source ~/.zshrc.local
-fi
+}
