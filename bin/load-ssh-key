@@ -3,4 +3,8 @@
 for f in `ls ~/.ssh/id_rsa* |grep -vE '(ppk|pub|\.disabled)$'`
 do
     ssh-add -K $f
+
+    if [ $? -ne 0 ]; then
+        echo "ERROR: ssh-add failed (key: ${f})"
+    fi
 done
