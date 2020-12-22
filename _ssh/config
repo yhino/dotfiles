@@ -1,10 +1,6 @@
+ForwardX11 no
+ForwardAgent yes
+
 Host github.com
     User git
     ForwardAgent no
-
-Host hnsta.com
-    LocalCommand [[ -n "${TMUX}" ]] && tmux rename-window %n
-    PermitLocalCommand yes
-
-Host *
-    ForwardAgent yes
