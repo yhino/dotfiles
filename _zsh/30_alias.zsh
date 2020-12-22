@@ -1,24 +1,24 @@
 # vim:ft=zsh
 
-alias ..='cd ..'
-
 if is_linux; then
     alias ls='ls -Fh --color'
 else
     alias ls='ls -FhG'
 fi
+alias lls='ls -lFh'
 alias ll='ls -alFh'
 alias la='ls -aFh'
 alias sl='ls'
-
-has 'htop' && alias top='htop'
 
 alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
 
 alias df='df -h'
+
 alias diff='diff -u'
+
+has 'htop' && alias top='htop'
 
 
 ssh() {
