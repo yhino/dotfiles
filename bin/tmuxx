@@ -5,7 +5,7 @@ has() {
 }
 
 is_osx() {
-    [[ $OSTYPE == darwin* ]]
+    [[ $OSTYPE == *darwin* ]]
 }
 
 is_screen_running() {
@@ -20,23 +20,33 @@ is_ssh_running() {
     [[ -n "$SSH_CONNECTION" ]]
 }
 
+shell_has_started_interactively() {
+    [[ -n "$PS1" ]]
+}
+
 tmuxx() {
     is_ssh_running && {
-        export DISPLAY=$SSH_CONNECTION
+        export DISPLAY="$SSH_CONNECTION"
         return 0
     }
 
     is_tmux_running && {
-        export DISPLAY=$TMUX
+        export DISPLAY="$TMUX"
         return 0
     }
 
     is_screen_running && {
-        export DISPLAY=$STY
+        export DISPLAY="$STY"
         return 0
     }
 
-    has 'tmux' || return 1
+    shell_has_started_interactively && {
+        return 0
+    }
+
+    has 'tmux' || {
+        return 1
+    }
 
     if tmux has-session >/dev/null 2>&1 && tmux list-sessions | grep -qvE '\(attached\)$'; then
         # detached session exists
@@ -69,4 +79,5 @@ tmuxx() {
 
     return 0
 }
+
 tmuxx
