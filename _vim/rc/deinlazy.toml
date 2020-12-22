@@ -103,7 +103,7 @@ hook_add = '''
 '''
 
 [[plugins]]
-repo = 'shougo/vimshell.vim'
+repo = 'Shougo/vimshell.vim'
 if = "!has('nvim')"
 
 [[plugins]]

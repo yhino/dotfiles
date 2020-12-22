@@ -28,12 +28,6 @@ repo = 'jiangmiao/auto-pairs'
 repo = 'scrooloose/nerdcommenter'
 
 [[plugins]]
-repo = 'mattn/emmet-vim'
-
-[[plugins]]
-repo = 'gorodinskiy/vim-coloresque'
-
-[[plugins]]
 repo = 'altercation/vim-colors-solarized'
 
 [[plugins]]
@@ -74,6 +68,8 @@ endfunction
 repo = 'w0rp/ale'
 hook_add = '''
 let g:ale_sign_column_always = 1
+let g:ale_sign_error = '✗'
+let g:ale_sign_warning = '⚠'
 '''
 
 [[plugins]]
@@ -142,6 +138,18 @@ hook_add = '''
 let g:jsx_ext_required = 1
 let g:jsx_pragma_required = 1
 '''
+
+################################################################################
+# for HTML
+################################################################################
+[[plugins]]
+repo = 'mattn/emmet-vim'
+
+[[plugins]]
+repo = 'alvan/vim-closetag'
+
+[[plugins]]
+repo = 'gorodinskiy/vim-coloresque'
 
 ################################################################################
 # for Go
