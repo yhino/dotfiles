@@ -76,7 +76,14 @@ let g:ale_sign_warning = '⚠'
 repo = 'terryma/vim-multiple-cursors'
 
 [[plugins]]
-repo = 'h1mesuke/vim-alignta'
+repo = 'junegunn/vim-easy-align'
+hook_add = '''
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
+'''
 
 [[plugins]]
 repo = 'vim-scripts/L9'
