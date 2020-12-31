@@ -40,7 +40,7 @@ tmuxx() {
         return 0
     }
 
-    shell_has_started_interactively && {
+    shell_has_started_interactively || {
         return 0
     }
 
