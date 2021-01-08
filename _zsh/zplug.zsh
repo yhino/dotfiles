@@ -20,8 +20,6 @@ zplug "junegunn/fzf", as:command, use:bin/fzf-tmux
 
 zplug "stedolan/jq", as:command, from:gh-r, rename-to:jq
 
-zplug "github/hub", as:command, from:gh-r, rename-to:hub
-
 zplug "tcnksm/ghr", as:command, from:gh-r, rename-to:ghr
 
 zplug "b4b4r07/zsh-gomi", as:command, use:bin/gomi
@@ -33,6 +31,4 @@ kubectl() {
     kubectl "$@"
 }
 
-zplug "superbrothers/zsh-kubectl-prompt", lazy:true
-
-zplug "ahmetb/kubectx", as:command, use:"{kubectx,kubens}", lazy:true
+zplug "superbrothers/zsh-kubectl-prompt"
