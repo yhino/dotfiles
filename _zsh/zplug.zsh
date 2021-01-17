@@ -31,4 +31,6 @@ kubectl() {
     kubectl "$@"
 }
 
-zplug "superbrothers/zsh-kubectl-prompt"
+[[ -s ~/.kube/config ]] && {
+    zplug "superbrothers/zsh-kubectl-prompt"
+}
