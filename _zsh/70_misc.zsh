@@ -24,6 +24,9 @@ zstyle ':completion:*' use-cache true
 # 変数の添字を補完する
 zstyle ':completion:*:*:-subscript-:*' tag-order indexes parameters
 
+# カレントディレクトリに候補がない場合のみ cdpath 上のディレクトリを候補に出す
+zstyle ':completion:*:cd:*' tag-order local-directories path-directories
+
 # 親ディレクトリからカレントディレクトリを選択しないので非表示にする
 zstyle ':completion:*:cd:*' ignore-parents parent pwd
 
