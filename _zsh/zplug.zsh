@@ -19,9 +19,11 @@ zplug "junegunn/fzf-bin", as:command, from:gh-r, rename-to:fzf
 
 zplug "junegunn/fzf", as:command, use:bin/fzf-tmux
 
-zplug "stedolan/jq", as:command, from:gh-r, rename-to:jq
+zplug "stedolan/jq", as:command, from:gh-r
 
-zplug "tcnksm/ghr", as:command, from:gh-r, rename-to:ghr
+zplug "x-motemen/ghq", as:command, from:gh-r
+
+zplug "tcnksm/ghr", as:command, from:gh-r
 
 zplug "b4b4r07/zsh-gomi", as:command, use:bin/gomi
 
