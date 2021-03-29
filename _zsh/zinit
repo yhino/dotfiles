@@ -1,0 +1,57 @@
+# vim:ft=zsh
+
+zinit ice atload'local f; for f in *.zsh; do source $f; done'
+zinit light ~/.zsh
+
+zinit wait lucid light-mode for \
+    atinit"zicompinit; zicdreplay" \
+    zdharma/fast-syntax-highlighting \
+    \
+    atload"_zsh_autosuggest_start; ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=10'" \
+    zsh-users/zsh-autosuggestions \
+    \
+    blockf atpull"zinit creinstall -q ." \
+    zsh-users/zsh-completions
+
+zinit wait lucid light-mode has"docker" for \
+    as"completion" is-snippet \
+    'https://github.com/docker/cli/blob/master/contrib/completion/zsh/_docker' \
+    \
+    as'completion' is-snippet \
+    'https://github.com/docker/compose/blob/master/contrib/completion/zsh/_docker-compose'
+
+
+zinit ice if"[[ -s ~/.kube/config ]]"
+zinit light superbrothers/zsh-kubectl-prompt
+
+
+zinit ice from"gh-r" as"program"
+zinit light junegunn/fzf
+
+zinit ice from"gh" as"program" id-as"junegunn/fzf-tmux" pick"bin/fzf-tmux"
+zinit light junegunn/fzf
+
+zinit wait lucid light-mode for \
+    b4b4r07/enhancd
+
+
+zinit ice from"gh-r" as"program" mv"bat* -> bat" pick"bat/bat"
+zinit light sharkdp/bat
+
+zinit ice from:"gh-r" as"program" mv"jq-* -> jq" pick"jq"
+zinit light stedolan/jq
+
+zinit ice from"gh-r" as"program" mv"yq* -> yq" pick"yq"
+zinit light mikefarah/yq
+
+zinit ice from"gh-r" as"program" mv"ghq* -> ghq" pick"ghq/ghq"
+zinit light x-motemen/ghq
+
+zinit ice from"gh" as"program" pick"bin/gomi"
+zinit light b4b4r07/zsh-gomi
+
+zinit ice from"gh-r" as"program" pick"k9s"
+zinit light derailed/k9s
+
+zinit ice from"gh-r" as"program" mv"stern* -> stern" pick"stern"
+zinit light wercker/stern

@@ -8,6 +8,7 @@ autoload -Uz colors && colors
 autoload -Uz is-at-least
 autoload -Uz history-search-end
 
+
 export HISTFILE="${HOME}/.zsh_history"
 export HISTSIZE=1000000
 export SAVEHIST=1000000
@@ -21,22 +22,12 @@ export SAVEHIST=1000000
     source tmuxx
 }
 
-[[ -s ~/.zplug/init.zsh ]] && {
-    export ZPLUG_LOADFILE=~/.zsh/zplug.zsh
-    source ~/.zplug/init.zsh
+[[ -s $HOME/.zinit/bin/zinit.zsh ]] && {
+    source "$HOME/.zinit/bin/zinit.zsh"
+    autoload -Uz _zinit
+    (( ${+_comps} )) && _comps[zinit]=_zinit
 
-    # disabled for performance
-    #if ! zplug check --verbose; then
-    #    printf "Install? [y/N]: "
-    #    if read -q; then
-    #        echo; zplug install
-    #    fi
-    #fi
-
-    zplug load
-
-    # force setup bin-path
-    path=($ZPLUG_BIN $path)
+    source "$HOME/.zsh/zinit"
 }
 
 [[ -f ~/.zshrc.local ]] && {
