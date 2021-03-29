@@ -13,7 +13,7 @@ zstyle ':completion:*' group-name ''
 # Completing misc
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 zstyle ':completion:*' verbose yes
-zstyle ':completion:*' completer _expand _complete _match _prefix _approximate _list _history
+zstyle ':completion:*' completer _expand _complete _ignored _match _prefix _approximate _list _history
 
 # 中間ファイルは補完候補にしない
 zstyle ':completion:*:*files' ignored-patterns '*?.o' '*?~' '*\#'
