@@ -25,7 +25,7 @@ zinit ice if"[[ -s ~/.kube/config ]]"
 zinit light superbrothers/zsh-kubectl-prompt
 
 
-zinit ice from"gh-r" as"program"
+zinit ice from"gh-r" as"program" id-as"junegunn/fzf"
 zinit light junegunn/fzf
 
 zinit ice from"gh" as"program" id-as"junegunn/fzf-tmux" pick"bin/fzf-tmux"
@@ -49,6 +49,13 @@ zinit light x-motemen/ghq
 
 zinit ice from"gh" as"program" pick"bin/gomi"
 zinit light b4b4r07/zsh-gomi
+
+
+zinit ice from"gh-r" as"program" id-as"ahmetb/kubectx" bpick"kubectx*" pick"kubectx"
+zinit light ahmetb/kubectx
+
+zinit ice from"gh-r" as"program" id-as"ahmetb/kubens" bpick"kubens*" pick"kubens"
+zinit light ahmetb/kubectx
 
 zinit ice from"gh-r" as"program" pick"k9s"
 zinit light derailed/k9s
