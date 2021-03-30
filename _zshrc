@@ -22,14 +22,19 @@ export SAVEHIST=1000000
     source tmuxx
 }
 
-[[ -s $HOME/.zinit/bin/zinit.zsh ]] && {
-    source "$HOME/.zinit/bin/zinit.zsh"
-    autoload -Uz _zinit
-    (( ${+_comps} )) && _comps[zinit]=_zinit
-
-    source "$HOME/.zsh/zinit"
+# load zinit
+export ZINIT_HOME=$HOME/.zinit
+export ZINIT_BIN=$ZINIT_HOME/bin
+[[ -s $ZINIT_BIN/zinit.zsh ]] || {
+    mkdir -p $ZINIT_HOME
+    git clone https://github.com/zdharma/zinit.git $ZINIT_BIN
 }
+source $ZINIT_BIN/zinit.zsh
+autoload -Uz _zinit
+(( ${+_comps} )) && _comps[zinit]=_zinit
+source $HOME/.zsh/zinit
 
+# localize
 [[ -f ~/.zshrc.local ]] && {
     source ~/.zshrc.local
 }
