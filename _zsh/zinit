@@ -20,6 +20,10 @@ zinit wait lucid light-mode has"docker" for \
     as'completion' is-snippet \
     'https://github.com/docker/compose/blob/master/contrib/completion/zsh/_docker-compose'
 
+zinit wait lucid light-mode has"cf" for \
+    as"completion" \
+    norman-abramovitz/cf-zsh-autocomplete-plugin
+
 
 zinit ice if"[[ -s ~/.kube/config ]]"
 zinit light superbrothers/zsh-kubectl-prompt
@@ -47,10 +51,6 @@ zinit light mikefarah/yq
 zinit ice from"gh-r" as"program" mv"ghq* -> ghq" pick"ghq/ghq"
 zinit light x-motemen/ghq
 
-zinit ice from"gh" as"program" pick"bin/gomi"
-zinit light b4b4r07/zsh-gomi
-
-
 zinit ice from"gh-r" as"program" id-as"ahmetb/kubectx" bpick"kubectx*" pick"kubectx"
 zinit light ahmetb/kubectx
 
@@ -62,3 +62,6 @@ zinit light derailed/k9s
 
 zinit ice from"gh-r" as"program" mv"stern* -> stern" pick"stern"
 zinit light wercker/stern
+
+zinit ice from"gh-r" as"program" pick"evans"
+zinit light ktr0731/evans
