@@ -51,11 +51,9 @@ zinit light mikefarah/yq
 zinit ice from"gh-r" as"program" mv"ghq* -> ghq" pick"ghq/ghq"
 zinit light x-motemen/ghq
 
-zinit ice from"gh-r" as"program" id-as"ahmetb/kubectx" bpick"kubectx*" pick"kubectx"
-zinit light ahmetb/kubectx
-
-zinit ice from"gh-r" as"program" id-as"ahmetb/kubens" bpick"kubens*" pick"kubens"
-zinit light ahmetb/kubectx
+zinit wait lucid light-mode has"kubectl" for \
+    from"gh" as"program" pick"(kubectx|kubens)" \
+    ahmetb/kubectx
 
 zinit ice from"gh-r" as"program" pick"k9s"
 zinit light derailed/k9s
