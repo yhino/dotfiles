@@ -60,15 +60,21 @@ export SQLPATH=${HOME}/.oracle
 
 # anyenv
 if type anyenv &>/dev/null; then
-    # if anyenv is installed by homebrew, make the `$HOME/.anyenv` directory
-    if [[ ! -d $HOME/.anyenv ]]; then
-        mkdir ${HOME}/.anyenv
-    fi
+    ANYENV_HOME=${HOME}/.anyenv
+    ANYENV_CACHE_HOME=${XDG_CACHE_HOME}/anyenv
 
-    if [[ -d $HOME/.anyenv ]]; then
-        path=(${HOME}/.anyenv/bin(N-/) ${path})
-        eval "$(anyenv init - zsh)"
-    fi
+    # if anyenv is installed by homebrew, make the `$HOME/.anyenv` directory
+    [[ -d ${ANYENV_HOME} && -d ${ANYENV_CACHE_HOME} ]] || {
+        mkdir -p ${ANYENV_HOME}
+        mkdir -p ${ANYENV_CACHE_HOME}
+    }
+
+    path=(${HOME}/.anyenv/bin(N-/) ${path})
+    [[ -f ${ANYENV_CACHE_HOME}/anyenv.cache ]] || {
+        anyenv init - zsh > ${ANYENV_CACHE_HOME}/anyenv.cache
+        zcompile ${ANYENV_CACHE_HOME}/anyenv.cache
+    }
+    source ${ANYENV_CACHE_HOME}/anyenv.cache
 fi
 
 # GOLANG
