@@ -63,3 +63,6 @@ zinit light wercker/stern
 
 zinit ice from"gh-r" as"program" pick"evans"
 zinit light ktr0731/evans
+
+zinit ice from"gh-r" as"program" pick"vegeta"
+zinit light tsenart/vegeta
