@@ -30,6 +30,7 @@ if dein#load_state(s:dein_dir)
 
     call dein#load_toml('~/.vim/rc/dein.toml', {'lazy': 0})
     call dein#load_toml('~/.vim/rc/deinlazy.toml', {'lazy': 1})
+    call dein#load_toml('~/.vim/rc/ddc.toml', {'lazy': 1})
 
     call dein#end()
     call dein#save_state()
@@ -41,11 +42,12 @@ if has('vim_starting')
         call dein#install()
     endif
 
-    call dein#call_hook('source')
-    call dein#call_hook('post_source')
-
     filetype plugin indent on
     syntax enable
+endif
+if !has('vim_starting')
+    call dein#call_hook('source')
+    call dein#call_hook('post_source')
 endif
 "" }}}
 
@@ -179,16 +181,6 @@ noremap <ESC><ESC> :nohlsearch<CR><ESC>
 "" Extra Setup {{{1
 
 " php
-function! PhpSyntaxOverride()
-    hi! def link phpDocTags  phpDefine
-    hi! def link phpDocParam phpType
-endfunction
-
-augroup phpSyntaxOverride
-    autocmd!
-    autocmd FileType php call PhpSyntaxOverride()
-augroup END
-
 let g:PHP_vintage_case_default_indent = 1
 
 " Ruby
