@@ -14,11 +14,7 @@ let mapleader = ','
 " Load dein
 let s:cache_home = empty($XDG_CACHE_HOME) ? expand('~/.cache') : $XDG_CACHE_HOME
 let s:config_home = empty($XDG_CONFIG_HOME) ? expand('~/.config') : $XDG_CONFIG_HOME
-if has('nvim')
-    let s:dein_dir = s:cache_home . '/nvim/dein'
-else
-    let s:dein_dir = s:cache_home . '/vim/dein'
-endif
+let s:dein_dir = s:cache_home . '/dein'
 let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
 
 if &runtimepath !~# '/dein.vim'
@@ -119,6 +115,8 @@ set showcmd
 
 " 対応する括弧を表示
 set showmatch
+" 対応する括弧にジャンプする(matchit.vim)
+source $VIMRUNTIME/macros/matchit.vim
 
 " ステータスラインを常に表示
 set laststatus=2
@@ -179,9 +177,6 @@ noremap <ESC><ESC> :nohlsearch<CR><ESC>
 ""}}}
 
 "" Extra Setup {{{1
-
-" matchit.vim
-source $VIMRUNTIME/macros/matchit.vim
 
 " php
 function! PhpSyntaxOverride()

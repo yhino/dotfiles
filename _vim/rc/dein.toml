@@ -31,6 +31,14 @@ repo = 'scrooloose/nerdcommenter'
 repo = 'altercation/vim-colors-solarized'
 
 [[plugins]]
+repo = 'w0rp/ale'
+hook_add = '''
+let g:ale_sign_column_always = 1
+let g:ale_sign_error = '✗'
+let g:ale_sign_warning = '⚠'
+'''
+
+[[plugins]]
 repo = 'itchyny/lightline.vim'
 hook_add = '''
 let g:lightline = {
@@ -62,14 +70,6 @@ function! LLAle()
         return ''
     endif
 endfunction
-'''
-
-[[plugins]]
-repo = 'w0rp/ale'
-hook_add = '''
-let g:ale_sign_column_always = 1
-let g:ale_sign_error = '✗'
-let g:ale_sign_warning = '⚠'
 '''
 
 [[plugins]]
@@ -105,15 +105,6 @@ if executable('python3')
     let g:quickrun_config.python = { 'command': 'python3' }
 endif
 '''
-
-[[plugins]]
-repo = 'davidhalter/jedi-vim'
-hook_add = '''
-let g:jedi#rename_command = '<leader>R'
-autocmd FileType python let b:did_ftplugin = 1
-autocmd FileType python setlocal completeopt-=preview
-'''
-on_ft = 'python'
 
 [[plugins]]
 repo = 'rust-lang/rust.vim'
@@ -168,22 +159,16 @@ repo = 'mattn/vim-goimports'
 # lsp
 ################################################################################
 [[plugins]]
-repo = 'prabirshrestha/async.vim'
-
-[[plugins]]
 repo = 'prabirshrestha/vim-lsp'
-hook_add = '''
+if = "!has('nvim')"
+hook_source = '''
 let g:lsp_diagnostics_enabled = 0
+let g:lsp_text_edit_enabled = 0
 '''
 
 [[plugins]]
 repo = 'mattn/vim-lsp-settings'
-
-[[plugins]]
-repo = 'thomasfaingnaert/vim-lsp-snippets'
-
-[[plugins]]
-repo = 'thomasfaingnaert/vim-lsp-neosnippet'
+if = "!has('nvim')"
 
 ################################################################################
 # dependencies plugin for lazy load plugins
@@ -197,4 +182,5 @@ repo = 'roxma/vim-hug-neovim-rpc'
 if = "!has('nvim')"
 
 [[plugins]]
-repo = 'Shougo/neosnippet-snippets'
+repo = 'vim-denops/denops.vim'
+
