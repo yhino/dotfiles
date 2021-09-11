@@ -65,9 +65,10 @@ set fileencodings=utf-8,euc-jp,iso-2022-jp,cp932
 set fileformats=unix,dos,mac
 
 " □とか○の文字があってもカーソル位置がずれないようにする
-if exists('&ambiwidth')
-  set ambiwidth=double
-endif
+" NOTE: telescope.nvimなどCUIが崩れる事象が発生しているので、無効にする
+"if exists('&ambiwidth')
+  "set ambiwidth=double
+"endif
 
 " バックアップを作成しない
 set nobackup

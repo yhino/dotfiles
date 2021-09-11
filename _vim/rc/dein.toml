@@ -17,6 +17,9 @@ repo = 'roxma/vim-hug-neovim-rpc'
 if = "!has('nvim')"
 
 [[plugins]]
+repo = 'nvim-lua/plenary.nvim'
+
+[[plugins]]
 repo = 'Shougo/context_filetype.vim'
 
 [[plugins]]

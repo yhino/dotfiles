@@ -1,4 +1,35 @@
 [[plugins]]
+repo = 'nvim-telescope/telescope.nvim'
+if = "has('nvim')"
+on_event = 'VimEnter'
+hook_source = '''
+nnoremap <C-u><C-f> <cmd>Telescope find_files<cr>
+nnoremap <C-u><C-g> <cmd>Telescope live_grep<cr>
+nnoremap <C-u><C-b> <cmd>Telescope buffers<cr>
+
+lua << EOF
+local actions = require('telescope.actions')
+
+require('telescope').setup{
+    defaults = {
+        mappings = {
+            i = {
+                ["<C-j>"] = actions.select_horizontal,
+            },
+            n = {
+                ["<C-c>"] = actions.close,
+            },
+        }
+    }
+}
+EOF
+'''
+
+[[plugins]]
+repo = 'kyazdani42/nvim-web-devicons'
+on_source = 'telescope.nvim'
+
+[[plugins]]
 repo = 'Shougo/neomru.vim'
 if = "!has('nvim')"
 on_if = 1
