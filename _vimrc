@@ -9,7 +9,8 @@ augroup MyAutoCmd
 augroup END
 
 " Map leader to ,
-let mapleader = ','
+"let mapleader = ','
+let mapleader = "\<Space>"
 
 " Load dein
 let s:cache_home = empty($XDG_CACHE_HOME) ? expand('~/.cache') : $XDG_CACHE_HOME
@@ -158,10 +159,6 @@ cnoreabbrev WQ wq
 cnoreabbrev W w
 cnoreabbrev Q q
 cnoreabbrev Qall qall
-
-"" open tag
-nnoremap <C-]> :split<CR> :exe("tjump ".expand('<cword>'))<CR>
-nnoremap <C-\> :vsp<CR> :exe("tjump ".expand('<cword>'))<CR>
 
 " 表示行単位の移動
 nnoremap j gj

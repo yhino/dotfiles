@@ -3,9 +3,13 @@ repo = 'nvim-telescope/telescope.nvim'
 if = "has('nvim')"
 on_event = 'VimEnter'
 hook_source = '''
-nnoremap <C-u><C-f> <cmd>Telescope find_files<cr>
-nnoremap <C-u><C-g> <cmd>Telescope live_grep<cr>
-nnoremap <C-u><C-b> <cmd>Telescope buffers<cr>
+nnoremap <leader>ft <cmd>Telescope<cr>
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fr <cmd>Telescope oldfiles<cr>
+nnoremap <silent><C-]> <cmd>Telescope lsp_definitions jump_type=never<cr>
+nnoremap <silent><C-\> <cmd>Telescope lsp_references<cr>
 
 lua << EOF
 local actions = require('telescope.actions')
@@ -15,10 +19,9 @@ require('telescope').setup{
         mappings = {
             i = {
                 ["<C-j>"] = actions.select_horizontal,
-            },
-            n = {
-                ["<C-c>"] = actions.close,
-            },
+
+                ["<esc>"] = actions.close
+            }
         }
     }
 }
