@@ -48,11 +48,11 @@ depends = 'unite.vim'
 if = "!has('nvim')"
 on_map = [['n', '<Plug>']]
 on_if = "isdirectory(bufname('%'))"
+on_source = 'unite.vim'
 hook_source = '''
     " vimデフォルトのエクスプローラをvimfilerで置き換える
     let g:vimfiler_as_default_explorer = 1
-'''
-hook_add = '''
+
     nnoremap <leader>e :<C-u>VimFilerBufferDir -split -simple -winwidth=35 -no-quit<CR>
 '''
 
@@ -64,7 +64,7 @@ if = "!has('nvim')"
 repo = 'Shougo/unite-outline'
 if = "!has('nvim')"
 on_source = 'unite.vim'
-hook_add = '''
+hook_source = '''
     " unite-outline用の設定
     nnoremap <silent> <C-u><C-o>
         \ :<C-u>Unite outline -no-start-insert -resume<CR>
