@@ -63,20 +63,16 @@ export GOPATH=$HOME/go
 export GOBIN=${GOPATH}/bin
 path=(${GOBIN}(N-/) ${path})
 
-# Rust
-if [[ -f $HOME/.cargo/env ]]; then
-    source $HOME/.cargo/env
-fi
-
 # Java
 if [[ -x /usr/libexec/java_home ]]; then
     export JAVA_HOME=$(/usr/libexec/java_home)
 fi
 
-# Python
-if [[ -d $HOME/.poetry ]]; then
-    source ${HOME}/.poetry/env
-fi
-
 # Markdown
 export GLAMOUR_STYLE=dark
+
+
+# localize
+[[ -f ${HOME}/.zshenv.local ]] && {
+    source ${HOME}/.zshenv.local
+}
