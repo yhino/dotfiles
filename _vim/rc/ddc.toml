@@ -62,7 +62,7 @@ on_source = 'ddc.vim'
 # depends
 [[plugins]]
 repo = 'neovim/nvim-lspconfig'
-depends = ['impatient.nvim', 'ddc.vim']
+depends = ['ddc.vim']
 if = 'has("nvim")'
 on_if = 'has("nvim")'
 hook_source = '''
