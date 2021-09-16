@@ -2,6 +2,17 @@
 
 bindkey -e
 
+ghq-fzf() {
+    local dir=$(ghq list |fzf +m)
+    if [[ -n "$dir" ]]; then
+        BUFFER="cd $(ghq root)/${dir}"
+        zle accept-line
+    fi
+    zle -R -c
+}
+zle -N ghq-fzf
+bindkey '^]' ghq-fzf
+
 select-history() {
     BUFFER=$(history -n -r 1 |awk '!a[$0]++' |fzf --no-sort +m --query "$LBUFFER" --prompt="History> ")
     CURSOR=$#BUFFER
