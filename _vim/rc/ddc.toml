@@ -20,8 +20,8 @@ call ddc#custom#patch_global('sourceOptions', {
             \ },
             \ 'around': {'mark': 'A'},
             \ 'deoppet': {'mark': 'dp', 'dup': v:true},
-            \ 'nvimlsp': {'mark': 'lsp', 'forceCompletionPattern': '\.|:|->', 'minAutoCompleteLength': 0},
-            \ 'ddc-vim-lsp': {'mark': 'lsp', 'forceCompletionPattern': '\.|:|->', 'minAutoCompleteLength': 0},
+            \ 'nvimlsp': {'mark': 'lsp', 'forceCompletionPattern': '\.|:|->', 'minAutoCompleteLength': 1},
+            \ 'ddc-vim-lsp': {'mark': 'lsp', 'forceCompletionPattern': '\.|:|->', 'minAutoCompleteLength': 1},
             \ })
 call ddc#enable()
 '''
