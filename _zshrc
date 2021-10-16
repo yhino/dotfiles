@@ -34,11 +34,24 @@ autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 source $HOME/.zsh/zinit
 
+
+# asdf-vm
 [[ -f $(brew --prefix asdf)/libexec/asdf.sh ]] && {
     . $(brew --prefix asdf)/libexec/asdf.sh
 }
 
+# Rust
+[[ -f ${HOME}/.cargo/env ]] && {
+    source ${HOME}/.cargo/env
+}
+
+# Python
+[[ -d ${HOME}/.poetry ]] && {
+    source ${HOME}/.poetry/env
+}
+
+
 # localize
-[[ -f ~/.zshrc.local ]] && {
-    source ~/.zshrc.local
+[[ -f ${HOME}/.zshrc.local ]] && {
+    source ${HOME}/.zshrc.local
 }

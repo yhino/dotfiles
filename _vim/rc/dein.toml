@@ -6,6 +6,20 @@ repo = 'Shougo/vimproc.vim'
 build = 'make'
 
 [[plugins]]
+repo = 'vim-denops/denops.vim'
+
+[[plugins]]
+repo = 'roxma/nvim-yarp'
+if = "!has('nvim')"
+
+[[plugins]]
+repo = 'roxma/vim-hug-neovim-rpc'
+if = "!has('nvim')"
+
+[[plugins]]
+repo = 'nvim-lua/plenary.nvim'
+
+[[plugins]]
 repo = 'Shougo/context_filetype.vim'
 
 [[plugins]]
@@ -31,12 +45,18 @@ repo = 'scrooloose/nerdcommenter'
 repo = 'altercation/vim-colors-solarized'
 
 [[plugins]]
+repo = 'miyakogi/seiya.vim'
+hook_add = '''
+let g:seiya_auto_enable=1
+'''
+
+[[plugins]]
 repo = 'itchyny/lightline.vim'
 hook_add = '''
 let g:lightline = {
             \   'active': {
             \       'left': [ [ 'mode', 'paste' ], ['readonly', 'filename', 'modified' ], [ 'fugitive' ] ],
-            \       'right': [ [ 'lineinfo' ], [ 'percent' ], [ 'ale', 'fileformat', 'fileencoding', 'filetype' ] ]
+            \       'right': [ [ 'lineinfo' ], [ 'percent' ], [ 'fileformat', 'fileencoding', 'filetype' ] ]
             \   },
             \   'inactive': {
             \       'left': [ [ 'readonly', 'filename', 'modified' ], [ 'fugitive' ] ]
@@ -48,32 +68,9 @@ let g:lightline = {
             \       'fugitive': '(exists("*figitive#head") && ""!=fugitive#head())'
             \   },
             \   'component_function': {
-            \       'ale': 'LLAle'
             \   }
             \ }
-
-function! LLAle()
-    if dein#tap('ale')
-        let l:count = ale#statusline#Count(bufnr(''))
-        let l:errors = l:count.error + l:count.style_error
-        let l:warnings = l:count.warning + l:count.style_warning
-        return l:count.total == 0 ? '' : 'E:' . l:errors . ' W:' . l:warnings
-    else
-        return ''
-    endif
-endfunction
 '''
-
-[[plugins]]
-repo = 'w0rp/ale'
-hook_add = '''
-let g:ale_sign_column_always = 1
-let g:ale_sign_error = '✗'
-let g:ale_sign_warning = '⚠'
-'''
-
-[[plugins]]
-repo = 'terryma/vim-multiple-cursors'
 
 [[plugins]]
 repo = 'junegunn/vim-easy-align'
@@ -92,50 +89,12 @@ repo = 'vim-scripts/L9'
 repo = 'vim-scripts/sudo.vim'
 
 [[plugins]]
-repo = 'ludovicchabant/vim-gutentags'
-hook_add = '''
-let g:gutentags_ctags_tagfile = '.git/ctags'
-'''
-
-[[plugins]]
 repo = 'thinca/vim-quickrun'
 hook_add = '''
 let g:quickrun_config = get(g:, 'quickrun_config', {})
 if executable('python3')
     let g:quickrun_config.python = { 'command': 'python3' }
 endif
-'''
-
-[[plugins]]
-repo = 'davidhalter/jedi-vim'
-hook_add = '''
-let g:jedi#rename_command = '<leader>R'
-autocmd FileType python let b:did_ftplugin = 1
-autocmd FileType python setlocal completeopt-=preview
-'''
-on_ft = 'python'
-
-[[plugins]]
-repo = 'rust-lang/rust.vim'
-hook_add = '''
-let g:rustfmt_autosave = 1
-'''
-on_ft = 'rust'
-
-[[plugins]]
-repo = 'vim-scripts/PDV--phpDocumentor-for-Vim'
-on_ft = 'php'
-hook_source = '''
-let g:pdv_cfg_Package   = ""
-let g:pdv_cfg_Version   = ""
-let g:pdv_cfg_Author    = "Yoshiyuki HINO <yhinoz@gmail.com>"
-let g:pdv_cfg_Copyright = "(c) yhino."
-let g:pdv_cfg_License   = "MIT"
-'''
-hook_add = '''
-inoremap <C-p> <ESC>:call PhpDocSingle()<CR>i
-nnoremap <C-p> :call PhpDocSingle()<CR>
-vnoremap <C-p> :call PhpDocRange()<CR>
 '''
 
 [[plugins]]
@@ -147,7 +106,7 @@ let g:jsx_pragma_required = 1
 '''
 
 ################################################################################
-# for HTML
+# HTML
 ################################################################################
 [[plugins]]
 repo = 'mattn/emmet-vim'
@@ -159,42 +118,32 @@ repo = 'alvan/vim-closetag'
 repo = 'gorodinskiy/vim-coloresque'
 
 ################################################################################
-# for Go
+# Go
 ################################################################################
 [[plugins]]
 repo = 'mattn/vim-goimports'
 
 ################################################################################
+# Rust
+################################################################################
+[[plugins]]
+repo = 'rust-lang/rust.vim'
+hook_add = '''
+let g:rustfmt_autosave = 1
+'''
+on_ft = 'rust'
+
+
+################################################################################
 # lsp
 ################################################################################
 [[plugins]]
-repo = 'prabirshrestha/async.vim'
-
-[[plugins]]
 repo = 'prabirshrestha/vim-lsp'
-hook_add = '''
-let g:lsp_diagnostics_enabled = 0
+if = "!has('nvim')"
+hook_source = '''
+let g:lsp_text_edit_enabled = 0
 '''
 
 [[plugins]]
 repo = 'mattn/vim-lsp-settings'
-
-[[plugins]]
-repo = 'thomasfaingnaert/vim-lsp-snippets'
-
-[[plugins]]
-repo = 'thomasfaingnaert/vim-lsp-neosnippet'
-
-################################################################################
-# dependencies plugin for lazy load plugins
-################################################################################
-[[plugins]]
-repo = 'roxma/nvim-yarp'
 if = "!has('nvim')"
-
-[[plugins]]
-repo = 'roxma/vim-hug-neovim-rpc'
-if = "!has('nvim')"
-
-[[plugins]]
-repo = 'Shougo/neosnippet-snippets'

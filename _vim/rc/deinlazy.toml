@@ -1,62 +1,60 @@
 [[plugins]]
-repo = 'Shougo/deoplete.nvim'
-build = 'pip3 install --upgrade pynvim'
-depends = ['context_filetype.vim', 'nvim-yarp', 'vim-hug-neovim-rpc']
-if = "has('python3')"
-on_event = 'InsertEnter'
-hook_source = '''
-    let g:deoplete#enable_at_startup = 1
-    call deoplete#custom#option({
-                \ 'smart_case': v:true,
-                \})
-
-    inoremap <expr><TAB> pumvisible() ?  "\<C-n>" :
-        \ neosnippet#expandable_or_jumpable() ?
-        \   "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-
-'''
-
-[[plugins]]
-repo = 'Shougo/deoppet.nvim'
-build = 'pip3 install --upgrade pynvim'
+repo = 'nvim-telescope/telescope.nvim'
 if = "has('nvim')"
-on_event = 'InsertEnter'
+on_event = 'VimEnter'
 hook_source = '''
-    call deoppet#initialize()
-    call deoppet#custom#option('snippets_dirs',
-                \ globpath(&runtimepath, 'neosnippets', 1, 1))
+nnoremap <leader>ft <cmd>Telescope<cr>
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fr <cmd>Telescope oldfiles<cr>
+nnoremap <silent><C-]> <cmd>Telescope lsp_definitions jump_type=never<cr>
+nnoremap <silent><C-\> <cmd>Telescope lsp_references<cr>
 
-    imap <C-k> <Plug>(deoppet_expand)
-    imap <C-f> <Plug>(deoppet_jump_forward)
-    imap <C-b> <Plug>(deoppet_jump_backward)
-    smap <C-f> <Plug>(deoppet_jump_forward)
-    smap <C-b> <Plug>(deoppet_jump_backward)
+lua << EOF
+local actions = require('telescope.actions')
+
+require('telescope').setup{
+    defaults = {
+        mappings = {
+            i = {
+                ["<C-j>"] = actions.select_horizontal,
+
+                ["<esc>"] = actions.close
+            }
+        }
+    }
+}
+EOF
 '''
 
 [[plugins]]
-repo = 'Shougo/neosnippet.vim'
-depends = ['neosnippet-snippets', 'context_filetype.vim']
-if = "!has('nvim')"
-on_event = 'InsertEnter'
-on_ft = 'snippet'
-hook_source = '''
-    imap <C-k> <Plug>(neosnippet_expand_or_jump)
-    smap <C-k> <Plug>(neosnippet_expand_or_jump)
-    xmap <C-k> <Plug>(neosnippet_expand_target)
-    smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-       \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-'''
+repo = 'kyazdani42/nvim-web-devicons'
+on_source = 'telescope.nvim'
 
 [[plugins]]
 repo = 'Shougo/neomru.vim'
+if = "!has('nvim')"
 on_if = 1
 
 [[plugins]]
 repo = 'Shougo/unite.vim'
 depends = 'neomru.vim'
+if = "!has('nvim')"
+on_event = "VimEnter"
 hook_source = '''
     " 入力モードで開始する
     let g:unite_enable_start_insert=1
+
+    " インサート／ノーマルどちらからでも呼び出せるようにキーマップ
+    nnoremap <silent> <C-u><C-u>
+        \ :<C-u>Unite -buffer-name=files buffer file_mru file file/new<CR>
+    inoremap <silent> <C-u><C-u>
+        \ <ESC>:<C-u>Unite -buffer-name=files buffer file_mru file file/new<CR>
+    nnoremap <silent> <C-u><C-f>
+        \ :<C-u>UniteWithBufferDir -buffer-name=files buffer file file_mru file/new<CR>
+    inoremap <silent> <C-u><C-f>
+        \ <ESC>:<C-u>UniteWithBufferDir -buffer-name=files buffer file file_mru file/new<CR>
 
     " unite.vim上でのキーマッピング
     autocmd MyAutoCmd FileType unite call s:unite_my_settings()
@@ -77,28 +75,18 @@ hook_source = '''
       imap <silent><buffer> <ESC><ESC> <ESC>q
     endfunction
 '''
-hook_add = '''
-    " インサート／ノーマルどちらからでも呼び出せるようにキーマップ
-    nnoremap <silent> <C-u><C-u>
-        \ :<C-u>Unite -buffer-name=files buffer file_mru file file/new<CR>
-    inoremap <silent> <C-u><C-u>
-        \ <ESC>:<C-u>Unite -buffer-name=files buffer file_mru file file/new<CR>
-    nnoremap <silent> <C-u><C-f>
-        \ :<C-u>UniteWithBufferDir -buffer-name=files buffer file file_mru file/new<CR>
-    inoremap <silent> <C-u><C-f>
-        \ <ESC>:<C-u>UniteWithBufferDir -buffer-name=files buffer file file_mru file/new<CR>
-'''
 
 [[plugins]]
 repo = 'Shougo/vimfiler.vim'
 depends = 'unite.vim'
+if = "!has('nvim')"
 on_map = [['n', '<Plug>']]
 on_if = "isdirectory(bufname('%'))"
+on_source = 'unite.vim'
 hook_source = '''
     " vimデフォルトのエクスプローラをvimfilerで置き換える
     let g:vimfiler_as_default_explorer = 1
-'''
-hook_add = '''
+
     nnoremap <leader>e :<C-u>VimFilerBufferDir -split -simple -winwidth=35 -no-quit<CR>
 '''
 
@@ -108,8 +96,9 @@ if = "!has('nvim')"
 
 [[plugins]]
 repo = 'Shougo/unite-outline'
+if = "!has('nvim')"
 on_source = 'unite.vim'
-hook_add = '''
+hook_source = '''
     " unite-outline用の設定
     nnoremap <silent> <C-u><C-o>
         \ :<C-u>Unite outline -no-start-insert -resume<CR>

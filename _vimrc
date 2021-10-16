@@ -9,16 +9,13 @@ augroup MyAutoCmd
 augroup END
 
 " Map leader to ,
-let mapleader = ','
+"let mapleader = ','
+let mapleader = "\<Space>"
 
 " Load dein
 let s:cache_home = empty($XDG_CACHE_HOME) ? expand('~/.cache') : $XDG_CACHE_HOME
 let s:config_home = empty($XDG_CONFIG_HOME) ? expand('~/.config') : $XDG_CONFIG_HOME
-if has('nvim')
-    let s:dein_dir = s:cache_home . '/nvim/dein'
-else
-    let s:dein_dir = s:cache_home . '/vim/dein'
-endif
+let s:dein_dir = s:cache_home . '/dein'
 let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
 
 if &runtimepath !~# '/dein.vim'
@@ -34,6 +31,7 @@ if dein#load_state(s:dein_dir)
 
     call dein#load_toml('~/.vim/rc/dein.toml', {'lazy': 0})
     call dein#load_toml('~/.vim/rc/deinlazy.toml', {'lazy': 1})
+    call dein#load_toml('~/.vim/rc/ddc.toml', {'lazy': 1})
 
     call dein#end()
     call dein#save_state()
@@ -45,11 +43,12 @@ if has('vim_starting')
         call dein#install()
     endif
 
-    call dein#call_hook('source')
-    call dein#call_hook('post_source')
-
     filetype plugin indent on
     syntax enable
+endif
+if !has('vim_starting')
+    call dein#call_hook('source')
+    call dein#call_hook('post_source')
 endif
 "" }}}
 
@@ -67,9 +66,10 @@ set fileencodings=utf-8,euc-jp,iso-2022-jp,cp932
 set fileformats=unix,dos,mac
 
 " □とか○の文字があってもカーソル位置がずれないようにする
-if exists('&ambiwidth')
-  set ambiwidth=double
-endif
+" NOTE: telescope.nvimなどCUIが崩れる事象が発生しているので、無効にする
+"if exists('&ambiwidth')
+  "set ambiwidth=double
+"endif
 
 " バックアップを作成しない
 set nobackup
@@ -119,6 +119,8 @@ set showcmd
 
 " 対応する括弧を表示
 set showmatch
+" 対応する括弧にジャンプする(matchit.vim)
+source $VIMRUNTIME/macros/matchit.vim
 
 " ステータスラインを常に表示
 set laststatus=2
@@ -158,10 +160,6 @@ cnoreabbrev W w
 cnoreabbrev Q q
 cnoreabbrev Qall qall
 
-"" open tag
-nnoremap <C-]> :split<CR> :exe("tjump ".expand('<cword>'))<CR>
-nnoremap <C-\> :vsp<CR> :exe("tjump ".expand('<cword>'))<CR>
-
 " 表示行単位の移動
 nnoremap j gj
 nnoremap k gk
@@ -180,20 +178,7 @@ noremap <ESC><ESC> :nohlsearch<CR><ESC>
 
 "" Extra Setup {{{1
 
-" matchit.vim
-source $VIMRUNTIME/macros/matchit.vim
-
 " php
-function! PhpSyntaxOverride()
-    hi! def link phpDocTags  phpDefine
-    hi! def link phpDocParam phpType
-endfunction
-
-augroup phpSyntaxOverride
-    autocmd!
-    autocmd FileType php call PhpSyntaxOverride()
-augroup END
-
 let g:PHP_vintage_case_default_indent = 1
 
 " Ruby
