@@ -21,6 +21,7 @@ alias diff='diff -u'
 has 'htop' && alias top='htop'
 
 has 'nvim' && {
+    alias vim='nvim'
     alias vimdiff='nvim -d'
 }
 
