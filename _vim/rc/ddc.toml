@@ -8,11 +8,12 @@ inoremap <silent><expr> <C-l> ddc#complete_common_string()
 inoremap <silent><expr> <TAB>
             \ pumvisible() ? '<C-n>' :
             \ (col('.') <= 1 <Bar><Bar> getline('.')[col('.') - 2] =~# '\s') ?
-            \ '<TAB>' : ddc#manual_complete()
+            \ '<TAB>' : ddc#map#manual_complete()
+inoremap <slient><expr> <S-TAB> pumvisible() ? '<C-p>' : '<C-h>'
 
 call ddc#custom#patch_global(
             \ 'sources',
-            \ has('nvim') ? ['nvimlsp', 'around'] : ['ddc-vim-lsp', 'around'])
+            \ has('nvim') ? ['nvim-lsp', 'around'] : ['ddc-vim-lsp', 'around'])
 call ddc#custom#patch_global('sourceOptions', {
             \ '_': {
                 \ 'matchers': ['matcher_head'],
@@ -20,8 +21,8 @@ call ddc#custom#patch_global('sourceOptions', {
             \ },
             \ 'around': {'mark': 'A'},
             \ 'deoppet': {'mark': 'dp', 'dup': v:true},
-            \ 'nvimlsp': {'mark': 'lsp', 'forceCompletionPattern': '\.|:|->', 'minAutoCompleteLength': 1},
-            \ 'ddc-vim-lsp': {'mark': 'lsp', 'forceCompletionPattern': '\.|:|->', 'minAutoCompleteLength': 1},
+            \ 'nvim-lsp': {'mark': 'lsp', 'forceCompletionPattern': '\.\w*|:\w*|->\w*', 'minAutoCompleteLength': 1},
+            \ 'ddc-vim-lsp': {'mark': 'lsp', 'forceCompletionPattern': '\.\w*|:\w*|->\w*', 'minAutoCompleteLength': 1},
             \ })
 call ddc#enable()
 '''
