@@ -4,11 +4,11 @@ if = "has('nvim')"
 on_event = 'VimEnter'
 hook_source = '''
 nnoremap <leader>ft <cmd>Telescope<cr>
-nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>ff <cmd>Telescope file_browser<cr>
+nnoremap <leader>fd <cmd>Telescope find_files<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fr <cmd>Telescope oldfiles<cr>
-nnoremap <leader>fj <cmd>Telescope file_browser<cr>
 nnoremap <silent><C-]> <cmd>Telescope lsp_definitions jump_type=never<cr>
 nnoremap <silent><C-\> <cmd>Telescope lsp_references<cr>
 
