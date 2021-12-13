@@ -27,7 +27,7 @@ export ZINIT_HOME=$HOME/.zinit
 export ZINIT_BIN=$ZINIT_HOME/bin
 [[ -s $ZINIT_BIN/zinit.zsh ]] || {
     mkdir -p $ZINIT_HOME
-    git clone https://github.com/zdharma/zinit.git $ZINIT_BIN
+    git clone https://github.com/zdharma-continuum/zinit.git $ZINIT_BIN
 }
 source $ZINIT_BIN/zinit.zsh
 autoload -Uz _zinit
