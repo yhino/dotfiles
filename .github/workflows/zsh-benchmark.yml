@@ -30,7 +30,7 @@ jobs:
         run: ./bootstrap.sh
 
       - name: Run Benchmark
-        run: ./github/scripts/zsh-benchmark.sh > result.json
+        run: .github/scripts/zsh-benchmark.sh > result.json
 
       - name: Dump Benchmark
         run: cat result.json
