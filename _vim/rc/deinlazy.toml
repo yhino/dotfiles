@@ -26,8 +26,14 @@ require('telescope').setup{
         }
     }
 }
+
+require('telescope').load_extension 'file_browser'
 EOF
 '''
+
+[[plugins]]
+repo = 'nvim-telescope/telescope-file-browser.nvim'
+on_source = 'telescope.nvim'
 
 [[plugins]]
 repo = 'kyazdani42/nvim-web-devicons'
