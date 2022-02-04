@@ -1,8 +1,5 @@
 # vim:ft=zsh
 
-zinit ice atload'local f; for f in *.zsh; do source $f; done'
-zinit light ~/.zsh
-
 zinit wait lucid light-mode for \
     atinit"zicompinit; zicdreplay" \
     zdharma-continuum/fast-syntax-highlighting \
@@ -48,7 +45,7 @@ zinit light sharkdp/fd
 zinit ice from"gh-r" as"program" mv"ripgrep* -> rg" pick"rg/rg"
 zinit light BurntSushi/ripgrep
 
-zinit ice from"gh-r" as"program" mv"exa* -> exa"
+zinit ice from"gh-r" as"program" mv"exa* -> exa" pick"bin/exa"
 zinit light ogham/exa
 
 zinit ice from:"gh-r" as"program" mv"jq-* -> jq" pick"jq"
@@ -75,3 +72,7 @@ zinit light ktr0731/evans
 
 zinit ice from"gh-r" as"program" pick"vegeta"
 zinit light tsenart/vegeta
+
+
+zinit ice atload'local f; for f in *.zsh; do source $f; done'
+zinit light ~/.zsh
