@@ -17,6 +17,11 @@ zinit wait lucid light-mode has"docker" for \
     as'completion' is-snippet \
     'https://github.com/docker/compose/blob/master/contrib/completion/zsh/_docker-compose'
 
+zinit wait lucid id-as"nerdctl" as"null" has"nerdctl" \
+    atclone"nerdctl completion zsh > ${ZINIT[COMPLETIONS_DIR]}/_nerdctl" \
+    atpull"%atclone" for \
+    z-shell/null
+
 zinit wait lucid light-mode has"cf" for \
     as"completion" \
     norman-abramovitz/cf-zsh-autocomplete-plugin
