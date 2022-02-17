@@ -5,7 +5,7 @@ if has 'exa'; then
 
     alias ll='ls -l --git'
     alias la='ls -a'
-    alias lla='ll -al'
+    alias lla='ll -a'
 else
     if is_linux; then
         alias ls='ls -Fh --color'
