@@ -77,7 +77,6 @@ on_source = 'ddc.vim'
 # depends
 [[plugins]]
 repo = 'neovim/nvim-lspconfig'
-depends = ['ddc.vim']
 if = 'has("nvim")'
 on_event = 'BufRead'
 hook_source = '''
