@@ -218,10 +218,18 @@ if !exists(':DiffOrig')
 endif
 " }}}
 
-" colorscheme-solarized {{{2
+" colorscheme {{{2
+if (has("nvim"))
+    let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+endif
+if (has("termguicolors"))
+    set termguicolors
+endif
+
 set background=dark
-colorscheme solarized
-call togglebg#map("<F5>")
+
+"colorscheme solarized
+colorscheme gruvbox
 " }}}
 
 "" }}}
