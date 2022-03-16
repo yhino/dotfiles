@@ -3,7 +3,7 @@
 bindkey -e
 
 ghq-fzf() {
-    local dir=$(ghq list |fzf +m)
+    local dir=$(ghq list |fzf-tmux -p 80% +m)
     if [[ -n "$dir" ]]; then
         BUFFER="cd $(ghq root)/${dir}"
         zle accept-line
@@ -14,7 +14,7 @@ zle -N ghq-fzf
 bindkey '^]' ghq-fzf
 
 select-history() {
-    BUFFER=$(history -n -r 1 |awk '!a[$0]++' |fzf --no-sort +m --query "$LBUFFER" --prompt="History> ")
+    BUFFER=$(history -n -r 1 |awk '!a[$0]++' |fzf-tmux -p 90% --no-sort +m --query "$LBUFFER" --prompt="History> ")
     CURSOR=$#BUFFER
 }
 zle -N select-history
