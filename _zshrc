@@ -45,10 +45,9 @@ source $HOME/.zsh/zinit
     source ${HOME}/.cargo/env
 }
 
-# Python
-[[ -d ${HOME}/.poetry ]] && {
-    source ${HOME}/.poetry/env
-}
+# python-poetry
+export POETRY_HOME=$HOME/.poetry
+path=( $POETRY_HOME/bin(N-/) ${path} )
 
 
 # localize
