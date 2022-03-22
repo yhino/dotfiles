@@ -20,14 +20,14 @@ PROMPT='${vim_}${fg[green]}%M${reset_color} %/${fg[yellow]}${vcs_info_msg_0_}${r
 PROMPT2='> '
 SPROMPT='%R -> %r ? '
 
-function right_prompt() {
-    if [[ "$ZSH_KUBECTL_PROMPT" =~ "not set" ]]; then
+kubectl_context_prompt() {
+    if [[ "${ZSH_KUBECTL_PROMPT}" =~ "not set" ]]; then
         return
     fi
     echo "%{$fg[yellow]%}${ZSH_KUBECTL_PROMPT}%{$reset_color%}"
 }
 
-RPROMPT='$(right_prompt)'
+RPROMPT='$(kubectl_context_prompt)'
 
 # プロンプトエスケープシーケンス有効化
 setopt prompt_subst
