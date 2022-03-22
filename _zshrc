@@ -13,26 +13,26 @@ export HISTFILE="${HOME}/.zsh_history"
 export HISTSIZE=1000000
 export SAVEHIST=1000000
 
-[[ -n $VIMRUNTIME ]] && {
+[[ -n ${VIMRUNTIME} ]] && {
     return
 }
 
 # do not execute `tmux`, when use terminal jetbrains-ide
-[[ -z $TERMINAL_EMULATOR ]] && {
+[[ -z ${TERMINAL_EMULATOR} ]] && {
     source tmuxx
 }
 
 # load zinit
-export ZINIT_HOME=$HOME/.zinit
-export ZINIT_BIN=$ZINIT_HOME/bin
-[[ -s $ZINIT_BIN/zinit.zsh ]] || {
-    mkdir -p $ZINIT_HOME
-    git clone https://github.com/zdharma-continuum/zinit.git $ZINIT_BIN
+export ZINIT_HOME=${HOME}/.zinit
+export ZINIT_BIN=${ZINIT_HOME}/bin
+[[ -s ${ZINIT_BIN}/zinit.zsh ]] || {
+    mkdir -p ${ZINIT_HOME}
+    git clone https://github.com/zdharma-continuum/zinit.git ${ZINIT_BIN}
 }
-source $ZINIT_BIN/zinit.zsh
+source ${ZINIT_BIN}/zinit.zsh
 autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
-source $HOME/.zsh/zinit
+source ${HOME}/.zsh/zinit
 
 
 # asdf-vm
@@ -46,8 +46,8 @@ source $HOME/.zsh/zinit
 }
 
 # python-poetry
-export POETRY_HOME=$HOME/.poetry
-path=( $POETRY_HOME/bin(N-/) ${path} )
+export POETRY_HOME=${HOME}/.poetry
+path=( ${POETRY_HOME}/bin(N-/) ${path} )
 
 
 # localize
