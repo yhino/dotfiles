@@ -1,17 +1,18 @@
 # Core
 [[plugins]]
 repo = 'Shougo/ddc.vim'
-depends = ['context_filetype.vim', 'denops.vim']
+depends = ['context_filetype.vim', 'denops.vim', 'pum.vim']
 on_event = 'InsertEnter'
 hook_source = '''
-inoremap <silent><expr> <C-l> ddc#complete_common_string()
-" <TAB>: completion
 inoremap <silent><expr> <TAB>
-            \ pumvisible() ? '<C-n>' :
+            \ pum#visible() ? '<Cmd>call pum#map#insert_relative(+1)<CR>' :
             \ (col('.') <= 1 <Bar><Bar> getline('.')[col('.') - 2] =~# '\s') ?
-            \ '<TAB>' : ddc#map#manual_complete()
-" <S-TAB>: completion back
-inoremap <slient><expr> <S-TAB> pumvisible() ? '<C-p>' : '<C-h>'
+            \ '<TAB>' : ddc#manual_complete()
+inoremap <S-TAB> <Cmd>call pum#map#insert_relative(-1)<CR>
+inoremap <C-n> <Cmd>call pum#map#select_relative(+1)<CR>
+inoremap <C-p> <Cmd>call pum#map#select_relative(-1)<CR>
+inoremap <C-l> <Cmd>call pum#map#confirm()<CR>
+inoremap <C-e> <Cmd>call pum#map#cancel()<CR>
 
 if has('nvim')
     call ddc#custom#patch_global('sources', ['nvim-lsp', 'deoppet', 'around'])
@@ -29,6 +30,7 @@ call ddc#custom#patch_global('sourceOptions', {
             \ 'nvim-lsp': {'mark': 'lsp', 'forceCompletionPattern': '\.\w*|:\w*|->\w*', 'minAutoCompleteLength': 1},
             \ 'ddc-vim-lsp': {'mark': 'lsp', 'forceCompletionPattern': '\.\w*|:\w*|->\w*', 'minAutoCompleteLength': 1},
             \ })
+call ddc#custom#patch_global('completionMenu', 'pum.vim')
 call ddc#enable()
 '''
 
