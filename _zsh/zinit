@@ -70,7 +70,7 @@ zinit ice from"gh-r" as"program" pick"k9s"
 zinit light derailed/k9s
 
 zinit ice from"gh-r" as"program" mv"stern* -> stern" pick"stern"
-zinit light wercker/stern
+zinit light stern/stern
 
 zinit ice from"gh-r" as"program" pick"evans"
 zinit light ktr0731/evans
