@@ -13,6 +13,17 @@ ghq-fzf() {
 zle -N ghq-fzf
 bindkey '^]' ghq-fzf
 
+git-br-fzf() {
+    local branch_name=$(git branch -a 2>/dev/null |grep -v HEAD |fzf-tmux -p 90% +m --prompt="Branch> " --preview="echo {} |tr -d ' ' |xargs git lg --color=always")
+    if [[ -n "${branch_name}" ]]; then
+        BUFFER="git switch ${branch_name}"
+        zle accept-line
+    fi
+    zle -R -c
+}
+zle -N git-br-fzf
+bindkey '^g' git-br-fzf
+
 select-history() {
     BUFFER=$(history -n -r 1 |awk '!a[$0]++' |fzf-tmux -p 90% --no-sort +m --query "$LBUFFER" --prompt="History> ")
     CURSOR=$#BUFFER
