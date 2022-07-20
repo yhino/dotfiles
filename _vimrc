@@ -46,10 +46,6 @@ if has('vim_starting')
     filetype plugin indent on
     syntax enable
 endif
-if !has('vim_starting')
-    call dein#call_hook('source')
-    call dein#call_hook('post_source')
-endif
 "" }}}
 
 "" Basic Setup {{{
