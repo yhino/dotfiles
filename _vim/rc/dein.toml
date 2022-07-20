@@ -108,6 +108,7 @@ endif
 
 [[plugins]]
 repo = 'sheerun/vim-polyglot'
+if = "!has('nvim')"
 hook_add = '''
 " for jsx
 let g:jsx_ext_required = 1
