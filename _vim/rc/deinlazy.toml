@@ -1,7 +1,7 @@
 [[plugins]]
 repo = 'nvim-treesitter/nvim-treesitter'
 if = "has('nvim')"
-on_event = 'BufRead'
+on_event = 'VimEnter'
 hook_post_update = 'TSUpdate'
 hook_source = '''
 lua << EOF
