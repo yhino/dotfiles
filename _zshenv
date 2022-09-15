@@ -11,6 +11,7 @@ sudo_path=({/usr/local,/usr,}/sbin(N-/))
 typeset -gx -U path
 path=( \
     ~/bin(N-/) \
+    ~/.local/bin(N-/) \
     /usr/local/bin(N-/) \
     /usr/local/sbin(N-/) \
     ${path} \
