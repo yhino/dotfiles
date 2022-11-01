@@ -1,6 +1,4 @@
 ForwardX11 no
 ForwardAgent yes
 
-Host github.com
-    User git
-    ForwardAgent no
+Include conf.d/*
