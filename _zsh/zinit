@@ -37,7 +37,7 @@ zinit light junegunn/fzf
 zinit ice from"gh" as"program" id-as"junegunn/fzf-tmux" pick"bin/fzf-tmux"
 zinit light junegunn/fzf
 
-zinit ice from"git" pick"init.sh"
+zinit ice from"github" pick"init.sh"
 zinit light b4b4r07/enhancd
 
 zinit ice from"gh-r" as"program" mv"bat* -> bat" pick"bat/bat"
