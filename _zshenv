@@ -12,8 +12,6 @@ typeset -gx -U path
 path=( \
     ~/bin(N-/) \
     ~/.local/bin(N-/) \
-    /usr/local/bin(N-/) \
-    /usr/local/sbin(N-/) \
     ${path} \
     )
 
@@ -71,6 +69,14 @@ fi
 
 # Markdown
 export GLAMOUR_STYLE=dark
+
+# Homebrew
+[[ -x "/usr/local/bin/brew" ]] && {
+    eval "$(/usr/local/bin/brew shellenv)"
+}
+[[ -x "/opt/homebrew/bin/brew" ]] && {
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+}
 
 
 # localize
