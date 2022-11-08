@@ -12,6 +12,7 @@ typeset -gx -U path
 path=( \
     ~/bin(N-/) \
     ~/.local/bin(N-/) \
+    /usr/local/bin(N-/) \
     ${path} \
     )
 
