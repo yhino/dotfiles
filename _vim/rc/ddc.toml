@@ -4,20 +4,12 @@ repo = 'Shougo/ddc.vim'
 depends = ['context_filetype.vim', 'denops.vim', 'pum.vim']
 on_event = 'InsertEnter'
 hook_source = '''
-inoremap <silent><expr> <TAB>
-            \ pum#visible() ? '<Cmd>call pum#map#insert_relative(+1)<CR>' :
-            \ (col('.') <= 1 <Bar><Bar> getline('.')[col('.') - 2] =~# '\s') ?
-            \ '<TAB>' : ddc#manual_complete()
-inoremap <S-TAB> <Cmd>call pum#map#insert_relative(-1)<CR>
-inoremap <C-n> <Cmd>call pum#map#select_relative(+1)<CR>
-inoremap <C-p> <Cmd>call pum#map#select_relative(-1)<CR>
-inoremap <C-l> <Cmd>call pum#map#confirm()<CR>
-inoremap <C-e> <Cmd>call pum#map#cancel()<CR>
+call ddc#custom#patch_global('ui', 'pum')
 
 if has('nvim')
-    call ddc#custom#patch_global('sources', ['nvim-lsp', 'deoppet', 'around'])
+    call ddc#custom#patch_global('sources', ['nvim-lsp', 'around'])
 else
-    call ddc#custom#patch_global('sources', ['ddc-vim-lsp', 'deoppet', 'around'])
+    call ddc#custom#patch_global('sources', ['ddc-vim-lsp', 'around'])
 endif
 call ddc#custom#patch_global('sourceOptions', {
             \ '_': {
@@ -26,13 +18,29 @@ call ddc#custom#patch_global('sourceOptions', {
                 \ 'ignoreCase': v:true,
             \ },
             \ 'around': {'mark': 'A'},
-            \ 'deoppet': {'mark': 'dp', 'dup': v:true},
             \ 'nvim-lsp': {'mark': 'lsp', 'forceCompletionPattern': '\.\w*|:\w*|->\w*', 'minAutoCompleteLength': 1},
             \ 'ddc-vim-lsp': {'mark': 'lsp', 'forceCompletionPattern': '\.\w*|:\w*|->\w*', 'minAutoCompleteLength': 1},
             \ })
 call ddc#custom#patch_global('completionMenu', 'pum.vim')
+
+" key mappings
+inoremap <silent><expr> <TAB>
+            \ pum#visible() ? '<Cmd>call pum#map#insert_relative(+1)<CR>' :
+            \ (col('.') <= 1 <Bar><Bar> getline('.')[col('.') - 2] =~# '\s') ?
+            \ '<TAB>' : ddc#manual_complete()
+inoremap <S-TAB> <Cmd>call pum#map#insert_relative(-1)<CR>
+inoremap <C-n> <Cmd>call pum#map#insert_relative(+1)<CR>
+inoremap <C-p> <Cmd>call pum#map#insert_relative(-1)<CR>
+inoremap <C-l> <Cmd>call pum#map#confirm()<CR>
+inoremap <C-e> <Cmd>call pum#map#cancel()<CR>
+
 call ddc#enable()
 '''
+
+# UI
+[[plugins]]
+repo = 'Shougo/ddc-ui-pum'
+on_source = 'ddc.vim'
 
 # Source
 [[plugins]]
@@ -92,24 +100,6 @@ for _, lsp in ipairs(servers) do
     }
 end
 EOF
-'''
-
-[[plugins]]
-repo = 'Shougo/deoppet.nvim'
-depends = ['neosnippet-snippets', 'context_filetype.vim']
-on_event = 'InsertEnter'
-on_source = 'ddc.vim'
-if = "has('nvim')"
-hook_source = '''
-    call deoppet#initialize()
-    call deoppet#custom#option('snippets',
-                \ map(globpath(&runtimepath, 'neosnippets', 1, 1),
-                \     { _, val -> { 'path': val } }))
-    imap <C-k> <Plug>(deoppet_expand)
-    imap <C-f> <Plug>(deoppet_jump_forward)
-    imap <C-b> <Plug>(deoppet_jump_backward)
-    smap <C-f> <Plug>(deoppet_jump_forward)
-    smap <C-b> <Plug>(deoppet_jump_backward)
 '''
 
 [[plugins]]
