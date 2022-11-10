@@ -12,7 +12,7 @@ typeset -gx -U path
 path=( \
     ~/bin(N-/) \
     ~/.local/bin(N-/) \
-    /usr/local/bin(N-/) \
+    /Applications/Docker.app/Contents/Resources/bin(N-/) \
     ${path} \
     )
 
@@ -76,12 +76,18 @@ fi
 export GLAMOUR_STYLE=dark
 
 # Homebrew
-[[ -x "/usr/local/bin/brew" ]] && {
-    eval "$(/usr/local/bin/brew shellenv)"
-}
-[[ -x "/opt/homebrew/bin/brew" ]] && {
-    eval "$(/opt/homebrew/bin/brew shellenv)"
-}
+case "$(uname -m)" in
+    x86*)
+        [[ -x "/usr/local/bin/brew" ]] && {
+            eval "$(/usr/local/bin/brew shellenv)"
+        }
+        ;;
+    arm*)
+        [[ -x "/opt/homebrew/bin/brew" ]] && {
+            eval "$(/opt/homebrew/bin/brew shellenv)"
+        }
+        ;;
+esac
 
 
 # localize
