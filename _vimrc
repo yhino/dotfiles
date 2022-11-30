@@ -176,6 +176,11 @@ nnoremap <S-Space> kzz
 noremap <ESC><ESC> :nohlsearch<CR><ESC>
 ""}}}
 
+" mouse {{{
+" Mouse disabled
+set mouse=
+" }}}
+
 "" Extra Setup {{{1
 
 " php
