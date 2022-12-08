@@ -16,7 +16,9 @@ if [ -n "${VIMRUNTIME}" ]; then
     vim_="${fg[magenta]}(vim) ${reset_color}"
 fi
 
-PROMPT='${vim_}${fg[green]}%M${reset_color} %/${fg[yellow]}${vcs_info_msg_0_}${reset_color}'$'\n''%# '
+arch_="$(uname -m)"
+
+PROMPT='${vim_}${fg[green]}%M${reset_color}${fg[cyan]}(${arch_})${reset_color} %/${fg[yellow]}${vcs_info_msg_0_}${reset_color}'$'\n''%# '
 PROMPT2='> '
 SPROMPT='%R -> %r ? '
 
