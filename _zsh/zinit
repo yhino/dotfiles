@@ -30,6 +30,12 @@ zinit wait lucid light-mode has"cf" for \
 zinit ice if"[[ -s ~/.kube/config ]]"
 zinit light superbrothers/zsh-kubectl-prompt
 
+zinit wait lucid light-mode has"kubectl" for \
+    id-as"kubectl-completion" \
+    as"completion" \
+    atclone"kubectl completion zsh > _kubectl" \
+    atpull"%atclone" \
+    z-shell/null
 
 zinit ice from"gh-r" as"program" id-as"junegunn/fzf"
 zinit light junegunn/fzf
