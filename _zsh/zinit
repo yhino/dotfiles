@@ -55,7 +55,7 @@ zinit light sharkdp/fd
 zinit ice from"gh-r" as"program" mv"ripgrep* -> rg" pick"rg/rg"
 zinit light BurntSushi/ripgrep
 
-zinit ice from"gh-r" as"program" mv"exa* -> exa" pick"bin/exa"
+zinit ice from"gh-r" as"program" pick"bin/exa"
 zinit light ogham/exa
 
 zinit ice from:"gh-r" as"program" mv"jq-* -> jq" pick"jq"
