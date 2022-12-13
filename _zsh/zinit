@@ -17,9 +17,11 @@ zinit wait lucid light-mode has"docker" for \
     as'completion' is-snippet \
     'https://github.com/docker/compose/blob/master/contrib/completion/zsh/_docker-compose'
 
-zinit wait lucid id-as"nerdctl" as"null" has"nerdctl" \
-    atclone"nerdctl completion zsh > ${ZINIT[COMPLETIONS_DIR]}/_nerdctl" \
-    atpull"%atclone" for \
+zinit wait lucid light-mode has"nerdctl" for \
+    id-as"nerdctl-completion" \
+    as"completion" \
+    atclone"nerdctl completion zsh > _nerdctl" \
+    atpull"%atclone" \
     z-shell/null
 
 zinit wait lucid light-mode has"cf" for \
@@ -27,15 +29,15 @@ zinit wait lucid light-mode has"cf" for \
     norman-abramovitz/cf-zsh-autocomplete-plugin
 
 
-zinit ice if"[[ -s ~/.kube/config ]]"
-zinit light superbrothers/zsh-kubectl-prompt
-
 zinit wait lucid light-mode has"kubectl" for \
     id-as"kubectl-completion" \
     as"completion" \
     atclone"kubectl completion zsh > _kubectl" \
     atpull"%atclone" \
     z-shell/null
+
+zinit ice if"[[ -s ~/.kube/config ]]"
+zinit light superbrothers/zsh-kubectl-prompt
 
 zinit ice from"gh-r" as"program" id-as"junegunn/fzf"
 zinit light junegunn/fzf
@@ -67,9 +69,8 @@ zinit light mikefarah/yq
 zinit ice from"gh-r" as"program" mv"ghq* -> ghq" pick"ghq/ghq"
 zinit light x-motemen/ghq
 
-zinit wait lucid light-mode has"kubectl" for \
-    from"gh" as"program" pick"(kubectx|kubens)" \
-    ahmetb/kubectx
+zinit ice from"gh" as"program" pick"(kubectx|kubens)" has"kubectl"
+zinit light ahmetb/kubectx
 
 zinit ice from"gh-r" as"program" pick"k9s"
 zinit light derailed/k9s
