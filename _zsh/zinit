@@ -61,7 +61,7 @@ zinit ice from"gh-r" as"program" pick"bin/exa"
 zinit light ogham/exa
 
 zinit ice from:"gh-r" as"program" mv"jq-* -> jq" pick"jq"
-zinit light stedolan/jq
+zinit light jqlang/jq
 
 zinit ice from"gh-r" as"program" mv"yq* -> yq" pick"yq"
 zinit light mikefarah/yq
