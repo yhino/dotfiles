@@ -13,14 +13,14 @@ export HISTFILE="${HOME}/.zsh_history"
 export HISTSIZE=1000000
 export SAVEHIST=1000000
 
-[[ -n ${VIMRUNTIME} ]] && {
-    return
-}
+#[[ -n ${VIMRUNTIME} ]] && {
+#    return
+#}
 
 # do not execute `tmux`, when use terminal jetbrains-ide
-[[ -z ${TERMINAL_EMULATOR} ]] && {
-    source tmuxx
-}
+#[[ -z ${TERMINAL_EMULATOR} ]] && {
+#    source tmuxx
+#}
 
 # load zinit
 export ZINIT_HOME=${HOME}/.zinit
