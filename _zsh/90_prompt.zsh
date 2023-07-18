@@ -23,6 +23,9 @@ PROMPT2='> '
 SPROMPT='%R -> %r ? '
 
 kubectl_context_prompt() {
+    if [[ "${ZSH_KUBECTL_PROMPT}" =~ "command not found" ]]; then
+        return
+    fi
     if [[ "${ZSH_KUBECTL_PROMPT}" =~ "not set" ]]; then
         return
     fi
