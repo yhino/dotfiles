@@ -21,7 +21,7 @@ call ddc#custom#patch_global('sourceOptions', {
             \ 'nvim-lsp': {'mark': 'lsp', 'forceCompletionPattern': '\.\w*|:\w*|->\w*', 'minAutoCompleteLength': 1},
             \ 'ddc-vim-lsp': {'mark': 'lsp', 'forceCompletionPattern': '\.\w*|:\w*|->\w*', 'minAutoCompleteLength': 1},
             \ })
-call ddc#custom#patch_global('completionMenu', 'pum.vim')
+call ddc#custom#patch_global('ui', 'pum.vim')
 
 " key mappings
 inoremap <silent><expr> <TAB>
