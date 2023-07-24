@@ -41,6 +41,7 @@ tmuxx() {
     }
 
     shell_has_started_interactively || {
+        echo 'please exec `source tmuxx`'
         return 0
     }
 
