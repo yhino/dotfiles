@@ -7,7 +7,7 @@ hook_source = '''
 call ddc#custom#patch_global('ui', 'pum')
 
 if has('nvim')
-    call ddc#custom#patch_global('sources', ['nvim-lsp', 'around'])
+    call ddc#custom#patch_global('sources', ['nvim-lsp', 'vsnip', 'around'])
 else
     call ddc#custom#patch_global('sources', ['ddc-vim-lsp', 'around'])
 endif
@@ -18,8 +18,18 @@ call ddc#custom#patch_global('sourceOptions', {
                 \ 'ignoreCase': v:true,
             \ },
             \ 'around': {'mark': 'A'},
+            \ 'vsnip': {'mark': 'vsnip'},
             \ 'nvim-lsp': {'mark': 'lsp', 'forceCompletionPattern': '\.\w*|:\w*|->\w*', 'minAutoCompleteLength': 1},
             \ 'ddc-vim-lsp': {'mark': 'lsp', 'forceCompletionPattern': '\.\w*|:\w*|->\w*', 'minAutoCompleteLength': 1},
+            \ })
+call ddc#custom#patch_global('sourceParams', #{
+            \   nvim-lsp: #{
+            \     snippetEngine: denops#callback#register({
+            \       body -> vsnip#annonymous(body)
+            \     }),
+            \     enableResolveItem: v:true,
+            \     enableAdditionalTextEdit: v:true,
+            \   }
             \ })
 
 " key mappings
@@ -47,11 +57,6 @@ repo = 'Shougo/ddc-around'
 on_source = 'ddc.vim'
 
 [[plugins]]
-repo = 'Shougo/ddc-nvim-lsp'
-if = 'has("nvim")'
-on_source = 'ddc.vim'
-
-[[plugins]]
 repo = 'matsui54/denops-popup-preview.vim'
 on_source = 'ddc.vim'
 hook_source = '''
@@ -64,6 +69,15 @@ on_source = 'ddc.vim'
 hook_source = '''
 call signature_help#enable()
 '''
+
+[[plugins]]
+repo = 'uga-rosa/ddc-source-vsnip'
+on_source = 'ddc.vim'
+
+[[plugins]]
+repo = 'Shougo/ddc-source-nvim-lsp'
+if = 'has("nvim")'
+on_source = 'nvim-lspconfig'
 
 [[plugins]]
 repo = 'shun/ddc-vim-lsp'
@@ -89,17 +103,20 @@ hook_source = '''
 lua << EOF
 local nvim_lsp = require('lspconfig')
 
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities.textDocument.completion.completionItem.snippetSupport = true
+local capabilities = require("ddc_nvim_lsp").make_client_capabilities()
 
 local servers = { 'gopls', 'pyright' }
 for _, lsp in ipairs(servers) do
-    nvim_lsp[lsp].setup{
+    nvim_lsp[lsp].setup({
         capabilities=capabilities,
-    }
+    })
 end
 EOF
 '''
+
+[[plugins]]
+repo = 'hrsh7th/vim-vsnip'
+on_source = 'ddc.vim'
 
 [[plugins]]
 repo = 'Shougo/neosnippet-snippets'
