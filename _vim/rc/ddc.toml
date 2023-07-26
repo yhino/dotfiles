@@ -98,7 +98,7 @@ on_source = 'ddc.vim'
 [[plugins]]
 repo = 'neovim/nvim-lspconfig'
 if = 'has("nvim")'
-on_event = 'BufRead'
+on_event = ['BufRead', 'InsertEnter']
 hook_source = '''
 lua << EOF
 local nvim_lsp = require('lspconfig')
