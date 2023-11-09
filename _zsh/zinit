@@ -15,7 +15,7 @@ zinit wait lucid light-mode has"docker" for \
     'https://github.com/docker/cli/blob/master/contrib/completion/zsh/_docker' \
     \
     as'completion' is-snippet \
-    'https://github.com/docker/compose/blob/master/contrib/completion/zsh/_docker-compose'
+    'https://github.com/docker/compose/blob/v1/contrib/completion/zsh/_docker-compose'
 
 zinit wait lucid light-mode has"nerdctl" for \
     id-as"nerdctl-completion" \
