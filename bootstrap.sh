@@ -34,6 +34,10 @@ done
 # link dotfiles
 for dotfile in _?*; do
     case ${dotfile} in
+        _config)
+            # to be processed later, at `link XDG_CONFIG_HOME` section
+            continue
+            ;;
         _ssh)
             if [ ! -d ${HOME}/${dotfile/_/.} ]; then
                 mkdir -p ${HOME}/${dotfile/_/.}
@@ -62,11 +66,11 @@ done
 
 # link XDG_CONFIG_HOME
 if [ "x${XDG_CONFIG_HOME}" != "x" ]; then
-    for dotfile in _?*; do
-        case ${dotfile} in
-            _vim)
-                ln -snf ${PWD}/${dotfile} ${XDG_CONFIG_HOME}/nvim
-                ;;
+    for file in _config/*; do
+        case ${file} in
+	    *)
+	        ln -snf ${PWD}/${file} ${XDG_CONFIG_HOME}/$(basename ${file})
+		;;
         esac
     done
 fi
