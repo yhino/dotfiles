@@ -12,8 +12,8 @@ return {
                 {'<leader>fg', '<cmd>Telescope live_grep<cr>'},
                 {'<leader>fb', '<cmd>Telescope buffers<cr>'},
                 {'<leader>fr', '<cmd>Telescope oldfiles<cr>'},
-                {'<silent><C-]>', '<cmd>Telescope lsp_definitions jump_type=never<cr>'},
-                {'<silent><C-\\>', '<cmd>Telescope lsp_references<cr>'},
+                {'<C-]>', '<cmd>Telescope lsp_definitions jump_type=never<cr>'},
+                {'<C-\\>', '<cmd>Telescope lsp_references<cr>'},
         },
         config = function()
             local actions = require('telescope.actions')
