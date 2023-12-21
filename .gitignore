@@ -2,3 +2,4 @@ _vim/bundle/**/*
 _vim/.VimballRecord
 _tmux/plugins/**/*
 .netrwhist
+_config/nvim/lazy-lock.json
