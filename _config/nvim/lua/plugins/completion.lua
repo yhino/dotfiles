@@ -1,27 +1,20 @@
 return {
     -- LSP
-    {
-        'neovim/nvim-lspconfig',
-        dependencies = {'Shougo/ddc-source-lsp'},
-        config = function()
-            local lspconfig = require('lspconfig')
-            local capabilities = require("ddc_source_lsp").make_client_capabilities()
-            lspconfig.gopls.setup {
-                capabilities = capabilities,
-            }
-            lspconfig.pyright.setup {
-                capabilities = capabilities,
-            }
-        end
-    },
+    { 'neovim/nvim-lspconfig' },
     -- ddc
     {
         'Shougo/ddc.vim',
-        dependencies = {'vim-denops/denops.vim'},
-        event = { 'InsertEnter' },
+        dependencies = {
+            'vim-denops/denops.vim',
+            'Shougo/ddc-around',
+            'Shougo/ddc-source-lsp',
+            'Shougo/ddc-matcher_head',
+            'Shougo/ddc-sorter_rank',
+            'Shougo/pum.vim',
+        },
         config = function()
             vim.fn['ddc#custom#patch_global']('ui', 'pum')
-            vim.fn['ddc#custom#patch_global']('sources', {'lsp', 'vsnip', 'around'})
+            vim.fn['ddc#custom#patch_global']('sources', {'lsp', 'around'})
             vim.fn['ddc#custom#patch_global']('sourceOptions', {
                 _ = {
                     matchers = {'matcher_head'},
@@ -53,12 +46,24 @@ return {
         dependencies = {'Shougo/pum.vim'},
     },
     -- ddc:source
-    { 'Shougo/ddc-around' },
-    { 'uga-rosa/ddc-source-vsnip' },
-    { 'Shougo/ddc-source-lsp' },
+    { 'Shougo/ddc-around', lazy = true },
+    {
+        'Shougo/ddc-source-lsp',
+        dependencies = {'neovim/nvim-lspconfig'},
+        config = function()
+            local lspconfig = require('lspconfig')
+            local capabilities = require("ddc_source_lsp").make_client_capabilities()
+            lspconfig.gopls.setup {
+                capabilities = capabilities,
+            }
+            lspconfig.pyright.setup {
+                capabilities = capabilities,
+            }
+        end
+    },
     -- ddc:filter
-    { 'Shougo/ddc-matcher_head' },
-    { 'Shougo/ddc-sorter_rank' },
+    { 'Shougo/ddc-matcher_head', lazy = true },
+    { 'Shougo/ddc-sorter_rank', lazy = true },
     -- pum
     {
         'Shougo/pum.vim',
