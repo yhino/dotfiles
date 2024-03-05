@@ -21,7 +21,6 @@ return {
                     sorters = {'sorter_rank'},
                 },
                 around = { mark = 'A' },
-                vsnip = { mark = 'vsnip' },
                 lsp = {
                     mark = 'lsp',
                     forceCompletionPattern = '\\.\\w*|:\\w*|->\\w*',
