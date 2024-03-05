@@ -1,6 +1,4 @@
 return {
-    -- LSP
-    { 'neovim/nvim-lspconfig' },
     -- ddc
     {
         'Shougo/ddc.vim',
@@ -52,12 +50,12 @@ return {
         config = function()
             local lspconfig = require('lspconfig')
             local capabilities = require("ddc_source_lsp").make_client_capabilities()
-            lspconfig.gopls.setup {
+            lspconfig.gopls.setup({
                 capabilities = capabilities,
-            }
-            lspconfig.pyright.setup {
+            })
+            lspconfig.pyright.setup({
                 capabilities = capabilities,
-            }
+            })
         end
     },
     -- ddc:filter
