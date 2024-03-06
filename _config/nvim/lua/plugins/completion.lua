@@ -1,4 +1,10 @@
 return {
+    -- snippetEngine
+    {
+        'L3MON4D3/LuaSnip',
+        version = 'v2.*',
+        build = 'make install_jsregexp',
+    },
     -- ddc
     {
         'Shougo/ddc.vim',
@@ -9,6 +15,7 @@ return {
             'Shougo/ddc-matcher_head',
             'Shougo/ddc-sorter_rank',
             'Shougo/pum.vim',
+            'L3MON4D3/LuaSnip',
         },
         config = function()
             vim.fn['ddc#custom#patch_global']('ui', 'pum')
@@ -23,12 +30,13 @@ return {
                     mark = 'lsp',
                     forceCompletionPattern = '\\.\\w*|:\\w*|->\\w*',
                     minAutoCompleteLength = 1,
+                    sorters = {'sorter_lsp-kind'},
                 },
             })
             vim.fn['ddc#custom#patch_global']('sourceParams', {
                 lsp = {
                     snippetEngine = vim.fn['denops#callback#register'](function(body)
-                        vim.fn['vsnip#anonymous'](body)
+                        require('luasnip').lsp_expand(body)
                     end),
                     enableResolveItem = true,
                     enableAdditionalTextEdit = true,
@@ -43,7 +51,10 @@ return {
         dependencies = {'Shougo/pum.vim'},
     },
     -- ddc:source
-    { 'Shougo/ddc-around', lazy = true },
+    { 
+        'Shougo/ddc-around',
+        lazy = true,
+    },
     {
         'Shougo/ddc-source-lsp',
         dependencies = {'neovim/nvim-lspconfig'},
@@ -59,8 +70,14 @@ return {
         end
     },
     -- ddc:filter
-    { 'Shougo/ddc-matcher_head', lazy = true },
-    { 'Shougo/ddc-sorter_rank', lazy = true },
+    {
+        'Shougo/ddc-matcher_head',
+        lazy = true,
+    },
+    {
+        'Shougo/ddc-sorter_rank',
+        lazy = true,
+    },
     -- pum
     {
         'Shougo/pum.vim',
