@@ -10,11 +10,11 @@ return {
         'Shougo/ddc.vim',
         dependencies = {
             'vim-denops/denops.vim',
+            'Shougo/ddc-ui-pum',
             'Shougo/ddc-around',
             'Shougo/ddc-source-lsp',
             'Shougo/ddc-matcher_head',
             'Shougo/ddc-sorter_rank',
-            'Shougo/pum.vim',
             'L3MON4D3/LuaSnip',
         },
         config = function()
