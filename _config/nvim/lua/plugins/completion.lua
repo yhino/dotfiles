@@ -5,10 +5,6 @@ return {
         version = 'v2.*',
         build = 'make install_jsregexp',
     },
-    -- Schemas
-    {
-        'b0o/schemastore.nvim',
-    },
     -- ddc
     {
         'Shougo/ddc.vim',
