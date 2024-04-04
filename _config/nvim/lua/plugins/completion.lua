@@ -5,6 +5,10 @@ return {
         version = 'v2.*',
         build = 'make install_jsregexp',
     },
+    -- Schemas
+    {
+        'b0o/schemastore.nvim',
+    },
     -- ddc
     {
         'Shougo/ddc.vim',
@@ -57,17 +61,7 @@ return {
     },
     {
         'Shougo/ddc-source-lsp',
-        dependencies = {'neovim/nvim-lspconfig'},
-        config = function()
-            local lspconfig = require('lspconfig')
-            local capabilities = require("ddc_source_lsp").make_client_capabilities()
-            lspconfig.gopls.setup({
-                capabilities = capabilities,
-            })
-            lspconfig.pyright.setup({
-                capabilities = capabilities,
-            })
-        end
+        lazy = true,
     },
     -- ddc:filter
     {

@@ -9,8 +9,11 @@ return {
             local null_ls = require('null-ls')
             null_ls.setup({
                 sources = {
+                    -- golang
                     null_ls.builtins.formatting.gofmt,
                     null_ls.builtins.formatting.goimports,
+                    -- python
+                    null_ls.builtins.diagnostics.mypy,
                 },
                 on_attach = function(client, bufnr)
                     if client.supports_method("textDocument/formatting") then
