@@ -34,6 +34,11 @@ has 'nvim' && {
     alias vimdiff='nvim -d'
 }
 
+has 'k9s' && {
+    alias k9s='k9s --readonly'
+    alias k9sw='k9s'
+}
+
 
 ssh() {
     if is_tmux_running; then
