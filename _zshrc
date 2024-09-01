@@ -36,18 +36,14 @@ source ${HOME}/.zsh/zinit
 
 
 # asdf-vm
-[[ -f $(brew --prefix asdf)/libexec/asdf.sh ]] && {
-    . $(brew --prefix asdf)/libexec/asdf.sh
-}
+#[[ -f $(brew --prefix asdf)/libexec/asdf.sh ]] && {
+#    . $(brew --prefix asdf)/libexec/asdf.sh
+#}
 
-# Rust
-[[ -f ${HOME}/.cargo/env ]] && {
-    source ${HOME}/.cargo/env
+# mise
+type mise &>/dev/null && {
+    eval "$(mise activate zsh)"
 }
-
-# python-poetry
-export POETRY_HOME=${HOME}/.poetry
-path=( ${POETRY_HOME}/bin(N-/) ${path} )
 
 
 # localize
