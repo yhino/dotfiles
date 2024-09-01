@@ -1,22 +1,21 @@
 # vim:ft=zsh
 
-if has 'exa'; then
-    alias ls='exa -Fg'
-
+if has 'eza'; then
+    alias ls='eza -g -F=auto'
     alias ll='ls -l --git'
-    alias la='ls -a'
-    alias lla='ll -a'
+elif has 'exa'; then
+    alias ls='exa -Fg'
+    alias ll='ls -l --git'
 else
     if is_linux; then
         alias ls='ls -Fh --color'
     else
         alias ls='ls -FhG'
     fi
-
     alias ll='ls -l'
-    alias la='ls -a'
-    alias lla='ll -a'
 fi
+alias la='ls -a'
+alias lla='ll -a'
 alias sl='ls'
 
 alias rm='rm -i'
