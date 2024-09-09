@@ -39,24 +39,8 @@ for dotfile in _?*; do
             continue
             ;;
         _ssh)
-            if [ ! -d ${HOME}/${dotfile/_/.} ]; then
-                mkdir -p ${HOME}/${dotfile/_/.}
-            fi
-            for file in ${dotfile}/*; do
-                case `basename ${file}` in
-                    ..)
-                        continue
-                        ;;
-                    config)
-                        if [ ! -f ${HOME}/${file/_/.} ]; then
-                            ln -s ${PWD}/${file} ${HOME}/${file/_/.}
-                        fi
-                        ;;
-                    *)
-                        ln -snf ${PWD}/${file} ${HOME}/${file/_/.}
-                        ;;
-                esac
-            done
+            # to be processed later, at `link ${HOME}/.ssh` section
+            continue
             ;;
         *)
             ln -snf ${PWD}/${dotfile} ${HOME}/${dotfile/_/.}
@@ -74,3 +58,20 @@ if [ "x${XDG_CONFIG_HOME}" != "x" ]; then
         esac
     done
 fi
+
+# make ${HOME}/.ssh and ${HOME}/.ssh/conf.d
+mkdir -p ${HOME}/.ssh/conf.d
+# link ${HOME}/.ssh
+for file in _ssh/*; do
+    file_basename=$(basename ${file})
+    case "${file_basename}" in
+        conf.d)
+            for config_file in _ssh/conf.d/*; do
+                ln -snf ${PWD}/${config_file} ${HOME}/.ssh/conf.d/$(basename ${config_file})
+            done
+            ;;
+        *)
+            ln -snf ${PWD}/${file} ${HOME}/.ssh/${file_basename}
+            ;;
+    esac
+done
