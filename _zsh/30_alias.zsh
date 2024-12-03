@@ -1,7 +1,7 @@
 # vim:ft=zsh
 
 if has 'eza'; then
-    alias ls='eza -g -F=auto'
+    alias ls='eza -F=auto -g'
     alias ll='ls -l --git'
 elif has 'exa'; then
     alias ls='exa -Fg'
