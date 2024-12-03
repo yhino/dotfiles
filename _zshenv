@@ -68,11 +68,6 @@ export GOPATH=$HOME/go
 export GOBIN=${GOPATH}/bin
 path=(${GOBIN}(N-/) ${path})
 
-# Java
-if [[ -x /usr/libexec/java_home ]]; then
-    export JAVA_HOME=$(/usr/libexec/java_home)
-fi
-
 # Markdown
 export GLAMOUR_STYLE=dark
 
