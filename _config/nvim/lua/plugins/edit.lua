@@ -3,38 +3,19 @@ return {
     {
         'kylechui/nvim-surround',
         event = "VeryLazy",
-        config = function()
-            require("nvim-surround").setup {}
-        end
+        opts = {},
     },
     {
         'windwp/nvim-autopairs',
         event = 'InsertEnter',
-        config = function()
-            require('nvim-autopairs').setup {}
-        end,
+        opts = {},
     },
     {
         'windwp/nvim-ts-autotag',
-        event = 'InsertEnter',
-        config = function()
-            require('nvim-treesitter.configs').setup {
-                autotag = {
-                    enable = true,
-                },
-            }
-        end,
+        opts = {},
     },
     {
-       'tpope/vim-endwise',
-        event = 'InsertEnter',
-        config = function()
-            require('nvim-treesitter.configs').setup {
-                endwise = {
-                    enable = true,
-                },
-            }
-        end,
+       'RRethy/nvim-treesitter-endwise',
     },
     {
         'junegunn/vim-easy-align',
