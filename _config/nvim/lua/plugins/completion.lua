@@ -58,6 +58,11 @@ return {
     {
         'Shougo/ddc-source-lsp',
         lazy = true,
+        config = function()
+            vim.lsp.config('*', {
+                capabilities = require('ddc_source_lsp').make_client_capabilities(),
+            })
+        end
     },
     -- ddc:filter
     {
