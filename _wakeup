@@ -1,0 +1,2 @@
+# Restart Karabiner-Elements
+launchctl kickstart -k gui/$(id -u)/org.pqrs.service.agent.karabiner_console_user_server
