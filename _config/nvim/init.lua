@@ -60,6 +60,17 @@ vim.keymap.set('n', '<S-Space>', 'kzz')
 vim.keymap.set('n', '<ESC><ESC>', ':nohlsearch<CR><ESC>')
 
 -- =============================================================================
+-- filetype plugin
+-- =============================================================================
+vim.api.nvim_create_autocmd('FileType', {
+    pattern = {'javascript', 'typescript', 'typescriptreact', 'json'},
+    callback = function()
+        vim.opt_local.tabstop = 2
+        vim.opt_local.shiftwidth = 2
+    end,
+})
+
+-- =============================================================================
 -- plugins
 -- =============================================================================
 local lazy_path = vim.fn.stdpath('data')..'/lazy/lazy.nvim'
