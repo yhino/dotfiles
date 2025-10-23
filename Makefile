@@ -3,3 +3,6 @@ dump-brew:
 
 install-brew:
 	brew bundle install --file Brewfile
+
+start-service:
+	brew services start sleepwatcher

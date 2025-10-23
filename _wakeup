@@ -1,2 +1,7 @@
+echo "[SleepWatcher] Wakeup script executed at $(date)" >> /tmp/sleepwatcher.log
+
 # Restart Karabiner-Elements
-launchctl kickstart -k gui/$(id -u)/org.pqrs.service.agent.karabiner_console_user_server
+launchctl kickstart -k gui/$(id -u)/org.pqrs.service.agent.karabiner_console_user_server >> /tmp/sleepwatcher.log 2>&1
+
+
+echo "[SleepWatcher] Wakeup script execute done at $(date)" >> /tmp/sleepwatcher.log
