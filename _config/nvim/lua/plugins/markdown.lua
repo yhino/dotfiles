@@ -6,7 +6,9 @@ return {
             'nvim-tree/nvim-web-devicons',
         },
         ft = { 'markdown' },
-        opts = {},
+        opts = {
+            enabled = false,
+        },
     },
     {
         'hedyhli/markdown-toc.nvim',
