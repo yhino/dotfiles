@@ -7,7 +7,10 @@ return {
         },
         ft = { 'markdown' },
         opts = {
-            enabled = false,
+            heading = {
+                width = 'full',
+                icons = {},
+            },
         },
     },
     {
