@@ -15,6 +15,7 @@ return {
             'Shougo/ddc-source-lsp',
             'Shougo/ddc-matcher_head',
             'Shougo/ddc-sorter_rank',
+            'Shougo/ddc-filter-sorter_lsp_kind',
             'L3MON4D3/LuaSnip',
         },
         config = function()
@@ -30,7 +31,7 @@ return {
                     mark = 'lsp',
                     forceCompletionPattern = '\\.\\w*|:\\w*|->\\w*',
                     minAutoCompleteLength = 1,
-                    sorters = {'sorter_lsp-kind'},
+                    sorters = {'sorter_lsp_kind'},
                 },
             })
             vim.fn['ddc#custom#patch_global']('sourceParams', {
@@ -71,6 +72,10 @@ return {
     },
     {
         'Shougo/ddc-sorter_rank',
+        lazy = true,
+    },
+    {
+        'Shougo/ddc-filter-sorter_lsp_kind',
         lazy = true,
     },
     -- pum
