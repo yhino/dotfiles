@@ -3,17 +3,17 @@ return {
         'nvim-treesitter/nvim-treesitter',
         build = ':TSUpdate',
         config = function()
-            local configs = require('nvim-treesitter')
-            configs.setup {
-                auto_install = true,
-                highlight = {
-                    enable = true,
-                    additional_vim_regex_highlighting = false,
-                },
-                indent = {
-                    enable = true,
-                },
-            }
+            local treesitter = require('nvim-treesitter')
+            local languages = {'markdown', 'python', 'javascript', 'typescript', 'vim'}
+            -- install languages
+            treesitter.install(languages)
+            -- enable highlight
+            vim.api.nvim_create_autocmd('FileType', {
+                pattern = languages,
+                callback = function() vim.treesitter.start() end,
+            })
+            -- enable indent
+            vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
         end,
     },
 }
