@@ -5,6 +5,7 @@ return {
         config = function()
             local treesitter = require('nvim-treesitter')
             local languages = {'markdown', 'python', 'javascript', 'typescript', 'vim'}
+            treesitter.setup {}
             -- install languages
             treesitter.install(languages)
             -- enable highlight
