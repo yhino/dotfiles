@@ -11,6 +11,9 @@ return {
                 width = 'full',
                 icons = {},
             },
+            bullet = {
+                icons = {},
+            },
         },
     },
     {
