@@ -4,7 +4,19 @@ return {
         build = ':TSUpdate',
         config = function()
             local treesitter = require('nvim-treesitter')
-            local languages = {'markdown', 'python', 'javascript', 'typescript', 'vim'}
+            local languages = {
+                'python',
+                'go', 'gomod', 'gowork', 'gotmpl',
+                'javascript', 'typescript',
+                'bash',
+                'lua',
+                'vim',
+                'json',
+                'yaml',
+                'toml',
+                'html',
+                'markdown',
+            }
             treesitter.setup {}
             -- install languages
             treesitter.install(languages)
