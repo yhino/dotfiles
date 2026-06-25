@@ -5,3 +5,5 @@ cache/*
 logs/*
 
 .idea/*
+
+**/.claude/settings.local.json
