@@ -22,7 +22,18 @@ git-br-fzf() {
     zle -R -c
 }
 zle -N git-br-fzf
-bindkey '^g' git-br-fzf
+bindkey '^G^B' git-br-fzf
+
+git-wt-fzf() {
+    local worktree=$(git-wt 2>/dev/null | fzf-tmux -p 90% +m --prompt="Worktree> " | awk '{if ($1 == "*") print $2; else print $1}')
+    if [[ -n "$dir" ]]; then
+        BUFFER="cd ${worktree}"
+        zle accept-line
+    fi
+    zle -R -c
+}
+zle -N git-wt-fzf
+bindkey '^G^G' git-wt-fzf
 
 select-history() {
     BUFFER=$(history -n -r 1 |awk '!a[$0]++' |fzf-tmux -p 90% --no-sort +m --query "$LBUFFER" --prompt="History> ")

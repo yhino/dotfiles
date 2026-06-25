@@ -23,3 +23,5 @@
 	helper = osxkeychain
 [include]
     path = ~/.gitconfig.local
+[wt]
+	basedir = .git/wt

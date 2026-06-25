@@ -45,6 +45,11 @@ type mise &>/dev/null && {
     eval "$(mise activate zsh)"
 }
 
+# git-wt
+type git-wt &>/dev/null && {
+    eval "$(git wt --init zsh)"
+}
+
 
 # localize
 [[ -f ${HOME}/.zshrc.local ]] && {
