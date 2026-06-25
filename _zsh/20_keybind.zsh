@@ -22,7 +22,7 @@ git-br-fzf() {
     zle -R -c
 }
 zle -N git-br-fzf
-bindkey '^G^B' git-br-fzf
+bindkey '^G' git-br-fzf
 
 git-wt-fzf() {
     local worktree=$(git-wt 2>/dev/null | fzf-tmux -p 90% +m --header-lines=1 --prompt="Worktree> " | awk '{if ($1 == "*") print $2; else print $1}')
