@@ -15,7 +15,7 @@ return {
                 'yaml',
                 'toml',
                 'html',
-                'markdown',
+                'markdown', 'mermaid',
             }
             treesitter.setup {}
             -- install languages
