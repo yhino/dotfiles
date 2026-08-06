@@ -1,0 +1,63 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+BACKUP_DIR="${HOME}/backup/$(date +%Y%m%d-%H%M%S)"
+echo "Backup to ${BACKUP_DIR}"
+
+copy() {
+    if [ -e "${1}" ]; then
+        mkdir -p "${BACKUP_DIR}$(dirname "${1}")"
+        cp -a "${1}" "${BACKUP_DIR}${1}"
+    fi
+}
+
+mkdir -p "${BACKUP_DIR}"
+
+echo "Backing up files..."
+
+# TODO move dotfiles
+copy "${HOME}/.claude.json"
+# TODO move dotfiles
+copy "${HOME}/.config/karabiner/karabiner.json"
+# TODO move dotfiles
+copy "${HOME}/.config/mise/config.toml"
+copy "${HOME}/.env"
+copy "${HOME}/.zsh_history"
+copy "${HOME}/.zshrc.local"
+
+# commands
+echo "Exporting command infos..."
+
+mkdir -p "${BACKUP_DIR}/commands"
+
+defaults read > "${BACKUP_DIR}/commands/defaults.txt"
+
+brew bundle dump --force --taps --brews --casks --file "${BACKUP_DIR}/commands/Brewfile"
+brew leaves > "${BACKUP_DIR}/commands/brew-leaves.txt"
+
+mas list > "${BACKUP_DIR}/commands/mas.txt" || true
+
+git config --list > "${BACKUP_DIR}/commands/git-config.txt"
+
+mise ls > "${BACKUP_DIR}/commands/mise.txt" 2>/dev/null || true
+mise plugins ls > "${BACKUP_DIR}/commands/mise-plugins.txt" 2>/dev/null || true
+
+uv tool list > "${BACKUP_DIR}/commands/uv-tool.txt" 2>/dev/null || true
+
+pipx list > "${BACKUP_DIR}/commands/pipx.txt" 2>/dev/null || true
+
+npm -g list > "${BACKUP_DIR}/commands/npm-global.txt" 2>/dev/null || true
+
+# go tools
+GO_BIN="$(go env GOPATH)/bin"
+if [[ -d "${GO_BIN}" ]]; then
+    for f in "${GO_BIN}/*"; do
+        go version -m $f 2>/dev/null || true
+    done \
+        | awk '$1 == "path" {print $2}' \
+        | sort -u \
+        > "${BACKUP_DIR}/commands/go-tools.txt"
+fi
+
+echo "Finished."
