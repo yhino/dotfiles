@@ -1,1 +1,0 @@
-echo "[SleepWatcher] Sleep script executed at $(date)" >> /tmp/sleepwatcher.log
