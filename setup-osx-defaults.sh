@@ -106,3 +106,22 @@ defaults write com.apple.ImageCapture disableHotPlug -bool true
 defaults write com.apple.LaunchServices LSQuarantine -bool false
 # 印刷が終わったらプリンターアプリを終了する
 defaults write com.apple.print.PrintingPrefs "Quit When Finished" -bool true
+
+# ---------------------------------------------------------------------------
+# Restart applications
+# ---------------------------------------------------------------------------
+echo "Setting changes applied. Restarting affected applications..."
+
+# Finder
+killall Finder
+
+# Dock
+killall Dock
+
+# Safari
+killall Safari 2>/dev/null || true
+
+# SystemUIServer (メニューバーの再読み込み)
+killall SystemUIServer
+
+echo "Done! All applications have been restarted."
