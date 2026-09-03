@@ -10,20 +10,6 @@ defaults write NSGlobalDomain InitialKeyRepeat -int 15
 # KeyRepeat
 defaults write NSGlobalDomain KeyRepeat -int 3
 
-# @NOTE disable temporarily
-## ---------------------------------------------------------------------------
-## Trackpad
-## ---------------------------------------------------------------------------
-## タップでクリック
-#defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -int 1
-#defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
-#defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
-## 右下クリックで、副クリック
-#defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadCornerSecondaryClick -int 2
-#defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadRightClick -bool true
-#defaults -currentHost write NSGlobalDomain com.apple.trackpad.tapBehavior.trackpadCornerClickBehavior -int 1
-#defaults -currentHost write NSGlobalDomain com.apple.trackpad.tapBehavior.enableSecondaryClick -bool true
-
 # ---------------------------------------------------------------------------
 # Finder
 # ---------------------------------------------------------------------------
@@ -78,20 +64,6 @@ defaults write com.apple.dashboard mcx-disabled -bool true
 defaults write com.apple.dock expose-animation-duration -float 0.15
 
 # ---------------------------------------------------------------------------
-# Safari
-# ---------------------------------------------------------------------------
-# 開発メニューを表示
-defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2DeveloperExtrasEnabled -bool true
-# デバッグメニューを表示
-defaults write com.apple.Safari IncludeDevelopMenu -bool true
-# アドレスバーに完全なURLを表示
-defaults write com.apple.Safari ShowFullURLInSmartSearchField -bool true
-# コンテキストメニューにWebインスペクタを追加
-defaults write NSGlobalDomain WebKitDeveloperExtras -bool true
-# ステータスバー表示
-defaults write com.apple.Safari ShowStatusBar -bool true
-
-# ---------------------------------------------------------------------------
 # misc.
 # ---------------------------------------------------------------------------
 # ネットワーク接続時に.DS_Storeファイルの作成を抑制する
@@ -117,9 +89,6 @@ killall Finder
 
 # Dock
 killall Dock
-
-# Safari
-killall Safari 2>/dev/null || true
 
 # SystemUIServer (メニューバーの再読み込み)
 killall SystemUIServer
