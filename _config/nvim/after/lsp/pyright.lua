@@ -6,11 +6,5 @@ return {
         caps.textDocument.rangeFormatting = false
         return caps
     end)(),
-    settings = {
-        python = {
-            analysis = {
-                typeCheckingMode = 'strict',
-            }
-        }
-    },
+    settings = {},
 }
