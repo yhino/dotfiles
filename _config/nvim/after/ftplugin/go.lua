@@ -1,7 +1,3 @@
-local lspconfig = require('lspconfig')
-
-lspconfig.gopls.setup({})
-
 -- Enable auto-formatting and organize imports on save
 vim.api.nvim_create_autocmd("BufWritePre", {
     buffer = 0,
