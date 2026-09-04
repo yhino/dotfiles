@@ -1,6 +1,23 @@
 local lspconfig = require('lspconfig')
 
-lspconfig.gopls.setup({})
+lspconfig.pyright.setup({
+    capabilities = (function()
+        local caps = vim.lsp.protocol.make_client_capabilities()
+        -- disable formatting capabilities for pyright to avoid conflicts with ruff
+        caps.textDocument.formatting = false
+        caps.textDocument.rangeFormatting = false
+        return caps
+    end)(),
+    settings = {
+        python = {
+            analysis = {
+                typeCheckingMode = 'strict',
+            }
+        }
+    },
+})
+
+lspconfig.ruff.setup({})
 
 -- Enable auto-formatting and organize imports on save
 vim.api.nvim_create_autocmd("BufWritePre", {

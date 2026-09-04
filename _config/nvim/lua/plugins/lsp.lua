@@ -1,21 +1,27 @@
 return {
     {
-        'williamboman/mason.nvim',
+        'mason-org/mason.nvim',
         config = function()
             require('mason').setup()
         end
     },
     {
-        'williamboman/mason-lspconfig.nvim',
+        'mason-org/mason-lspconfig.nvim',
         dependencies = {
+            'mason-org/mason.nvim',
             'nvim-lspconfig',
             'Shougo/ddc-source-lsp',
             'b0o/schemastore.nvim',
         },
-        config = function()
-            require('mason-lspconfig').setup()
-            vim.lsp.enable(require('mason-lspconfig').get_installed_servers())
-        end
+        opts = {
+            ensure_installed = {
+                'gopls',
+                'pyright',
+                'ruff',
+                'jsonls',
+                'yamlls',
+            },
+        },
     },
     {
         'neovim/nvim-lspconfig',
