@@ -24,4 +24,4 @@
 [include]
     path = ~/.gitconfig.local
 [wt]
-	basedir = .git/wt
+	basedir = .wt
