@@ -60,6 +60,11 @@ for file in _config/*; do
         config_source="${config_source}/karabiner.json"
         config_target="${config_target}/karabiner.json"
         ;;
+    "_config/herdr")
+        mkdir -p "${config_target}" || exit 1
+        config_source="${config_source}/config.toml"
+        config_target="${config_target}/config.toml"
+        ;;
     *)
         ;;
     esac
