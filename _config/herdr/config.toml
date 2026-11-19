@@ -1,0 +1,44 @@
+onboarding = false
+
+[theme]
+name = "terminal"
+auto_switch = false
+
+[theme.custom]
+overlay0 = "#a89984"
+overlay1 = "#ebdbb2"
+
+[keys]
+prefix = "ctrl-t"
+reload_config = "prefix+ctrl+r"
+detach = "prefix+d"
+
+new_tab = ["prefix+ctrl+n", "prefix+c"]
+rename_tab = "prefix+comma"
+previous_tab = "alt+left"
+next_tab = "alt+right"
+
+navigate_workspace_down = ["j", "down"]
+navigate_workspace_up = ["k", "up"]
+
+split_vertical = "prefix+|"
+split_horizontal = "prefix+minus"
+focus_pane_left = ["prefix+h", "alt+h"]
+focus_pane_down = ["prefix+j", "alt+j"]
+focus_pane_up = ["prefix+k", "alt+k"]
+focus_pane_right = ["prefix+l", "alt+l"]
+close_pane = "prefix+x"
+zoom = "prefix+ctrl+f"
+copy_mode = "prefix+v"
+
+[ui]
+prompt_new_tab_name = false
+tab_bar_right = [
+    { type = "zoom" },
+    { type = "hostname" },
+    { type = "datetime", format = "%Y-%m-%d(%a) %H:%M:%S" },
+]
+tab_bar_right_separator = " | "
+
+[experimental]
+switch_ascii_input_source_in_prefix = true

@@ -49,15 +49,22 @@ for dotfile in _?*; do
 done
 
 # link XDG_CONFIG_HOME
-if [ "x${XDG_CONFIG_HOME}" != "x" ]; then
-    for file in _config/*; do
-        case ${file} in
-	    *)
-	        ln -snf ${PWD}/${file} ${XDG_CONFIG_HOME}/$(basename ${file})
-		;;
-        esac
-    done
-fi
+config_home="${XDG_CONFIG_HOME:-${HOME}/.config}"
+mkdir -p "${config_home}" || exit 1
+for file in _config/*; do
+    config_source="${PWD}/${file}"
+    config_target="${config_home}/$(basename "${file}")"
+    case ${file} in
+    "_config/karabiner")
+        mkdir -p "${config_target}" || exit 1
+        config_source="${config_source}/karabiner.json"
+        config_target="${config_target}/karabiner.json"
+        ;;
+    *)
+        ;;
+    esac
+    ln -snf ${config_source} ${config_target}
+done
 
 # make ${HOME}/.ssh and ${HOME}/.ssh/conf.d
 mkdir -p ${HOME}/.ssh/conf.d

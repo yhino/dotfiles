@@ -1,0 +1,39 @@
+font-family = UbuntuMono Nerd Font
+# Pin Japanese glyphs so system fallback does not select Hiragino.
+font-codepoint-map = U+3000-U+30FF,U+31F0-U+31FF,U+3400-U+9FFF,U+F900-U+FAFF,U+FF00-U+FFEF=Gen Jyuu Gothic Monospace
+font-style = Italic
+font-style-bold = Bold Italic
+font-size = 16
+font-feature = -calt
+font-feature = -liga
+font-feature = -dlig
+
+theme = Gruvbox Dark
+bold-color = #ffffff
+selection-background = #ebdbb2
+selection-foreground = #665c54
+
+background-opacity = 0.85
+background-blur = false
+
+window-padding-x = 8
+window-padding-y = 4
+window-padding-balance = true
+# macOS renders with Metal; synchronize redraws with the display.
+window-vsync = true
+
+macos-titlebar-style = transparent
+macos-window-shadow = true
+mouse-hide-while-typing = true
+
+copy-on-select = true
+clipboard-read = allow
+clipboard-write = allow
+
+shell-integration = detect
+shell-integration-features = cursor,title,path
+
+# Pass Meta combinations through to tmux and Herdr
+macos-option-as-alt = left
+keybind = alt+arrow_left=unbind
+keybind = alt+arrow_right=unbind
