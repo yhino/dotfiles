@@ -33,7 +33,7 @@ clipboard-write = allow
 shell-integration = detect
 shell-integration-features = cursor,title,path
 
-# Pass Meta combinations through to tmux and Herdr
+# Pass Meta combinations through to tmux and Herdr.
 macos-option-as-alt = left
 keybind = alt+arrow_left=unbind
 keybind = alt+arrow_right=unbind

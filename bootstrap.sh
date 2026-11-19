@@ -63,7 +63,7 @@ for file in _config/*; do
     *)
         ;;
     esac
-    ln -snf ${config_source} ${config_target}
+    ln -snf "${config_source}" "${config_target}"
 done
 
 # make ${HOME}/.ssh and ${HOME}/.ssh/conf.d

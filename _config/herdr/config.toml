@@ -9,7 +9,7 @@ overlay0 = "#a89984"
 overlay1 = "#ebdbb2"
 
 [keys]
-prefix = "ctrl-t"
+prefix = "ctrl+t"
 reload_config = "prefix+ctrl+r"
 detach = "prefix+d"
 
